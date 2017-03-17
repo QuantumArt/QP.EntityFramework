@@ -2,23 +2,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework6.CodeGeneration", "QuantumArt.EntityFramework\EntityFramework6.CodeGeneration\EntityFramework6.CodeGeneration.csproj", "{F01567D9-A7D8-4227-B26F-32E0B7F27409}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework6.CodeGeneration", "EntityFramework6.CodeGeneration\EntityFramework6.CodeGeneration.csproj", "{F01567D9-A7D8-4227-B26F-32E0B7F27409}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QP8.EntityFramework", "QuantumArt.EntityFramework\EntityFramework\QP8.EntityFramework.csproj", "{C1241BE4-896B-4345-AA38-076BA3E5ACE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QP8.EntityFramework", "EntityFramework\QP8.EntityFramework.csproj", "{C1241BE4-896B-4345-AA38-076BA3E5ACE4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{3D983A72-C7D5-4E8C-9666-50F610114EA1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFramework6", "EntityFramework6", "{CE71CF28-F97A-4008-BD7A-B27D11AA915F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGeneration", "QuantumArt.EntityFramework\CodeGeneration\CodeGeneration.csproj", "{FD5155AD-C9F4-4EB4-A5E7-7F282A439548}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGeneration", "CodeGeneration\CodeGeneration.csproj", "{FD5155AD-C9F4-4EB4-A5E7-7F282A439548}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework6.Data", "QuantumArt.EntityFramework\EntityFramework6.Data\EntityFramework6.Data.csproj", "{5219FAD2-026B-4B93-A524-A61AD97122C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework6.Data", "EntityFramework6.Data\EntityFramework6.Data.csproj", "{5219FAD2-026B-4B93-A524-A61AD97122C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework6.DevData", "QuantumArt.EntityFramework\EntityFramework6.DevData\EntityFramework6.DevData.csproj", "{34924E69-C290-4359-82A5-0A07B9ADE463}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework6.DevData", "EntityFramework6.DevData\EntityFramework6.DevData.csproj", "{34924E69-C290-4359-82A5-0A07B9ADE463}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGeneration.Test", "QuantumArt.EntityFramework\CodeGeneration.Test\CodeGeneration.Test.csproj", "{C833C175-8E8D-4A8A-BAE2-98B860CD3B14}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGeneration.Test", "CodeGeneration.Test\CodeGeneration.Test.csproj", "{C833C175-8E8D-4A8A-BAE2-98B860CD3B14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework6.Test", "QuantumArt.EntityFramework\EntityFramework6.Test\EntityFramework6.Test.csproj", "{4F1247CE-A53D-4057-9110-D42176ED68DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework6.Test", "EntityFramework6.Test\EntityFramework6.Test.csproj", "{4F1247CE-A53D-4057-9110-D42176ED68DC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{70588F54-56D0-4C3A-8D58-1A2DAACD1ABB}"
 EndProject
