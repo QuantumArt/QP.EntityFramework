@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using Quantumart.QPublishing.Info;
 using System.Data.Entity.Core;
 using System.Collections;
+using System.Globalization;
 
 
 namespace EntityFramework6.Test.DataContext
@@ -430,9 +431,9 @@ namespace EntityFramework6.Test.DataContext
 
         private void SyncArticle(IQPArticle article, Dictionary<string, string> fieldValues)
         {
-            article.Id = int.Parse(fieldValues[SystemColumnNames.Id]);
-            article.Modified = DateTime.Parse(fieldValues[SystemColumnNames.Modified]);
-            article.Created = DateTime.Parse(fieldValues[SystemColumnNames.Created]);
+            article.Id = int.Parse(fieldValues[SystemColumnNames.Id], CultureInfo.InvariantCulture);
+            article.Modified = DateTime.Parse(fieldValues[SystemColumnNames.Modified], CultureInfo.InvariantCulture);
+            article.Created = DateTime.Parse(fieldValues[SystemColumnNames.Created], CultureInfo.InvariantCulture);
         }
 
         private string[] GetProperties(ContentInfo content)
@@ -458,9 +459,9 @@ namespace EntityFramework6.Test.DataContext
                     f => f.value
                 );
            
-            fieldValues[SystemColumnNames.Id] = article.Id.ToString();
-            fieldValues[SystemColumnNames.Created] = article.Created.ToString();
-            fieldValues[SystemColumnNames.Modified] = article.Modified.ToString();
+            fieldValues[SystemColumnNames.Id] = article.Id.ToString(CultureInfo.InvariantCulture);
+            fieldValues[SystemColumnNames.Created] = article.Created.ToString(CultureInfo.InvariantCulture);
+            fieldValues[SystemColumnNames.Modified] = article.Modified.ToString(CultureInfo.InvariantCulture);
 
             if (article.StatusTypeId != 0)
             {
