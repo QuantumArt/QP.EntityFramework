@@ -49,7 +49,7 @@ namespace CodeGeneration.Test
 
         private string GetText()
         {
-            string path = @"C:\Source\Repos\QP\EntityFramework6.Test\DataContext\QPDataContextGenerator.tt";
+            string path = @"C:\Source\Repos\QP.EntityFramework\EntityFramework6.Test\DataContext\QPDataContextGenerator.tt";
             string text = File.ReadAllText(path);
             return text;
         }   
