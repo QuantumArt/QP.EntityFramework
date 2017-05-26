@@ -392,147 +392,168 @@ namespace EntityFramework6.Test.DataContext
                    Id = 618,
                    MappedName = "AfiellFieldsItem",
                    UseDefaultFiltration = true,
-                   Attributes = new List<AttributeInfo>(attributesLookup[618])
+                   Attributes = new List<AttributeInfo>(attributesLookup[618]),
+                   IsVirtual = false
                 },
                 new ContentInfo
                 {
                    Id = 620,
                    MappedName = "Schema",
                    UseDefaultFiltration = true,
-                   Attributes = new List<AttributeInfo>(attributesLookup[620])
+                   Attributes = new List<AttributeInfo>(attributesLookup[620]),
+                   IsVirtual = false
                 },
                 new ContentInfo
                 {
                    Id = 621,
                    MappedName = "StringItem",
                    UseDefaultFiltration = true,
-                   Attributes = new List<AttributeInfo>(attributesLookup[621])
+                   Attributes = new List<AttributeInfo>(attributesLookup[621]),
+                   IsVirtual = false
                 },
                 new ContentInfo
                 {
                    Id = 622,
                    MappedName = "StringItemForUpdate",
                    UseDefaultFiltration = true,
-                   Attributes = new List<AttributeInfo>(attributesLookup[622])
+                   Attributes = new List<AttributeInfo>(attributesLookup[622]),
+                   IsVirtual = false
                 },
                 new ContentInfo
                 {
                    Id = 623,
                    MappedName = "StringItemForUnsert",
                    UseDefaultFiltration = true,
-                   Attributes = new List<AttributeInfo>(attributesLookup[623])
+                   Attributes = new List<AttributeInfo>(attributesLookup[623]),
+                   IsVirtual = false
                 },
                 new ContentInfo
                 {
                    Id = 624,
                    MappedName = "ItemForUpdate",
                    UseDefaultFiltration = true,
-                   Attributes = new List<AttributeInfo>(attributesLookup[624])
+                   Attributes = new List<AttributeInfo>(attributesLookup[624]),
+                   IsVirtual = false
                 },
                 new ContentInfo
                 {
                    Id = 625,
                    MappedName = "ItemForInsert",
                    UseDefaultFiltration = true,
-                   Attributes = new List<AttributeInfo>(attributesLookup[625])
+                   Attributes = new List<AttributeInfo>(attributesLookup[625]),
+                   IsVirtual = false
                 },
                 new ContentInfo
                 {
                    Id = 626,
                    MappedName = "PublishedNotPublishedItem",
                    UseDefaultFiltration = true,
-                   Attributes = new List<AttributeInfo>(attributesLookup[626])
+                   Attributes = new List<AttributeInfo>(attributesLookup[626]),
+                   IsVirtual = false
                 },
                 new ContentInfo
                 {
                    Id = 627,
                    MappedName = "ReplacingPlaceholdersItem",
                    UseDefaultFiltration = true,
-                   Attributes = new List<AttributeInfo>(attributesLookup[627])
+                   Attributes = new List<AttributeInfo>(attributesLookup[627]),
+                   IsVirtual = false
                 },
                 new ContentInfo
                 {
                    Id = 628,
                    MappedName = "FileFieldsItem",
                    UseDefaultFiltration = true,
-                   Attributes = new List<AttributeInfo>(attributesLookup[628])
+                   Attributes = new List<AttributeInfo>(attributesLookup[628]),
+                   IsVirtual = false
                 },
                 new ContentInfo
                 {
                    Id = 694,
                    MappedName = "SymmetricRelationArticle",
                    UseDefaultFiltration = true,
-                   Attributes = new List<AttributeInfo>(attributesLookup[694])
+                   Attributes = new List<AttributeInfo>(attributesLookup[694]),
+                   IsVirtual = false
                 },
                 new ContentInfo
                 {
                    Id = 695,
                    MappedName = "ToSymmetricRelationAtricle",
                    UseDefaultFiltration = true,
-                   Attributes = new List<AttributeInfo>(attributesLookup[695])
+                   Attributes = new List<AttributeInfo>(attributesLookup[695]),
+                   IsVirtual = false
                 },
                 new ContentInfo
                 {
                    Id = 993,
                    MappedName = "MtMItemForUpdate",
                    UseDefaultFiltration = true,
-                   Attributes = new List<AttributeInfo>(attributesLookup[993])
+                   Attributes = new List<AttributeInfo>(attributesLookup[993]),
+                   IsVirtual = false
                 },
                 new ContentInfo
                 {
                    Id = 994,
                    MappedName = "MtMDictionaryForUpdate",
                    UseDefaultFiltration = true,
-                   Attributes = new List<AttributeInfo>(attributesLookup[994])
+                   Attributes = new List<AttributeInfo>(attributesLookup[994]),
+                   IsVirtual = false
                 },
                 new ContentInfo
                 {
                    Id = 998,
                    MappedName = "OtMItemForUpdate",
                    UseDefaultFiltration = true,
-                   Attributes = new List<AttributeInfo>(attributesLookup[998])
+                   Attributes = new List<AttributeInfo>(attributesLookup[998]),
+                   IsVirtual = false
                 },
                 new ContentInfo
                 {
                    Id = 999,
                    MappedName = "OtMDictionaryForUpdate",
                    UseDefaultFiltration = true,
-                   Attributes = new List<AttributeInfo>(attributesLookup[999])
+                   Attributes = new List<AttributeInfo>(attributesLookup[999]),
+                   IsVirtual = false
                 },
                 new ContentInfo
                 {
                    Id = 1002,
                    MappedName = "DateItemForUpdate",
                    UseDefaultFiltration = true,
-                   Attributes = new List<AttributeInfo>(attributesLookup[1002])
+                   Attributes = new List<AttributeInfo>(attributesLookup[1002]),
+                   IsVirtual = false
                 },
                 new ContentInfo
                 {
                    Id = 1003,
                    MappedName = "TimeItemForUpdate",
                    UseDefaultFiltration = true,
-                   Attributes = new List<AttributeInfo>(attributesLookup[1003])
+                   Attributes = new List<AttributeInfo>(attributesLookup[1003]),
+                   IsVirtual = false
                 },
                 new ContentInfo
                 {
                    Id = 1004,
                    MappedName = "DateTimeItemForUpdate",
                    UseDefaultFiltration = true,
-                   Attributes = new List<AttributeInfo>(attributesLookup[1004])
+                   Attributes = new List<AttributeInfo>(attributesLookup[1004]),
+                   IsVirtual = false
                 },
                 new ContentInfo
                 {
                    Id = 1008,
                    MappedName = "FileItemForUpdate",
                    UseDefaultFiltration = true,
-                   Attributes = new List<AttributeInfo>(attributesLookup[1008])
+                   Attributes = new List<AttributeInfo>(attributesLookup[1008]),
+                   IsVirtual = false
                 },
                 new ContentInfo
                 {
                    Id = 1009,
                    MappedName = "ImageItemForUpdate",
                    UseDefaultFiltration = true,
-                   Attributes = new List<AttributeInfo>(attributesLookup[1009])
+                   Attributes = new List<AttributeInfo>(attributesLookup[1009]),
+                   IsVirtual = false
                 },
             };
 

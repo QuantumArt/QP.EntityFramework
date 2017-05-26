@@ -94,13 +94,15 @@ namespace EntityFramework6.Test.DataContext
                     var contentId = (int)row.Field<decimal>("CONTENT_ID");
                     var mappedName = row.Field<string>("NET_CONTENT_NAME");
                     var useDefaultFiltration = row.Field<bool>("USE_DEFAULT_FILTRATION");
+                    var IsVirtual = row.Field<bool>("IS_VIRTUAL");
 
                     var content = new ContentInfo
                     {
                         Id = contentId,
                         MappedName = mappedName,
                         UseDefaultFiltration = useDefaultFiltration,
-                        Attributes = new List<AttributeInfo>(attributesLookup[contentId])
+                        Attributes = new List<AttributeInfo>(attributesLookup[contentId]),
+                        IsVirtual = IsVirtual
                     };
 
                     content.Attributes.ForEach(a => a.Content = content);

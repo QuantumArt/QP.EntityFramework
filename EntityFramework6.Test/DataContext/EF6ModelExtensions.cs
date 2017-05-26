@@ -367,28 +367,30 @@ namespace EntityFramework6.Test.DataContext
             {
                 var contentName = group.Key;
                 var content = MappingResolver.GetContent(contentName);
-
-                var items = group
-                    .Where(item => item.Entity is IQPArticle)
-                    .Select(item => {
-
-                        var article = (IQPArticle)item.Entity;
-                        var properties = getProperties(content, item);
-                        var fieldValues = GetFieldValues(contentName, article, properties, passNullValues);
-
-                        return new
-                        {
-                            article,
-                            fieldValues
-                        };
-                    })
-                    .ToArray();
-
-                Cnn.MassUpdate(content.Id, items.Select(item => item.fieldValues), 1);
-
-                foreach (var item in items)
+                if (!content.IsVirtual)
                 {
-                    SyncArticle(item.article, item.fieldValues);
+                  var items = group
+                      .Where(item => item.Entity is IQPArticle)
+                      .Select(item => {
+
+                          var article = (IQPArticle)item.Entity;
+                          var properties = getProperties(content, item);
+                          var fieldValues = GetFieldValues(contentName, article, properties, passNullValues);
+
+                          return new
+                          {
+                              article,
+                              fieldValues
+                          };
+                      })
+                      .ToArray();
+
+                  Cnn.MassUpdate(content.Id, items.Select(item => item.fieldValues), 1);
+
+                  foreach (var item in items)
+                  {
+                      SyncArticle(item.article, item.fieldValues);
+                  }
                 }
             }
 

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <schema connectionStringName="qp_database" class="EF6Model" namespace="QA.EF" useLongUrls="true" replaceUrls="true" dbIndependent="true" isPartial="true" sendNotifications="false" siteName="Product Catalog" siteId="35" forStage="true" connectionString="Initial Catalog=catalog_branch_main;Data Source=MSCSQL01;Workstation ID=MSCDEV02;Integrated Security=True" connectionStringObject="System.Configuration.ConfigurationManager.ConnectionStrings">
-  <content id="287" name="Маркетинговые продукты" mapped_name="MarketingProduct" plural_mapped_name="MarketingProducts"  split_articles="true" use_default_filtration="true" virtual="0" user_query="0">
+  <content id="287" name="Маркетинговые продукты" mapped_name="MarketingProduct" plural_mapped_name="MarketingProducts"  split_articles="true" use_default_filtration="true" virtual="1" user_query="0">
     <attribute name="Title" mapped_name="Title" id="1110" type="String" size="255" />
     <attribute name="Alias" mapped_name="Alias" id="1112" type="String" size="255" />
     <attribute name="ProductType" mapped_name="ProductType" id="1134" type="Numeric" size="0" is_long="false" is_classifier="true" use_inheritance="true" />

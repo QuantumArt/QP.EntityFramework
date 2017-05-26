@@ -57,7 +57,8 @@ namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("Names
                    Id = <#=content.Id#>,
                    MappedName = "<#=content.MappedName#>",
                    UseDefaultFiltration = <#=content.UseDefaultFiltration.ToString().ToLower()#>,
-                   Attributes = new List<AttributeInfo>(attributesLookup[<#=content.Id#>])
+                   Attributes = new List<AttributeInfo>(attributesLookup[<#=content.Id#>]),
+                   IsVirtual = <#=content.IsVirtual.ToString().ToLower()#>
                 },
 <#+
             }
