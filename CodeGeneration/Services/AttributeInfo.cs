@@ -30,7 +30,7 @@ namespace Quantumart.QP8.CodeGeneration.Services
         {
             get
             {
-                return this.Type == "TextBox" || this.Type == "String" || this.Type == "VisualEdit";
+                return this.Type == "Textbox" || this.Type == "String" || this.Type == "VisualEdit";
             }
         }
         public bool IsNullable

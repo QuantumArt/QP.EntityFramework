@@ -20,7 +20,7 @@ namespace EntityFramework6.Test.DataContext
 			{ "DateTime", new Func<AfiellFieldsItem, IQPFormService, string>((self, ctx) => self.DateTime != null ? self.DateTime.ToString() : null) },
 			{ "File", new Func<AfiellFieldsItem, IQPFormService, string>((self, ctx) => self.File != null ? self.File : null) },
 			{ "Image", new Func<AfiellFieldsItem, IQPFormService, string>((self, ctx) => self.Image != null ? self.Image : null) },
-			{ "TextBox", new Func<AfiellFieldsItem, IQPFormService, string>((self, ctx) => self.TextBox != null ? self.TextBox : null) },
+			{ "TextBox", new Func<AfiellFieldsItem, IQPFormService, string>((self, ctx) => self.TextBox != null ? ctx.ReplacePlaceholders(self.TextBox) : null) },
 			{ "VisualEdit", new Func<AfiellFieldsItem, IQPFormService, string>((self, ctx) => self.VisualEdit != null ? ctx.ReplacePlaceholders(self.VisualEdit) : null) },
 			{ "DynamicImage", new Func<AfiellFieldsItem, IQPFormService, string>((self, ctx) => self.DynamicImage != null ? self.DynamicImage : null) },
 			{ "Enum", new Func<AfiellFieldsItem, IQPFormService, string>((self, ctx) => self.Enum != null ? ctx.ReplacePlaceholders(self.Enum) : null) },
@@ -41,6 +41,7 @@ namespace EntityFramework6.Test.DataContext
         void IQPArticle.OnMaterialized(IQPLibraryService context)
         {
 			this.String = context.ReplacePlaceholders(this.String);
+			this.TextBox = context.ReplacePlaceholders(this.TextBox);
 			this.VisualEdit = context.ReplacePlaceholders(this.VisualEdit);
 			this.Enum = context.ReplacePlaceholders(this.Enum);
 			this.FileUrl = context.GetUrl(this.File, "AfiellFieldsItem", "File");
