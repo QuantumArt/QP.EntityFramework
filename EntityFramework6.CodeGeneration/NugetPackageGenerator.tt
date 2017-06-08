@@ -36,9 +36,9 @@
 <#
 	using (var context = new NugetContext(Host, GenerationEnvironment))
     {
-		context.Version = "1.1.3";
+		context.Version = "1.1.4";
 		context.PackageName = "QP8.EntityFramework6";
-		context.PackageSource = "file://mscbuild01.artq.com/Packages/";
+		context.PackageSource = "file://mscbuild02.artq.com/Packages/";
 
 		context.FlatternTemplate(@"..\EntityFramework6.DevData\QPDataContextGenerator.tt");
 		context.AddTemplateFile("NugetPackage.nuspec", AddNuspec);
