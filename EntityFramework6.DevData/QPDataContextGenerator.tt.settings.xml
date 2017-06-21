@@ -42,5 +42,6 @@
       <Map cultureAlias="ENU" to="en-us" />
     </CultureMappings>
   </Localization>
+  <Usings>/* place your custom usings here */</Usings>
   <!--POCO/Default-->
 </settings>
