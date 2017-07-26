@@ -46,6 +46,12 @@
       <HintPath>$(SolutionDir)packages\Quantumart.2.0.8\lib\net45\Quantumart.QP8.Assembling.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Quantumart.QP8.CodeGeneration, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\QP8.EntityFramework6.1.1.4\lib\net45\Quantumart.QP8.CodeGeneration.dll</HintPath>
+    </Reference>
+    <Reference Include="Quantumart.QP8.EntityFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\QP8.EntityFramework6.1.1.4\lib\net45\Quantumart.QP8.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -62,10 +68,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EntityFramework6.CodeGeneration\EntityFramework6.CodeGeneration.csproj">
+      <Project>{f01567d9-a7d8-4227-b26f-32e0b7f27409}</Project>
+      <Name>EntityFramework6.CodeGeneration</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ModelMappingResult.xml" />
@@ -74,20 +88,6 @@
       <LastGenOutput>QPDataContextGenerator.log</LastGenOutput>
     </Content>
     <Content Include="QPDataContextGenerator.tt.settings.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CodeGeneration\CodeGeneration.csproj">
-      <Project>{FD5155AD-C9F4-4EB4-A5E7-7F282A439548}</Project>
-      <Name>CodeGeneration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EntityFramework6.CodeGeneration\EntityFramework6.CodeGeneration.csproj">
-      <Project>{f01567d9-a7d8-4227-b26f-32e0b7f27409}</Project>
-      <Name>EntityFramework6.CodeGeneration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EntityFramework\QP8.EntityFramework.csproj">
-      <Project>{c1241be4-896b-4345-aa38-076ba3e5ace4}</Project>
-      <Name>QP8.EntityFramework</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
