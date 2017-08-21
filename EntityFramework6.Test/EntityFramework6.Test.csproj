@@ -150,7 +150,16 @@
     <Compile Include="DataContext\OtMDictionaryForUpdate.cs">
       <DependentUpon>QPDataContextGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataContext\OtMItemForMapping.cs">
+      <DependentUpon>QPDataContextGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataContext\OtMItemForUpdate.cs">
+      <DependentUpon>QPDataContextGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\OtMItemToContentWithoutMapping.cs">
+      <DependentUpon>QPDataContextGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\OtMRelatedItemWithMapping.cs">
       <DependentUpon>QPDataContextGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="DataContext\PublishedNotPublishedItem.cs">
@@ -201,6 +210,7 @@
     <Compile Include="Tests\ReadContentData\ReadFileFieldFixture.cs" />
     <Compile Include="Tests\ReadContentData\ReadInvisibleOrArchive.cs" />
     <Compile Include="Tests\ReadContentData\ReadLiveArticlesFixture.cs" />
+    <Compile Include="Tests\ReadContentData\ReadO2MRelationFixture.cs" />
     <Compile Include="Tests\ReadContentData\ReadStageArticleFixture.cs" />
     <Compile Include="Tests\ReadContentData\ReadStringFieldFixture.cs" />
     <Compile Include="Tests\ReadContentData\ReplacingPlaceholdersFixture.cs" />

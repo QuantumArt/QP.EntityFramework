@@ -5,10 +5,11 @@ using System.Collections;
 using System.Collections.Generic;
 namespace EntityFramework6.Test.DataContext
 {
-    public partial class ImageItemForUpdate: IQPArticle
+    public partial class OtMRelatedItemWithMapping: IQPArticle
     {
-        public ImageItemForUpdate()
+        public OtMRelatedItemWithMapping()
         {
+		    BackOtMReferenceMapping = new HashSet<OtMItemForMapping>();
         }
 
         public virtual Int32 Id { get; set; }
@@ -20,11 +21,10 @@ namespace EntityFramework6.Test.DataContext
         public virtual Int32 LastModifiedBy { get; set; }
         public virtual StatusType StatusType { get; set; }
 
-        public virtual String ImageValueField { get; set; }
-		#region Generated Content properties
-        // public string ImageValueFieldUrl { get; set; }
-        // public string ImageValueFieldUploadPath { get; set; }
-		#endregion
+		/// <summary>
+		/// Auto-generated backing property for field (id: 40111)/OtMReferenceMapping BackOtMReferenceMapping
+		/// </summary>
+		public  ICollection<OtMItemForMapping> BackOtMReferenceMapping { get; set; }
 	}
 }
 	

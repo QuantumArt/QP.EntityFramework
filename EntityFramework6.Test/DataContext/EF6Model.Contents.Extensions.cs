@@ -866,4 +866,120 @@ namespace EntityFramework6.Test.DataContext
         }
         #endregion
     }
+    public partial class OtMItemForMapping: IQPArticle
+    {
+        #region Static members
+        protected static readonly Dictionary<string, Func<OtMItemForMapping, IQPFormService, string>> _valueExtractors = new Dictionary<string, Func<OtMItemForMapping,  IQPFormService, string>>
+        {
+			{ "OtMReferenceMapping_ID", new Func<OtMItemForMapping, IQPFormService, string>((self, ctx) => self.OtMReferenceMapping_ID != null ? self.OtMReferenceMapping_ID.ToString() : null) },
+        };
+
+        #endregion
+        #region Methods
+        void IQPArticle.OnMaterialized(IQPLibraryService context)
+        {
+        }
+
+        // для Poco перенести из класса куда-нибудь, так как нарушается концепция доступа к БД
+        Hashtable IQPArticle.Pack(IQPFormService context, params string[] propertyNames)
+        {
+            Hashtable table;
+
+            if (propertyNames == null || propertyNames.Length == 0)
+            {
+                // todo: filter null values
+                table = new Hashtable(_valueExtractors.ToDictionary(x => context.GetFormNameByNetNames("OtMItemForMapping", x.Key), y => y.Value(this, context)));
+            }
+            else
+            {
+                table = new Hashtable();
+                foreach (var prop in propertyNames.Join(_valueExtractors.Keys, x => x, x => x, (x, y) => x))
+                {
+                    string value = _valueExtractors[prop](this, context);
+                    table.Add(prop, value);
+                }
+            }
+
+            return table;
+        }
+        #endregion
+    }
+    public partial class OtMRelatedItemWithMapping: IQPArticle
+    {
+        #region Static members
+        protected static readonly Dictionary<string, Func<OtMRelatedItemWithMapping, IQPFormService, string>> _valueExtractors = new Dictionary<string, Func<OtMRelatedItemWithMapping,  IQPFormService, string>>
+        {
+        };
+
+        #endregion
+        #region Methods
+        void IQPArticle.OnMaterialized(IQPLibraryService context)
+        {
+        }
+
+        // для Poco перенести из класса куда-нибудь, так как нарушается концепция доступа к БД
+        Hashtable IQPArticle.Pack(IQPFormService context, params string[] propertyNames)
+        {
+            Hashtable table;
+
+            if (propertyNames == null || propertyNames.Length == 0)
+            {
+                // todo: filter null values
+                table = new Hashtable(_valueExtractors.ToDictionary(x => context.GetFormNameByNetNames("OtMRelatedItemWithMapping", x.Key), y => y.Value(this, context)));
+            }
+            else
+            {
+                table = new Hashtable();
+                foreach (var prop in propertyNames.Join(_valueExtractors.Keys, x => x, x => x, (x, y) => x))
+                {
+                    string value = _valueExtractors[prop](this, context);
+                    table.Add(prop, value);
+                }
+            }
+
+            return table;
+        }
+        #endregion
+    }
+    public partial class OtMItemToContentWithoutMapping: IQPArticle
+    {
+        #region Static members
+        protected static readonly Dictionary<string, Func<OtMItemToContentWithoutMapping, IQPFormService, string>> _valueExtractors = new Dictionary<string, Func<OtMItemToContentWithoutMapping,  IQPFormService, string>>
+        {
+			{ "OtMReferenceMapping", new Func<OtMItemToContentWithoutMapping, IQPFormService, string>((self, ctx) => self.OtMReferenceMapping != null ? self.OtMReferenceMapping.ToString() : null) },
+        };
+
+        #endregion
+        #region Genarated properties
+        public Int32 OtMReferenceMappingExact { get { return this.OtMReferenceMapping == null ? default(Int32) : this.OtMReferenceMapping.Value; } }
+        #endregion
+        #region Methods
+        void IQPArticle.OnMaterialized(IQPLibraryService context)
+        {
+        }
+
+        // для Poco перенести из класса куда-нибудь, так как нарушается концепция доступа к БД
+        Hashtable IQPArticle.Pack(IQPFormService context, params string[] propertyNames)
+        {
+            Hashtable table;
+
+            if (propertyNames == null || propertyNames.Length == 0)
+            {
+                // todo: filter null values
+                table = new Hashtable(_valueExtractors.ToDictionary(x => context.GetFormNameByNetNames("OtMItemToContentWithoutMapping", x.Key), y => y.Value(this, context)));
+            }
+            else
+            {
+                table = new Hashtable();
+                foreach (var prop in propertyNames.Join(_valueExtractors.Keys, x => x, x => x, (x, y) => x))
+                {
+                    string value = _valueExtractors[prop](this, context);
+                    table.Add(prop, value);
+                }
+            }
+
+            return table;
+        }
+        #endregion
+    }
 }

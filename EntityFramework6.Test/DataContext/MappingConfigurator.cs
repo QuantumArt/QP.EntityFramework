@@ -621,6 +621,83 @@ namespace EntityFramework6.Test.DataContext
             modelBuilder.Entity<ImageItemForUpdate>().Ignore(p => p.ImageValueFieldUploadPath);
  
             #endregion
+
+            #region OtMItemForMapping mappings
+            modelBuilder.Entity<OtMItemForMapping>()
+                .ToTable(GetTableName("OtMItemForMapping"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<OtMItemForMapping>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<OtMItemForMapping>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<OtMItemForMapping>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+            modelBuilder.Entity<OtMItemForMapping>()
+                .HasOptional<OtMRelatedItemWithMapping>(mp => mp.OtMReferenceMapping)
+                .WithMany(mp => mp.BackOtMReferenceMapping)
+                .HasForeignKey(fp => fp.OtMReferenceMapping_ID);
+
+            modelBuilder.Entity<OtMItemForMapping>()
+                .Property(x => x.OtMReferenceMapping_ID)
+                .HasColumnName(GetFieldName("OtMItemForMapping", "OtMReferenceMapping"));
+ 
+            #endregion
+
+            #region OtMRelatedItemWithMapping mappings
+            modelBuilder.Entity<OtMRelatedItemWithMapping>()
+                .ToTable(GetTableName("OtMRelatedItemWithMapping"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<OtMRelatedItemWithMapping>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<OtMRelatedItemWithMapping>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<OtMRelatedItemWithMapping>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+ 
+            #endregion
+
+            #region OtMItemToContentWithoutMapping mappings
+            modelBuilder.Entity<OtMItemToContentWithoutMapping>()
+                .ToTable(GetTableName("OtMItemToContentWithoutMapping"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<OtMItemToContentWithoutMapping>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<OtMItemToContentWithoutMapping>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<OtMItemToContentWithoutMapping>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+ 
+            #endregion
         }
     }
 }

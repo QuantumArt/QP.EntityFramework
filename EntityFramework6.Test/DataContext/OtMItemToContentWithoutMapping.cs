@@ -5,9 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 namespace EntityFramework6.Test.DataContext
 {
-    public partial class ImageItemForUpdate: IQPArticle
+    public partial class OtMItemToContentWithoutMapping: IQPArticle
     {
-        public ImageItemForUpdate()
+        public OtMItemToContentWithoutMapping()
         {
         }
 
@@ -20,11 +20,9 @@ namespace EntityFramework6.Test.DataContext
         public virtual Int32 LastModifiedBy { get; set; }
         public virtual StatusType StatusType { get; set; }
 
-        public virtual String ImageValueField { get; set; }
+        public virtual Int32? OtMReferenceMapping { get; set; }
 		#region Generated Content properties
-        // public string ImageValueFieldUrl { get; set; }
-        // public string ImageValueFieldUploadPath { get; set; }
+        // public Int32 OtMReferenceMappingExact { get { return this.OtMReferenceMapping == null ? default(Int32) : this.OtMReferenceMapping.Value; } }
 		#endregion
 	}
 }
-	

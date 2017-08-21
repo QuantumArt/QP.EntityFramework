@@ -15,7 +15,8 @@ namespace Quantumart.QP8.EntityFramework.Services
             select
 	            c.CONTENT_ID,
 	            c.NET_CONTENT_NAME,
-	            c.USE_DEFAULT_FILTRATION
+	            c.USE_DEFAULT_FILTRATION,
+                c.virtual_type
             from
 	            CONTENT c
             where
@@ -94,7 +95,7 @@ namespace Quantumart.QP8.EntityFramework.Services
                     var contentId = (int)row.Field<decimal>("CONTENT_ID");
                     var mappedName = row.Field<string>("NET_CONTENT_NAME");
                     var useDefaultFiltration = row.Field<bool>("USE_DEFAULT_FILTRATION");
-                    var IsVirtual = row.Field<bool>("IS_VIRTUAL");
+                    var IsVirtual = row.Field<decimal>("virtual_type")!=0;
 
                     var content = new ContentInfo
                     {

@@ -347,7 +347,25 @@ namespace EntityFramework6.Test.DataContext
                 },
                 new AttributeInfo
                 {
-                    Id = 39310,
+                    Id = 40111,
+                    ContentId = 1299,
+                    Name = "OtMReferenceMapping",
+                    MappedName = "OtMReferenceMapping",
+                    LinkId = 0,
+                    Type = "O2M"
+                },
+                new AttributeInfo
+                {
+                    Id = 40114,
+                    ContentId = 1301,
+                    Name = "OtMReferenceMapping",
+                    MappedName = "OtMReferenceMapping",
+                    LinkId = 0,
+                    Type = "Numeric"
+                },
+                new AttributeInfo
+                {
+                    Id = 40115,
                     ContentId = 999,
                     Name = "BackReference",
                     MappedName = "BackReference",
@@ -356,7 +374,16 @@ namespace EntityFramework6.Test.DataContext
                 },
                 new AttributeInfo
                 {
-                    Id = 39311,
+                    Id = 40116,
+                    ContentId = 1300,
+                    Name = "BackOtMReferenceMapping",
+                    MappedName = "BackOtMReferenceMapping",
+                    LinkId = 0,
+                    Type = "M2O"
+                },
+                new AttributeInfo
+                {
+                    Id = 40117,
                     ContentId = 695,
                     Name = "BackwardForSymmetricRelation",
                     MappedName = "BackwardForSymmetricRelation",
@@ -365,7 +392,7 @@ namespace EntityFramework6.Test.DataContext
                 },
                 new AttributeInfo
                 {
-                    Id = 39312,
+                    Id = 40118,
                     ContentId = 694,
                     Name = "BackwardForToSymmetricRelation",
                     MappedName = "BackwardForToSymmetricRelation",
@@ -374,7 +401,7 @@ namespace EntityFramework6.Test.DataContext
                 },
                 new AttributeInfo
                 {
-                    Id = 39313,
+                    Id = 40119,
                     ContentId = 994,
                     Name = "BackwardForReference",
                     MappedName = "BackwardForReference",
@@ -553,6 +580,30 @@ namespace EntityFramework6.Test.DataContext
                    MappedName = "ImageItemForUpdate",
                    UseDefaultFiltration = true,
                    Attributes = new List<AttributeInfo>(attributesLookup[1009]),
+                   IsVirtual = false
+                },
+                new ContentInfo
+                {
+                   Id = 1299,
+                   MappedName = "OtMItemForMapping",
+                   UseDefaultFiltration = true,
+                   Attributes = new List<AttributeInfo>(attributesLookup[1299]),
+                   IsVirtual = false
+                },
+                new ContentInfo
+                {
+                   Id = 1300,
+                   MappedName = "OtMRelatedItemWithMapping",
+                   UseDefaultFiltration = true,
+                   Attributes = new List<AttributeInfo>(attributesLookup[1300]),
+                   IsVirtual = false
+                },
+                new ContentInfo
+                {
+                   Id = 1301,
+                   MappedName = "OtMItemToContentWithoutMapping",
+                   UseDefaultFiltration = true,
+                   Attributes = new List<AttributeInfo>(attributesLookup[1301]),
                    IsVirtual = false
                 },
             };
