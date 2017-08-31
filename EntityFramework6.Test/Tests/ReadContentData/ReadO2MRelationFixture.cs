@@ -32,7 +32,7 @@ namespace EntityFramework6.Test.Tests.ReadContentData
             {
                 var item = context.OtMItemsToContentWithoutMapping.FirstOrDefault();
                 Assert.That(item, Is.Not.Null);
-                Assert.That(item.OtMReferenceMapping, Is.Not.Null);
+                Assert.That(item.OtMReferenceMapping_ID, Is.Not.Null);
             }
         }
         

@@ -696,6 +696,9 @@ namespace EntityFramework6.Test.DataContext
                 .WithMany()
                 .HasForeignKey(x => x.StatusTypeId); 
 
+            modelBuilder.Entity<OtMItemToContentWithoutMapping>()
+                .Property(x => x.OtMReferenceMapping_ID)
+                .HasColumnName(GetFieldName("OtMItemToContentWithoutMapping", "OtMReferenceMapping_ID"));
  
             #endregion
         }

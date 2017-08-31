@@ -946,12 +946,12 @@ namespace EntityFramework6.Test.DataContext
         #region Static members
         protected static readonly Dictionary<string, Func<OtMItemToContentWithoutMapping, IQPFormService, string>> _valueExtractors = new Dictionary<string, Func<OtMItemToContentWithoutMapping,  IQPFormService, string>>
         {
-			{ "OtMReferenceMapping", new Func<OtMItemToContentWithoutMapping, IQPFormService, string>((self, ctx) => self.OtMReferenceMapping != null ? self.OtMReferenceMapping.ToString() : null) },
+			{ "OtMReferenceMapping_ID", new Func<OtMItemToContentWithoutMapping, IQPFormService, string>((self, ctx) => self.OtMReferenceMapping_ID != null ? self.OtMReferenceMapping_ID.ToString() : null) },
         };
 
         #endregion
         #region Genarated properties
-        public Int32 OtMReferenceMappingExact { get { return this.OtMReferenceMapping == null ? default(Int32) : this.OtMReferenceMapping.Value; } }
+        public Int32 OtMReferenceMapping_IDExact { get { return this.OtMReferenceMapping_ID == null ? default(Int32) : this.OtMReferenceMapping_ID.Value; } }
         #endregion
         #region Methods
         void IQPArticle.OnMaterialized(IQPLibraryService context)

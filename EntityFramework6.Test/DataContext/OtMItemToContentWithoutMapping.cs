@@ -20,9 +20,9 @@ namespace EntityFramework6.Test.DataContext
         public virtual Int32 LastModifiedBy { get; set; }
         public virtual StatusType StatusType { get; set; }
 
-        public virtual Int32? OtMReferenceMapping { get; set; }
+        public virtual Int32? OtMReferenceMapping_ID { get; set; }
 		#region Generated Content properties
-        // public Int32 OtMReferenceMappingExact { get { return this.OtMReferenceMapping == null ? default(Int32) : this.OtMReferenceMapping.Value; } }
+        // public Int32 OtMReferenceMapping_IDExact { get { return this.OtMReferenceMapping_ID == null ? default(Int32) : this.OtMReferenceMapping_ID.Value; } }
 		#endregion
 	}
 }

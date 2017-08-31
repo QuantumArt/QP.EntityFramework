@@ -139,7 +139,27 @@ namespace EntityFramework6.Test.DataContext
                 a.Type = GetType(a);
             }
 
-            return attributes;
+            return AddO2mMappings(attributes);
+        }
+        
+
+        private AttributeInfo[] AddO2mMappings(AttributeInfo[] attributes)
+        {
+            var attributesList = new List<AttributeInfo>(attributes);
+            foreach (var item in attributes.Where(w => w.IsO2M))
+            {
+                attributesList.Add(
+                    new AttributeInfo()
+                    {
+                        Id = item.Id,
+                        ContentId = item.ContentId,
+                        Name = item.MappedName,
+                        MappedName = item.MappedName + "_ID",
+                        LinkId = item.LinkId,
+                        Type = "Numeric"
+                    });
+            }
+            return attributesList.ToArray();
         }
         
         private string GetType(AttributeInfo attribute)

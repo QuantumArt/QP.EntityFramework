@@ -85,7 +85,6 @@
   <content id="1305" name="OtMItemToContentWithoutMapping" mapped_name="OtMItemToContentWithoutMapping" plural_mapped_name="OtMItemsToContentWithoutMapping" use_default_filtration="true" virtual="0" user_query="0" split_articles="false">
     <attribute name="OtMReferenceMapping" mapped_back_name="BackOtMReferenceMapping" mapped_name="OtMReferenceMapping" id="40120" type="O2M" is_localization="false" related_content_id="1306" has_m2o="false" />
   </content>
-  <content id="1306" name="OtMRelatedItemWithoutMapping" mapped_name="OtMRelatedItemWithoutMapping" plural_mapped_name="OtMRelatedItemsWithoutMapping" use_default_filtration="true" virtual="0" user_query="0" split_articles="false" />
   <link id="104" self="0" content_id="767" linked_content_id="768" mapped_name="SymmetricRelationArticlesToSymmetricRelationAtriclesArticle" plural_mapped_name="SymmetricRelationArticlesToSymmetricRelationAtriclesArticles" />
   <link id="105" self="0" content_id="768" linked_content_id="767" mapped_name="ToSymmetricRelationAtriclesSymmetricRelationArticlesArticle" plural_mapped_name="ToSymmetricRelationAtriclesSymmetricRelationArticlesArticles" />
   <link id="151" self="0" content_id="995" linked_content_id="996" mapped_name="MtMItemForUpdateMtMDictionaryForUpdateArticle" plural_mapped_name="MtMItemForUpdateMtMDictionaryForUpdateArticles" />

@@ -456,6 +456,7 @@ namespace EntityFramework6.Test.DataContext
                     value = GetValue(f.GetValue(article))
                 })
                 .Where(f => passNullValues || f.value != null)
+                .Distinct()
                 .ToDictionary(
                     f => f.field,
                     f => f.value

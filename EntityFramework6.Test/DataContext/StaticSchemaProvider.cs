@@ -359,7 +359,7 @@ namespace EntityFramework6.Test.DataContext
                     Id = 40114,
                     ContentId = 1301,
                     Name = "OtMReferenceMapping",
-                    MappedName = "OtMReferenceMapping",
+                    MappedName = "OtMReferenceMapping_ID",
                     LinkId = 0,
                     Type = "Numeric"
                 },

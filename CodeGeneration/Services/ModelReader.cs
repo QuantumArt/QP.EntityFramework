@@ -103,6 +103,7 @@ namespace Quantumart.QP8.CodeGeneration.Services
                     {
                         item.Type = "Numeric";
                         item.ExplicitMapping = item.MappedName;
+                        item.MappedName += "_ID";
                         item.ShouldMap = true;
                         item.Size = 0;
                     }
