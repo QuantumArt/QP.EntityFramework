@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>QP8.EntityFramework6</id>
-    <version>1.1.5</version>
+    <version>1.1.7</version>
     <title>QP8.EntityFramework6</title>
     <authors>Quantum Art</authors>
     <owners>Quantum Art</owners>
@@ -16,9 +16,9 @@
       <dependency id="Quantumart" version="2.0.3" />
     </dependencies>
     <frameworkAssemblies>
-      <frameworkAssembly assemblyName="System.Configuration" targetFramework="net45"  />
-      <frameworkAssembly assemblyName="System.Xml.Linq" targetFramework="net45"  />
-      <frameworkAssembly assemblyName="System.Data.DataSetExtensions" targetFramework="net45"  />
+      <frameworkAssembly assemblyName="System.Configuration" targetFramework="net47"  />
+      <frameworkAssembly assemblyName="System.Xml.Linq" targetFramework="net47"  />
+      <frameworkAssembly assemblyName="System.Data.DataSetExtensions" targetFramework="net47"  />
     </frameworkAssemblies>
   </metadata>
   <files>
@@ -47,8 +47,8 @@
     <file src="install.ps1" target="tools"/>
     <file src="QPDataContextGenerator.tt" target="content" />
     <file src="QPDataContextGenerator.tt.settings.xml" target="content" />
-    <file src="ModelMappingResult.xml" target="content" />  
-    <file src="bin\release\Quantumart.QP8.EntityFramework.dll" target="lib\net45"/>
-    <file src="bin\release\Quantumart.QP8.CodeGeneration.dll" target="lib\net45"/>
+    <file src="ModelMappingResult.xml" target="content" />
+    <file src="bin\release\Quantumart.QP8.EntityFramework.dll" target="lib\net47"/>
+    <file src="bin\release\Quantumart.QP8.CodeGeneration.dll" target="lib\net47"/>
   </files>
 </package>
