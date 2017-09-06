@@ -52,6 +52,9 @@ namespace EntityFramework6.Test.DataContext
         public virtual DbSet<DateTimeItemForUpdate> DateTimeItemsForUpdate { get; set; }
         public virtual DbSet<FileItemForUpdate> FileItemsForUpdate { get; set; }
         public virtual DbSet<ImageItemForUpdate> ImageItemsForUpdate { get; set; }
+        public virtual DbSet<OtMItemForMapping> OtMItemsForMapping { get; set; }
+        public virtual DbSet<OtMRelatedItemWithMapping> OtMRelatedItemsWithMapping { get; set; }
+        public virtual DbSet<OtMItemToContentWithoutMapping> OtMItemsToContentWithoutMapping { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
