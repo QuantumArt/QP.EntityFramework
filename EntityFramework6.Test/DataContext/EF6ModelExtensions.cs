@@ -480,6 +480,10 @@ namespace EntityFramework6.Test.DataContext
             {
                 return null;
             }
+			else if (o is bool b)
+            {
+                return b ? "1" : "0";
+            }
             else if (o is IQPArticle)
             {
                 return ((IQPArticle)o).Id.ToString();
