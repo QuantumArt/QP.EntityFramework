@@ -224,6 +224,7 @@
     <Compile Include="Tests\Shema\SchemaFixture.cs" />
     <Compile Include="Tests\UpdateContentData\DataContextUpdateFixtureBase.cs" />
     <Compile Include="Tests\UpdateContentData\UpdateArticleFixture.cs" />
+    <Compile Include="Tests\UpdateContentData\UpdateBooleanFieldFixture.cs" />
     <Compile Include="Tests\UpdateContentData\UpdateDateFieldFixture.cs" />
     <Compile Include="Tests\UpdateContentData\UpdateFieldFixture.cs" />
     <Compile Include="Tests\UpdateContentData\UpdateFileFieldFixture.cs" />
@@ -295,4 +296,3 @@
   </Target>
   -->
 </Project>
-

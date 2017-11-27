@@ -15,7 +15,7 @@
     <tags>QP8 EntityFramework</tags>
     <dependencies>
       <dependency id="EntityFramework" version="6.1.3" />
-      <dependency id="Quantumart" version="2.0.3" />
+      <dependency id="Quantumart" version="2.2.0" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Configuration" targetFramework="net47"  />
