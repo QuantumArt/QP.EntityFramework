@@ -456,6 +456,7 @@ namespace Quantumart.QP8.EntityFramework6.Data
                     value = GetValue(f.GetValue(article))
                 })
                 .Where(f => passNullValues || f.value != null)
+                .Distinct()
                 .ToDictionary(
                     f => f.field,
                     f => f.value
@@ -478,6 +479,10 @@ namespace Quantumart.QP8.EntityFramework6.Data
             if (o == null)
             {
                 return null;
+            }
+			else if (o is bool b)
+            {
+                return b ? "1" : "0";
             }
             else if (o is IQPArticle)
             {

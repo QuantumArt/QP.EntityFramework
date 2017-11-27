@@ -50,10 +50,10 @@
       <HintPath>$(SolutionDir)packages\Quantumart.2.2.0\lib\net47\Quantumart.QP8.Assembling.dll</HintPath>
     </Reference>
     <Reference Include="Quantumart.QP8.CodeGeneration, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)packages\QP8.EntityFramework6.1.2.0\lib\net47\Quantumart.QP8.CodeGeneration.dll</HintPath>
+      <HintPath>..\packages\QP8.EntityFramework6.1.2.1\lib\net47\Quantumart.QP8.CodeGeneration.dll</HintPath>
     </Reference>
     <Reference Include="Quantumart.QP8.EntityFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)packages\QP8.EntityFramework6.1.2.0\lib\net47\Quantumart.QP8.EntityFramework.dll</HintPath>
+      <HintPath>..\packages\QP8.EntityFramework6.1.2.1\lib\net47\Quantumart.QP8.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -181,4 +181,3 @@
   </Target>
   -->
 </Project>
-
