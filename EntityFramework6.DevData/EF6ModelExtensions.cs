@@ -92,14 +92,14 @@ namespace Quantumart.QP8.EntityFramework6.DevData
 
         public bool ShouldRemoveSchema { get { return _shouldRemoveSchema; } set { _shouldRemoveSchema = value; } }
         public Int32 SiteId { get; private set; }
-		public string SiteUrl { get { return StageSiteUrl; } }		
-		public string UploadUrl { get { return LongUploadUrl; } }		
-		public string LiveSiteUrl { get; private set; }		
-		public string LiveSiteUrlRel { get; private set; }		
-		public string StageSiteUrl { get; private set; }		
-		public string StageSiteUrlRel { get; private set; }		
-		public string LongUploadUrl { get; private set; }		
-		public string ShortUploadUrl { get; private set; }		
+		public string SiteUrl { get { return StageSiteUrl; } }
+		public string UploadUrl { get { return LongUploadUrl; } }
+		public string LiveSiteUrl { get; private set; }
+		public string LiveSiteUrlRel { get; private set; }
+		public string StageSiteUrl { get; private set; }
+		public string StageSiteUrlRel { get; private set; }
+		public string LongUploadUrl { get; private set; }
+		public string ShortUploadUrl { get; private set; }
 		public Int32 PublishedId { get; private set; }
 		public string ConnectionString { get; private set; }
 		public static string DefaultSiteName 
@@ -113,8 +113,7 @@ namespace Quantumart.QP8.EntityFramework6.DevData
 			{
 				if (_cnn == null) 
 				{
-					_cnn = new DBConnector();
-                    _cnn.ExternalConnection = Database.Connection;
+					_cnn = new DBConnector(Database.Connection);
 					_cnn.UpdateManyToMany = false;
 				}
 				return _cnn;
@@ -226,12 +225,12 @@ namespace Quantumart.QP8.EntityFramework6.DevData
         }
 
 		  public static EF6Model CreateWithDatabaseMapping(ContentAccess contentAccess)
-        {         
+        {
             return CreateWithDatabaseMapping(contentAccess, DefaultSiteName);
         }
 
         public static EF6Model CreateWithDatabaseMapping(ContentAccess contentAccess, string siteName)
-        {         
+        {
             return CreateWithDatabaseMapping(contentAccess, siteName, new SqlConnection(DefaultConnectionString), true);
         }
 
@@ -412,7 +411,7 @@ namespace Quantumart.QP8.EntityFramework6.DevData
                     }
                     group item by item.ContentId into g
                     select new { ContentId = g.Key, Items = g.ToArray() }
-                    )                    
+                    )
                     .ToArray();
 
             foreach (var relation in relations)
@@ -428,7 +427,7 @@ namespace Quantumart.QP8.EntityFramework6.DevData
                     .ToArray();
                 
                 Cnn.MassUpdate(relation.ContentId, values, 1);
-            }  
+            }
         }
 
         private void SyncArticle(IQPArticle article, Dictionary<string, string> fieldValues)
@@ -456,6 +455,7 @@ namespace Quantumart.QP8.EntityFramework6.DevData
                     value = GetValue(f.GetValue(article))
                 })
                 .Where(f => passNullValues || f.value != null)
+                .Distinct()
                 .ToDictionary(
                     f => f.field,
                     f => f.value
@@ -478,6 +478,10 @@ namespace Quantumart.QP8.EntityFramework6.DevData
             if (o == null)
             {
                 return null;
+            }
+			else if (o is bool b)
+            {
+                return b ? "1" : "0";
             }
             else if (o is IQPArticle)
             {
