@@ -146,6 +146,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="QPDataContextGenerator.AspNetCore.log">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QPDataContextGenerator.AspNetCore.tt</DependentUpon>
+    </None>
     <None Include="QPDataContextGenerator.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -162,6 +167,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ModelMappingResult.xml" />
+    <Content Include="QPDataContextGenerator.AspNetCore.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QPDataContextGenerator.AspNetCore.log</LastGenOutput>
+    </Content>
     <Content Include="QPDataContextGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>QPDataContextGenerator.log</LastGenOutput>
@@ -181,4 +190,3 @@
   </Target>
   -->
 </Project>
-
