@@ -95,7 +95,7 @@ namespace EntityFramework6.Test.DataContext
                     var contentId = (int)row.Field<decimal>("CONTENT_ID");
                     var mappedName = row.Field<string>("NET_CONTENT_NAME");
                     var useDefaultFiltration = row.Field<bool>("USE_DEFAULT_FILTRATION");
-                    var IsVirtual = row.Field<decimal>("virtual_type")!=0;
+                    var IsVirtual = row.Field<decimal>("virtual_type") != 0;
 
                     var content = new ContentInfo
                     {
@@ -129,7 +129,7 @@ namespace EntityFramework6.Test.DataContext
                     ContentId = (int)row.Field<decimal>("CONTENT_ID"),
                     Name = row.Field<string>("ATTRIBUTE_NAME"),
                     MappedName = row.Field<string>("NET_ATTRIBUTE_NAME"),
-                    LinkId = (int)(row.Field<decimal?>("LINK_ID")?? 0),
+                    LinkId = (int)(row.Field<decimal?>("LINK_ID") ?? 0),
                     Type = row.Field<string>("TYPE_NAME")
                 })
                 .ToArray();
@@ -141,7 +141,7 @@ namespace EntityFramework6.Test.DataContext
 
             return AddO2mMappings(attributes);
         }
-        
+
 
         private AttributeInfo[] AddO2mMappings(AttributeInfo[] attributes)
         {
@@ -161,7 +161,7 @@ namespace EntityFramework6.Test.DataContext
             }
             return attributesList.ToArray();
         }
-        
+
         private string GetType(AttributeInfo attribute)
         {
             if (attribute.Type == "Relation")
@@ -182,7 +182,7 @@ namespace EntityFramework6.Test.DataContext
 
             return attribute.Type;
         }
-                    
+
         #endregion
     }
 }

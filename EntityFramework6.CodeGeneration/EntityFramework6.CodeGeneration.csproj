@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Quantumart.QP8.EntityFramework.CodeGeneration</RootNamespace>
     <AssemblyName>Quantumart.QP8.EntityFramework6.CodeGeneration</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -32,26 +32,24 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.TextTemplating.Interfaces.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)packages\Quantumart.2.2.0\lib\net47\Microsoft.VisualStudio.TextTemplating.Interfaces.10.0.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="netstandard" />
+    <Reference Include="Quantumart, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Quantumart.3.1.3\lib\net471\Quantumart.dll</HintPath>
     </Reference>
-    <Reference Include="Quantumart, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)packages\Quantumart.2.2.0\lib\net47\Quantumart.dll</HintPath>
-    </Reference>
-    <Reference Include="Quantumart.QP8.Assembling, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)packages\Quantumart.2.2.0\lib\net47\Quantumart.QP8.Assembling.dll</HintPath>
+    <Reference Include="Quantumart.QP8.Assembling, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Quantumart.3.1.3\lib\net471\Quantumart.QP8.Assembling.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mobile" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -108,22 +106,12 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>NugetAspNetCorePackageGenerator.log</LastGenOutput>
     </Content>
-    <Content Include="QPDataContextGenerator.AspNetCore.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NugetAspNetCorePackageGenerator.tt</DependentUpon>
-      <LastGenOutput>QPDataContextGenerator.AspNetCore.log</LastGenOutput>
-    </Content>
     <Content Include="QPDataContextGenerator.tt.settings.xml" />
     <None Include="PublishNugetPackage.cmd">
       <DependentUpon>NugetPackageGenerator.tt</DependentUpon>
     </None>
     <None Include="PublishNugetPackageAspnetCore.cmd">
       <DependentUpon>NugetAspNetCorePackageGenerator.tt</DependentUpon>
-    </None>
-    <None Include="QPDataContextGenerator.AspNetCore.log">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QPDataContextGenerator.AspNetCore.tt</DependentUpon>
     </None>
     <None Include="QPDataContextGenerator.tt">
       <DependentUpon>NugetPackageGenerator.tt</DependentUpon>
