@@ -1,4 +1,4 @@
-﻿using EntityFramework6.Test.DataContext;
+using EntityFramework6.Test.DataContext;
 using EntityFramework6.Test.Infrastructure;
 using NUnit.Framework;
 using System;
@@ -50,8 +50,8 @@ namespace EntityFramework6.Test.Tests.UpdateContentData
         {
             using (var context = GetDataContext(access, mapping))
             {
-                var none = context.StatusTypes.FirstOrDefault(s => s.StatusTypeName == "None");
-                var published = context.StatusTypes.FirstOrDefault(s => s.StatusTypeName == "Published");
+                var none = context.StatusTypes.FirstOrDefault(s => s.SiteId == context.SiteId && s.StatusTypeName == "None");
+                var published = context.StatusTypes.FirstOrDefault(s => s.SiteId == context.SiteId && s.StatusTypeName == "Published");
                 
                 Assert.That(published, Is.Not.Null);
                 Assert.That(none, Is.Not.Null);
