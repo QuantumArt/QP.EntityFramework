@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Quantumart.QP8.CodeGeneration.Services;
 using System.Data.Common;
 using Quantumart.QPublishing.Database;
 using System.Data.SqlClient;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.AspNetCore.Http;
 
 namespace Quantumart.QP8.EntityFramework.Services
 {
@@ -51,7 +53,7 @@ namespace Quantumart.QP8.EntityFramework.Services
         #region ISchemaProvider implementation
         public ModelReader GetSchema()
         {
-            var connector = new DBConnector(_connection);
+            var connector = GetDBConnector(_connection);
             int siteId = connector.GetSiteId(_siteName);
             bool replaceUrls;
 
@@ -81,6 +83,16 @@ namespace Quantumart.QP8.EntityFramework.Services
         #endregion
 
         #region Private methods
+        private DBConnector GetDBConnector(DbConnection connection)
+        {
+            return new DBConnector(
+                connection,
+                new DbConnectorSettings(),
+                new MemoryCache(new MemoryCacheOptions()),
+                new HttpContextAccessor { HttpContext = new DefaultHttpContext() }
+                );
+        }
+
         private ContentInfo[] GetContents(DBConnector connector, int siteId, AttributeInfo[] attributes)
         {
             var command = new SqlCommand(ContentQuery);
@@ -95,7 +107,7 @@ namespace Quantumart.QP8.EntityFramework.Services
                     var contentId = (int)row.Field<decimal>("CONTENT_ID");
                     var mappedName = row.Field<string>("NET_CONTENT_NAME");
                     var useDefaultFiltration = row.Field<bool>("USE_DEFAULT_FILTRATION");
-                    var IsVirtual = row.Field<decimal>("virtual_type")!=0;
+                    var IsVirtual = row.Field<decimal>("virtual_type") != 0;
 
                     var content = new ContentInfo
                     {
@@ -129,7 +141,7 @@ namespace Quantumart.QP8.EntityFramework.Services
                     ContentId = (int)row.Field<decimal>("CONTENT_ID"),
                     Name = row.Field<string>("ATTRIBUTE_NAME"),
                     MappedName = row.Field<string>("NET_ATTRIBUTE_NAME"),
-                    LinkId = (int)(row.Field<decimal?>("LINK_ID")?? 0),
+                    LinkId = (int)(row.Field<decimal?>("LINK_ID") ?? 0),
                     Type = row.Field<string>("TYPE_NAME")
                 })
                 .ToArray();
@@ -141,7 +153,7 @@ namespace Quantumart.QP8.EntityFramework.Services
 
             return AddO2mMappings(attributes);
         }
-        
+
 
         private AttributeInfo[] AddO2mMappings(AttributeInfo[] attributes)
         {
@@ -161,7 +173,7 @@ namespace Quantumart.QP8.EntityFramework.Services
             }
             return attributesList.ToArray();
         }
-        
+
         private string GetType(AttributeInfo attribute)
         {
             if (attribute.Type == "Relation")
@@ -182,7 +194,7 @@ namespace Quantumart.QP8.EntityFramework.Services
 
             return attribute.Type;
         }
-                    
+
         #endregion
     }
 }

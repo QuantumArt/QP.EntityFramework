@@ -52,7 +52,7 @@
 		context.AddTemplateFile("MappingConfigurator.cs", AddMappingConfigurator, settings.GenerateMappings);
 		context.AddCodeFile(@"..\..\EntityFramework\Services\MappingResolver.cs", settings.GenerateMappings);
 		context.AddCodeFile(@"..\..\EntityFramework\Services\FileSchemaProvider.cs", settings.GenerateMappings);
-		context.AddCodeFile(@"..\..\EntityFramework\Services\DatabaseSchemaProvider.cs", settings.GenerateMappings);
+		context.AddCodeFile(@"..\..\EntityFramework.DotNet\Services\DatabaseSchemaProvider.cs", settings.GenerateMappings);
 		context.AddTemplateFile("StaticSchemaProvider.cs", AddStaticSchemaProvider, settings.GenerateMappings);
 		
 		context.AddCodeFile(@"..\..\EntityFramework\Models\IQPArticle.cs", settings.GenerateInterface);

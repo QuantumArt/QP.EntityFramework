@@ -14,8 +14,8 @@
     <copyright>Copyright © 2007-2016 Quantum Art</copyright>
     <tags>QP8 EntityFramework</tags>
     <dependencies>
-      <dependency id="EntityFramework" version="6.1.3" />
-      <dependency id="Quantumart" version="2.2.0" />
+      <dependency id="EntityFramework" version="6.2.0" />
+      <dependency id="<#=context.QaName#>" version="<#=context.QaVersion#>" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Configuration" targetFramework="net47"  />
@@ -28,7 +28,7 @@
     <file src="<#=file#>" target="include" />
 <#+ } #>
     <file src="install.ps1" target="tools"/>
-    <file src="QPDataContextGenerator.tt" target="content" />
+    <file src="<#=context.GeneratorName#>.tt" target="content" />
     <file src="QPDataContextGenerator.tt.settings.xml" target="content" />
     <file src="ModelMappingResult.xml" target="content" />
     <file src="bin\release\Quantumart.QP8.EntityFramework.dll" target="lib\net47"/>
