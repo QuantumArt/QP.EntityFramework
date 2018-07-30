@@ -80,6 +80,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NugetPackageGenerator.tt</DependentUpon>
     </None>
+    <None Include="NugetAspNetCorePackageNuspec.ttinclude" />
     <None Include="NugetPackageNuspec.ttinclude" />
     <None Include="NugetPackagePublication.ttinclude" />
     <None Include="packages.config" />
@@ -106,16 +107,22 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>NugetAspNetCorePackageGenerator.log</LastGenOutput>
     </Content>
+    <Content Include="QPDataContextGenerator.AspNetCore.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NugetAspNetCorePackageGenerator.tt</DependentUpon>
+      <LastGenOutput>QPDataContextGenerator.AspNetCore.log</LastGenOutput>
+    </Content>
+    <Content Include="QPDataContextGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NugetPackageGenerator.tt</DependentUpon>
+      <LastGenOutput>QPDataContextGenerator.log</LastGenOutput>
+    </Content>
     <Content Include="QPDataContextGenerator.tt.settings.xml" />
     <None Include="PublishNugetPackage.cmd">
       <DependentUpon>NugetPackageGenerator.tt</DependentUpon>
     </None>
     <None Include="PublishNugetPackageAspnetCore.cmd">
       <DependentUpon>NugetAspNetCorePackageGenerator.tt</DependentUpon>
-    </None>
-    <None Include="QPDataContextGenerator.tt">
-      <DependentUpon>NugetPackageGenerator.tt</DependentUpon>
-      <LastGenOutput>QPDataContextGenerator.log</LastGenOutput>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

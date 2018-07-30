@@ -30,7 +30,7 @@
 <#@ import namespace="Quantumart.QP8.CodeGeneration.Services" #>
 
 <#@ include file="$(SolutionDir)\CodeGeneration\Templates\Manager.ttinclude" #>
-<#@ include file="NugetPackageNuspec.ttinclude" #>
+<#@ include file="NugetAspNetCorePackageNuspec.ttinclude" #>
 <#@ include file="NugetPackagePublication.ttinclude" #>
 
 <#
