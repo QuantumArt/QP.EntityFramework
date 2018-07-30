@@ -43,7 +43,7 @@
 		context.QaVersion = "3.1.3";
 		context.GeneratorName = "QPDataContextGenerator.AspNetCore";
 
-		context.FlatternTemplate(@"..\EntityFramework6.DevData.AspNetCore\QPDataContextGenerator.tt");
+		context.FlatternTemplate(@"..\EntityFramework6.DevData.AspNetCore\QPDataContextGenerator.AspNetCore.tt");
 		context.NuspecName = "NugetPackageAspnetCore";
 		context.AddTemplateFile("NugetPackageAspnetCore.nuspec", AddNuspec);
 		context.AddTemplateFile("PublishNugetPackageAspnetCore.cmd", AddPublicationScript);
