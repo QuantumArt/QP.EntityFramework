@@ -4,7 +4,7 @@ using System.Data.Entity.Core.EntityClient;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.SqlClient;
 
-namespace EntityFramework6.AspNetCore.Test.DataContext
+namespace EntityFramework6.Test.DataContext
 {
     public class EF6ModelConnectionScope
     {

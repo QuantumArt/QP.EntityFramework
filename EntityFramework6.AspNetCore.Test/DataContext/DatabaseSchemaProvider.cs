@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.AspNetCore.Http;
 
-namespace EntityFramework6.AspNetCore.Test.DataContext
+namespace EntityFramework6.Test.DataContext
 {
     public class DatabaseSchemaProvider : ISchemaProvider
     {

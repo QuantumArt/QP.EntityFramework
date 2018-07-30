@@ -8,7 +8,7 @@ using System.Threading;
 using Quantumart.QP8.CodeGeneration.Services;
 
 
-namespace EntityFramework6.AspNetCore.Test.DataContext
+namespace EntityFramework6.Test.DataContext
 {
     public class MappingConfigurator : MappingConfiguratorBase
     {

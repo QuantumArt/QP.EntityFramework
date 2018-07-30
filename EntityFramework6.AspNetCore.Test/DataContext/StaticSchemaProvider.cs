@@ -3,7 +3,7 @@ using System.Linq;
 using Quantumart.QP8.CodeGeneration.Services;
 
 
-namespace EntityFramework6.AspNetCore.Test.DataContext
+namespace EntityFramework6.Test.DataContext
 {
     public class StaticSchemaProvider : ISchemaProvider
     {

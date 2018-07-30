@@ -6,7 +6,7 @@ using System.Data.Common;
 using System.Data.Entity;
 using System.Threading;
 
-namespace EntityFramework6.AspNetCore.Test.DataContext
+namespace EntityFramework6.Test.DataContext
 {
     public abstract class MappingConfiguratorBase : IMappingConfigurator
     {

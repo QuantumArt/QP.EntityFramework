@@ -3,7 +3,7 @@ using Quantumart.QP8.EntityFramework.Models;
 using System;
 using System.Linq.Expressions;
 
-namespace EntityFramework6.AspNetCore.Test.DataContext
+namespace EntityFramework6.Test.DataContext
 {
     public interface IQPSchema
     {

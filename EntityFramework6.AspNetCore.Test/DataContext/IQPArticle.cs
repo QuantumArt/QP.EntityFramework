@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 
-namespace EntityFramework6.AspNetCore.Test.DataContext
+namespace EntityFramework6.Test.DataContext
 {
     public interface IQPArticle
     {
