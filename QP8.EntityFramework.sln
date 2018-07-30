@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework6.DevData.As
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework6.Data.AspNetCore", "EntityFramework6.Data.AspNetCore\EntityFramework6.Data.AspNetCore.csproj", "{435221D9-C7C9-46D0-9414-E9A7EC2404E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework6.AspNetCore.Test", "EntityFramework6.AspNetCore.Test\EntityFramework6.AspNetCore.Test.csproj", "{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -154,6 +156,16 @@ Global
 		{435221D9-C7C9-46D0-9414-E9A7EC2404E8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{435221D9-C7C9-46D0-9414-E9A7EC2404E8}.Stage|Any CPU.ActiveCfg = Release|Any CPU
 		{435221D9-C7C9-46D0-9414-E9A7EC2404E8}.Stage|Any CPU.Build.0 = Release|Any CPU
+		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}.Live|Any CPU.ActiveCfg = Release|Any CPU
+		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}.Live|Any CPU.Build.0 = Release|Any CPU
+		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}.Stage|Any CPU.ActiveCfg = Release|Any CPU
+		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}.Stage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -170,6 +182,7 @@ Global
 		{A8D974FD-94EB-4C93-90DD-5334655FDC0A} = {3D983A72-C7D5-4E8C-9666-50F610114EA1}
 		{8A45751D-22CB-4718-9F8F-B5C381BA9394} = {CE71CF28-F97A-4008-BD7A-B27D11AA915F}
 		{435221D9-C7C9-46D0-9414-E9A7EC2404E8} = {CE71CF28-F97A-4008-BD7A-B27D11AA915F}
+		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E} = {70588F54-56D0-4C3A-8D58-1A2DAACD1ABB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.Interception.2.1.505.0\lib\NET35;packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Data.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.ExceptionHandling.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Logging.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.ExceptionHandling.Logging.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Validation.5.0.505.0\lib\NET35
