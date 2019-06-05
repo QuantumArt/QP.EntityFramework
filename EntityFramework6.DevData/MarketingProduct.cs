@@ -39,12 +39,7 @@ namespace Quantumart.QP8.EntityFramework6.DevData
 		/// 
 		/// </summary>
 		public  ICollection<Product> Products { get; set; }
-		#region Generated Content properties
-        // public Int32 ProductTypeExact { get { return this.ProductType == null ? default(Int32) : this.ProductType.Value; } }
-        // public Int32 Family_IDExact { get { return this.Family_ID == null ? default(Int32) : this.Family_ID.Value; } }
-        // public Int32 MarketingSign_IDExact { get { return this.MarketingSign_ID == null ? default(Int32) : this.MarketingSign_ID.Value; } }
-        // public Int32 OldSiteIdExact { get { return this.OldSiteId == null ? default(Int32) : this.OldSiteId.Value; } }
-		#endregion
+
 	}
 }
 	

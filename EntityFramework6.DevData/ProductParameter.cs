@@ -42,17 +42,7 @@ namespace Quantumart.QP8.EntityFramework6.DevData
 		/// 
 		/// </summary>
 		public virtual Int32? Product_ID { get; set; }
-		#region Generated Content properties
-        // public Int32 GroupMapped_IDExact { get { return this.GroupMapped_ID == null ? default(Int32) : this.GroupMapped_ID.Value; } }
-        // public Int32 BaseParameter_IDExact { get { return this.BaseParameter_ID == null ? default(Int32) : this.BaseParameter_ID.Value; } }
-        // public Int32 Zone_IDExact { get { return this.Zone_ID == null ? default(Int32) : this.Zone_ID.Value; } }
-        // public Int32 Direction_IDExact { get { return this.Direction_ID == null ? default(Int32) : this.Direction_ID.Value; } }
-        // public Int32 SortOrderExact { get { return this.SortOrder == null ? default(Int32) : this.SortOrder.Value; } }
-        // public Double NumValueExact { get { return this.NumValue == null ? default(Double) : this.NumValue.Value; } }
-        // public Int32 Unit_IDExact { get { return this.Unit_ID == null ? default(Int32) : this.Unit_ID.Value; } }
-        // public Int32 MatrixParameter_IDExact { get { return this.MatrixParameter_ID == null ? default(Int32) : this.MatrixParameter_ID.Value; } }
-        // public Int32 OldSiteIdExact { get { return this.OldSiteId == null ? default(Int32) : this.OldSiteId.Value; } }
-		#endregion
+
 	}
 }
 	
