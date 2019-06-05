@@ -1,4 +1,4 @@
-﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ template debug="false" hostspecific="true" language="C#" #>
 <#+ void AddClasses(GenerationContext context){
 var model = context.Model;
 var settings = context.Settings;
@@ -72,19 +72,6 @@ namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("Names
 		public <#+ if( settings.ProxyCreationEnabled ) { #> virtual <#+}#> ICollection<<#=attribute.RelatedContent.MappedName#>> <#=attribute.MappedName#> { get; set; }
 <#+		} #>
 
-<#+	    if(content.Attributes.Any(x => x.GenerateLibraryUrl || x.GenerateUploadPath || x.IsNullable)) { #>
-		#region Generated Content properties
-<#+	   	foreach(var attribute in content.Attributes.Where(x => x.GenerateLibraryUrl)) { #>
-        // public string <#=attribute.MappedName#>Url { get; set; }
-<#+		}
-  		foreach(var attribute in content.Attributes.Where(x => x.GenerateUploadPath)) { #>
-        // public string <#=attribute.MappedName#>UploadPath { get; set; }
-<#+		} 
-  		foreach(var attribute in content.Attributes.Where(x => x.IsNullable)) { #>
-        // public <#= attribute.ExactType#> <#=attribute.MappedName#>Exact { get { return this.<#=attribute.MappedName#> == null ? default(<#= attribute.ExactType#>) : this.<#=attribute.MappedName#>.Value; } }
-<#+		} #>
-		#endregion
-<#+  } #>
 	}
 }
 <#+}#>
