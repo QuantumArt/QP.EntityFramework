@@ -1,4 +1,4 @@
-﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ template debug="false" hostspecific="true" language="C#" #>
 <#+ void AddClassExtensions(GenerationContext context){
 	var model = context.Model;
 	var settings = context.Settings;
@@ -29,7 +29,7 @@ namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("Names
 
         #endregion
 <#+	if(content.Attributes.Any(x => x.GenerateLibraryUrl || x.GenerateUploadPath || x.IsNullable)) { #>
-        #region Genarated properties
+        #region Generated properties
 <#+	   	foreach(var attribute in content.Attributes.Where(x => x.GenerateLibraryUrl)) { #>
         public string <#=attribute.MappedName#>Url { get; set; }
 <#+		} 
