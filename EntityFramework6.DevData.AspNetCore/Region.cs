@@ -61,9 +61,7 @@ namespace EntityFramework6.DevData.AspNetCore
 		/// Auto-generated backing property for 1660/DeniedRegions
 		/// </summary>
 		public  ICollection<Region> BackwardForDeniedRegions { get; set; }
-		#region Generated Content properties
-        // public Int32 OldSiteIdExact { get { return this.OldSiteId == null ? default(Int32) : this.OldSiteId.Value; } }
-		#endregion
+
 	}
 }
 	

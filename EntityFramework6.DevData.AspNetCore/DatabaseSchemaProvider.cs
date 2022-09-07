@@ -5,8 +5,6 @@ using Quantumart.QP8.CodeGeneration.Services;
 using System.Data.Common;
 using Quantumart.QPublishing.Database;
 using System.Data.SqlClient;
-using Microsoft.Extensions.Caching.Memory;
-using Microsoft.AspNetCore.Http;
 
 namespace EntityFramework6.DevData.AspNetCore
 {
@@ -53,7 +51,7 @@ namespace EntityFramework6.DevData.AspNetCore
         #region ISchemaProvider implementation
         public ModelReader GetSchema()
         {
-            var connector = GetDBConnector(_connection);
+            var connector = new DBConnector(_connection);
             int siteId = connector.GetSiteId(_siteName);
             bool replaceUrls;
 
@@ -83,16 +81,6 @@ namespace EntityFramework6.DevData.AspNetCore
         #endregion
 
         #region Private methods
-        private DBConnector GetDBConnector(DbConnection connection)
-        {
-            return new DBConnector(
-                connection,
-                new DbConnectorSettings(),
-                new MemoryCache(new MemoryCacheOptions()),
-                new HttpContextAccessor { HttpContext = new DefaultHttpContext() }
-                );
-        }
-
         private ContentInfo[] GetContents(DBConnector connector, int siteId, AttributeInfo[] attributes)
         {
             var command = new SqlCommand(ContentQuery);

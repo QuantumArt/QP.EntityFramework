@@ -1,3 +1,84 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#+
+	void AddGenerateMappingInterfaces(GenerationContext context)
+	{
+		var model = context.Model;
+		var settings = context.Settings;
+		var manager = context.Manager;
+		manager.StartNewFile("IQPSchema.cs");
+#>
+using Quantumart.QP8.CodeGeneration.Services;
+using System;
+using System.Linq.Expressions;
+
+namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+{
+    public interface IQPSchema
+    {
+        SchemaInfo GetInfo();
+        ContentInfo GetInfo<T>() where T : IQPArticle;
+        AttributeInfo GetInfo<Tcontent>(Expression<Func<Tcontent, object>> fieldSelector) where Tcontent : IQPArticle;
+    }
+}
+<#+
+		manager.StartNewFile("IMappingConfigurator.cs");
+#>
+using Quantumart.QP8.CodeGeneration.Services;
+using System.Data.Common;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+
+namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+{
+    public interface IMappingConfigurator
+    {
+        MappingInfo GetMappingInfo(DbConnection connection);
+        void OnModelCreating(DbModelBuilder modelBuilder);
+    }
+
+    public class MappingInfo
+    {
+        public DbCompiledModel DbCompiledModel { get; private set; }
+        public ModelReader Schema { get; private set; }
+
+        public MappingInfo(DbCompiledModel dbCompiledModel, ModelReader schema)
+        {
+            DbCompiledModel = dbCompiledModel;
+            Schema = schema;
+        }
+    }
+    public enum ContentAccess
+    {
+        /// <summary>
+        /// Published articles
+        /// </summary>
+        Live = 0,
+        /// <summary>
+        /// Splitted versions of articles
+        /// </summary>
+        Stage = 1,
+        /// <summary>
+        /// Splitted versions of articles including invisible and archived (overrides useDefaultFiltration content setting)
+        /// </summary>
+        StageNoDefaultFiltration = 2
+    }
+}
+<#+
+		manager.StartNewFile("ISchemaProvider.cs");
+#>
+using Quantumart.QP8.CodeGeneration.Services;
+
+namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+{
+    public interface ISchemaProvider
+    {
+        ModelReader GetSchema();
+        object GetCacheKey();
+    }
+}
+<#+
+		manager.StartNewFile("MappingConfiguratorBase.cs");
+#>
 using System;
 using System.Collections.Concurrent;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -5,7 +86,7 @@ using System.Data.Common;
 using System.Data.Entity;
 using System.Threading;
 
-namespace EntityFramework6.DevData.AspNetCore
+namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
 {
     public abstract class MappingConfiguratorBase : IMappingConfigurator
     {
@@ -169,3 +250,6 @@ namespace EntityFramework6.DevData.AspNetCore
         #endregion
     }
 }
+<#+
+	}
+#>

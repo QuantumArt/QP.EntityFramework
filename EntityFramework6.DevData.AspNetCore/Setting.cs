@@ -33,8 +33,6 @@ namespace EntityFramework6.DevData.AspNetCore
 		/// Auto-generated backing property for 1657/RelatedSettings
 		/// </summary>
 		public  ICollection<Setting> BackwardForRelatedSettings { get; set; }
-		#region Generated Content properties
-        // public Decimal DecimalValueExact { get { return this.DecimalValue == null ? default(Decimal) : this.DecimalValue.Value; } }
-		#endregion
+
 	}
 }

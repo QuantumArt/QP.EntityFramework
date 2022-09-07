@@ -29,9 +29,7 @@ namespace EntityFramework6.DevData.AspNetCore
 		/// 
 		/// </summary>
 		public virtual Int32? Product_ID { get; set; }
-		#region Generated Content properties
-        // public Int32 SplitInternetDeviceCountExact { get { return this.SplitInternetDeviceCount == null ? default(Int32) : this.SplitInternetDeviceCount.Value; } }
-		#endregion
+
 	}
 }
 	

@@ -140,14 +140,14 @@ namespace EntityFramework6.DevData.AspNetCore
 				}
 			}
 		}
+		public static IConfiguration AppConfiguration { get; set; }
 		public static string DefaultConnectionString 
 		{ 
 			get
 			{
 				if (_defaultConnectionString == null)
 				{
-                    IConfiguration configuration = null;
-                    var connectionString = configuration.GetConnectionString(_defaultConnectionStringName);
+                    var connectionString = AppConfiguration.GetConnectionString(_defaultConnectionStringName);
                     _defaultConnectionString = connectionString ?? throw new ApplicationException(string.Format("Connection string '{0}' is not specified", _defaultConnectionStringName));
 				}
 				return _defaultConnectionString;

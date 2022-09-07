@@ -28,7 +28,7 @@ namespace EntityFramework6.DevData.AspNetCore
         };
 
         #endregion
-        #region Genarated properties
+        #region Generated properties
         public Int32 ProductTypeExact { get { return this.ProductType == null ? default(Int32) : this.ProductType.Value; } }
         public Int32 Family_IDExact { get { return this.Family_ID == null ? default(Int32) : this.Family_ID.Value; } }
         public Int32 MarketingSign_IDExact { get { return this.MarketingSign_ID == null ? default(Int32) : this.MarketingSign_ID.Value; } }
@@ -93,7 +93,7 @@ namespace EntityFramework6.DevData.AspNetCore
         };
 
         #endregion
-        #region Genarated properties
+        #region Generated properties
         public string PDFUrl { get; set; }
         public string PDFUploadPath { get; set; }
         public Int32 TypeExact { get { return this.Type == null ? default(Int32) : this.Type.Value; } }
@@ -159,7 +159,7 @@ namespace EntityFramework6.DevData.AspNetCore
         };
 
         #endregion
-        #region Genarated properties
+        #region Generated properties
         public Int32 GroupMapped_IDExact { get { return this.GroupMapped_ID == null ? default(Int32) : this.GroupMapped_ID.Value; } }
         public Int32 BaseParameter_IDExact { get { return this.BaseParameter_ID == null ? default(Int32) : this.BaseParameter_ID.Value; } }
         public Int32 Zone_IDExact { get { return this.Zone_ID == null ? default(Int32) : this.Zone_ID.Value; } }
@@ -216,7 +216,7 @@ namespace EntityFramework6.DevData.AspNetCore
         };
 
         #endregion
-        #region Genarated properties
+        #region Generated properties
         public Int32 OldSiteIdExact { get { return this.OldSiteId == null ? default(Int32) : this.OldSiteId.Value; } }
         #endregion
         #region Methods
@@ -260,7 +260,7 @@ namespace EntityFramework6.DevData.AspNetCore
         };
 
         #endregion
-        #region Genarated properties
+        #region Generated properties
         public Int32 SplitInternetDeviceCountExact { get { return this.SplitInternetDeviceCount == null ? default(Int32) : this.SplitInternetDeviceCount.Value; } }
         #endregion
         #region Methods
@@ -303,7 +303,7 @@ namespace EntityFramework6.DevData.AspNetCore
         };
 
         #endregion
-        #region Genarated properties
+        #region Generated properties
         public Decimal DecimalValueExact { get { return this.DecimalValue == null ? default(Decimal) : this.DecimalValue.Value; } }
         #endregion
         #region Methods

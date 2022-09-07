@@ -1,0 +1,57 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#+ void AddGenerateInterfaces(GenerationContext context)
+    {
+        var model = context.Model;
+        var settings = context.Settings;
+        var manager = context.Manager;
+        manager.StartNewFile("IQPArticle.cs");
+#>
+using System;
+using System.Collections;
+
+namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+{
+    public interface IQPArticle
+    {
+        int Id { get; set; }
+        int StatusTypeId { get; set; }
+        bool Visible { get; set; }
+        bool Archive { get; set; }
+        DateTime Created { get; set; }
+        DateTime Modified { get; set; }
+        int LastModifiedBy { get; set; }
+        StatusType StatusType { get; set; }
+
+        void OnMaterialized(IQPLibraryService context);
+
+        Hashtable Pack(IQPFormService context, params string[] propertyNames);
+    }
+}
+<#+
+	    manager.StartNewFile("IQPFormService.cs");
+#>
+namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+{
+    public interface IQPFormService
+    {
+        string GetFormNameByNetNames(string netContentName, string netFieldName);
+        string ReplacePlaceholders(string text);
+    }
+}
+<#+
+	    manager.StartNewFile("IQPLibraryService.cs");
+#>
+namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+{
+    public interface IQPLibraryService
+    {
+        string GetUrl(string input, string className, string propertyName);
+
+        string GetUploadPath(string input, string className, string propertyName);
+
+        string ReplacePlaceholders(string text);
+    }
+}
+<#+
+    }
+#>

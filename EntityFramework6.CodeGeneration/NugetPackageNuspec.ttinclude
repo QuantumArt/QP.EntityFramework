@@ -11,10 +11,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Entity Framework 6 class generator</description>
     <releaseNotes>Add creation data context for EntityFramework6</releaseNotes>
-    <copyright>Copyright © 2007-2016 Quantum Art</copyright>
+    <copyright>Copyright © 2007-2022 Quantum Art</copyright>
     <tags>QP8 EntityFramework</tags>
     <dependencies>
-      <dependency id="EntityFramework" version="6.2.0" />
+      <dependency id="EntityFramework" version="6.4.4" />
       <dependency id="<#=context.QaName#>" version="<#=context.QaVersion#>" />
     </dependencies>
     <frameworkAssemblies>
@@ -31,7 +31,6 @@
     <file src="<#=context.GeneratorName#>.tt" target="content" />
     <file src="QPDataContextGenerator.tt.settings.xml" target="content" />
     <file src="ModelMappingResult.xml" target="content" />
-    <file src="bin\release\Quantumart.QP8.EntityFramework.dll" target="lib\net47"/>
     <file src="bin\release\Quantumart.QP8.CodeGeneration.dll" target="lib\net47"/>
   </files>
 </package>

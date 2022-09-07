@@ -1,0 +1,67 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#+
+	void AddGenerateServiceClasses(GenerationContext context)
+	{
+		var model = context.Model;
+		var settings = context.Settings;
+		var manager = context.Manager;
+		manager.StartNewFile("StatusType.cs");
+#>
+using System;
+
+namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+{
+    public partial class StatusType
+    {
+        public Int32 Id { get; set; }
+        public string StatusTypeName { get; set; }
+        public int Weight { get; set; }
+        public Int32 SiteId { get; set; }
+    }
+}
+<#+
+		manager.StartNewFile("User.cs");
+#>
+using System.Collections.Generic;
+
+namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+{
+    public partial class User
+    {
+        public User()
+        {
+            UserGroups = new HashSet<UserGroup>();
+        }
+
+        public virtual int Id { get; set; }
+        public virtual string login { get; set; }
+        public virtual string NTLogin { get; set; }
+        public virtual string ISOCode { get; set; }
+        public virtual string FirstName { get; set; }
+        public virtual string LastName { get; set; }
+        public virtual string Email { get; set; }
+        public virtual ICollection<UserGroup> UserGroups { get; set; }
+    }
+}
+<#+
+		manager.StartNewFile("UserGroup.cs");
+#>
+using System.Collections.Generic;
+
+namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+{
+    public partial class UserGroup
+    {
+        public UserGroup()
+        {
+            Users = new HashSet<User>();
+        }
+
+        public virtual int Id { get; set; }
+        public virtual string Name { get; set; }
+        public virtual ICollection<User> Users { get; set; }
+    }
+}
+<#+
+	}
+#>

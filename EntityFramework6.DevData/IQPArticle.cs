@@ -17,5 +17,5 @@ namespace Quantumart.QP8.EntityFramework6.DevData
         void OnMaterialized(IQPLibraryService context);
 
         Hashtable Pack(IQPFormService context, params string[] propertyNames);
-    }  
+    }
 }

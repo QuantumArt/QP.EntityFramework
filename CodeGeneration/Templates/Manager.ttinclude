@@ -60,10 +60,10 @@ class Manager {
 
 	   var path = host.ResolvePath(name);
 	   StartNewFile(Path.GetFileName(path), contentProcessor);
-	   var content = File.ReadAllText(path);	   
+	   var content = File.ReadAllText(path);
 	   template.Append(content);
        return content;
-    }	
+    }
 
     public void StartFooter() {
         CurrentBlock = footer;
@@ -232,6 +232,7 @@ class FlatternTemplateProcessor : IContentProcessor
 {
 	private const string ReplaceTemplate = @"$1{0}$3$4";
 	private static Regex IncludeRegex = new Regex(@"(#@\s*include\s+file="")(.*)(\\[^\\]*)(""\s*#)", RegexOptions.Compiled);
+	private static Regex AssemblyRegex = new Regex(@"(#@\s*assembly\s+name="")(.*)(\\[^\\]*)(""\s*#)", RegexOptions.Compiled);
 	private static Regex CodeFileRegex = new Regex(@"(AddCodeFile\(@?"")(.*)(\\[^\\""]*)("")", RegexOptions.Compiled);
 
 	private readonly string _template;
@@ -243,7 +244,7 @@ class FlatternTemplateProcessor : IContentProcessor
 
 	public string Process(string content)
 	{
-		foreach(var re in new[] {IncludeRegex, CodeFileRegex})
+		foreach(var re in new[] {IncludeRegex, CodeFileRegex, AssemblyRegex})
 		{
 			content = re.Replace(content, _template);
         }
@@ -260,7 +261,7 @@ class GenerationContext : IDisposable
 
 	public GenerationContext(TextTransformation transformation, ITextTemplatingEngineHost host, StringBuilder content, string settingsFile)
 	{
-	
+
 		UsePartialUpdate = false;
 		Settings = EDMXSettings.Parse(host.ResolvePath(settingsFile));
 		Manager = Manager.Create(host, content);
@@ -271,7 +272,7 @@ class GenerationContext : IDisposable
 		Model.Schema.LazyLoadingEnabled = Settings.LazyLoadingEnabled;
 		Model.Schema.IsStageMode = true;
 		Model.Schema.ConnectionStringName = Settings.UseContextNameAsConnectionString ? Model.Schema.ClassName : Model.Schema.ConnectionStringName;
-		
+
 		transformation.WriteLine("ClassName:  " + Model.Schema.ClassName);
 		transformation.WriteLine("ConnectionStringName:  " + Model.Schema.ConnectionStringName);
     }
@@ -337,7 +338,7 @@ class NugetContext : IDisposable
 
 	public void FlatternTemplate(string path)
 	{
-		var processor = new FlatternTemplateProcessor(string.Format(@"..\packages\{0}.{1}\include", PackageName, Version));
+		var processor = new FlatternTemplateProcessor($@"$(NugetPackageRoot)\{PackageName.ToLower()}\{Version}\include");
 		var content = Manager.LoadFile(path, processor);
 
 		foreach (Regex re in new[] { IncludeRegex, CodeFileRegex })

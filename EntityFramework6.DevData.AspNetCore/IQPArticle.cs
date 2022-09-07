@@ -17,5 +17,5 @@ namespace EntityFramework6.DevData.AspNetCore
         void OnMaterialized(IQPLibraryService context);
 
         Hashtable Pack(IQPFormService context, params string[] propertyNames);
-    }  
+    }
 }
