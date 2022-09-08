@@ -9,7 +9,7 @@
 <#@ assembly name="EnvDTE"#>
 <#@ assembly name="System.Xml"#>
 <#@ assembly name="System.Xml.Linq"#>
-<#@ assembly name="$(SolutionDir)\CodeGeneration\bin\Debug\Quantumart.QP8.CodeGeneration.dll" #>
+<#@ assembly name="$(SolutionDir)\CodeGeneration\bin\Debug\netstandard2.0\Quantumart.QP8.CodeGeneration.dll" #>
 
 <#@ import namespace="System"#>
 <#@ import namespace="System.CodeDom"#>
@@ -37,7 +37,7 @@
 <#
 	using (var context = new NugetContext(Host, GenerationEnvironment))
     {
-		context.Version = "1.4.0-beta2";
+		context.Version = "1.4.0-beta3";
 		context.PackageName = "QP8.EntityFramework6";
 		context.PackageSource = "file://mscbuild02.artq.com/Packages/";
 		context.QaName = "Quantumart";

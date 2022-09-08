@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>QP8.EntityFramework6</id>
-    <version>1.4.0-beta2</version>
+    <version>1.4.0-beta3</version>
     <title>QP8.EntityFramework6</title>
     <authors>Quantum Art</authors>
     <owners>Quantum Art</owners>
@@ -37,7 +37,7 @@
     <file src="QPDataContextGenerator.tt" target="content" />
     <file src="QPDataContextGenerator.tt.settings.xml" target="content" />
     <file src="ModelMappingResult.xml" target="content" />
-    <file src="bin\release\Quantumart.QP8.CodeGeneration.dll" target="lib\net47"/>
+    <file src="bin\release\netstandard2.0\Quantumart.QP8.CodeGeneration.dll" target="lib\netstandard2.0"/>
     <file src="QP8.EntityFramework6.targets" target="build\QP8.EntityFramework6.targets" />
     </files>
 </package>

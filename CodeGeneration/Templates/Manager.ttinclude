@@ -1,5 +1,6 @@
 <#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ assembly name="System.Core" #>
+<#@ assembly name="netstandard" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
@@ -241,7 +242,7 @@ class FlatternTemplateProcessor : IContentProcessor
 	public FlatternTemplateProcessor(string template)
 	{
 		_template = string.Format(ReplaceTemplate, template);
-		_assemblyTemplate = _template.Replace("include", "lib\\net47");
+		_assemblyTemplate = _template.Replace("include", "lib\\netstandard2.0");
 
 	}
 
