@@ -5,11 +5,10 @@
 		var model = context.Model;
 		var settings = context.Settings;
 		var manager = context.Manager;
-		manager.StartNewFile("StatusType.cs");
 #>
 using System;
 
-namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+namespace <#=manager.DefaultProjectNamespace#>
 {
     public partial class StatusType
     {
@@ -20,11 +19,11 @@ namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("Names
     }
 }
 <#+
-		manager.StartNewFile("User.cs");
+		context.SaveOutput("StatusType.cs");
 #>
 using System.Collections.Generic;
 
-namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+namespace <#=manager.DefaultProjectNamespace#>
 {
     public partial class User
     {
@@ -44,11 +43,11 @@ namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("Names
     }
 }
 <#+
-		manager.StartNewFile("UserGroup.cs");
+		context.SaveOutput("User.cs");
 #>
 using System.Collections.Generic;
 
-namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+namespace <#=manager.DefaultProjectNamespace#>
 {
     public partial class UserGroup
     {
@@ -63,5 +62,6 @@ namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("Names
     }
 }
 <#+
+		context.SaveOutput("UserGroup.cs");
 	}
 #>

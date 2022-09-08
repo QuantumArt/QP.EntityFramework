@@ -32,11 +32,12 @@
 <#@ include file="$(SolutionDir)\CodeGeneration\Templates\Manager.ttinclude" #>
 <#@ include file="NugetPackageNuspec.ttinclude" #>
 <#@ include file="NugetPackagePublication.ttinclude" #>
+<#@ include file="NugetPackageTargets.ttinclude" #>
 
 <#
 	using (var context = new NugetContext(Host, GenerationEnvironment))
     {
-		context.Version = "1.4.0-beta1";
+		context.Version = "1.4.0-beta2";
 		context.PackageName = "QP8.EntityFramework6";
 		context.PackageSource = "file://mscbuild02.artq.com/Packages/";
 		context.QaName = "Quantumart";
@@ -47,6 +48,7 @@
 		context.NuspecName = "NugetPackage";
 		context.AddTemplateFile("NugetPackage.nuspec", AddNuspec);
 		context.AddTemplateFile("PublishNugetPackage.cmd", AddPublicationScript);
+		context.AddTemplateFile(context.PackageName + ".targets", AddTargets);
     }
 #>
 

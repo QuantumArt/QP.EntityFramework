@@ -3,7 +3,6 @@
     var model = context.Model;
     var settings = context.Settings;
     var manager = context.Manager;
-    manager.StartNewFile("MappingConfigurator.cs");
 
 #>
 using System;
@@ -16,7 +15,7 @@ using System.Threading;
 using Quantumart.QP8.CodeGeneration.Services;
 <#= settings.Usings#>
 
-namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+namespace <#=manager.DefaultProjectNamespace#>
 {
     public class MappingConfigurator : MappingConfiguratorBase
     {
@@ -32,14 +31,14 @@ namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("Names
     }
 }
 <#+
-	manager.StartNewFile("StaticSchemaProvider.cs");
+	context.SaveOutput("MappingConfigurator.cs");
 #>
 using System.Collections.Generic;
 using System.Linq;
 using Quantumart.QP8.CodeGeneration.Services;
 <#= settings.Usings#>
 
-namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+namespace <#=manager.DefaultProjectNamespace#>
 {
     public class StaticSchemaProvider : ISchemaProvider
     {
@@ -109,12 +108,12 @@ namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("Names
     }
 }
 <#+
-	manager.StartNewFile("MappingResolver.cs");
+	context.SaveOutput("StaticSchemaProvider.cs");
 #>
 using Quantumart.QP8.CodeGeneration.Services;
 using System.Linq;
 
-namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+namespace <#=manager.DefaultProjectNamespace#>
 {
     public interface IMappingResolver
     {
@@ -166,11 +165,11 @@ namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("Names
     }
 }
 <#+
-	manager.StartNewFile("FileSchemaProvider.cs");
+	context.SaveOutput("MappingResolver.cs");
 #>
 using Quantumart.QP8.CodeGeneration.Services;
 
-namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+namespace <#=manager.DefaultProjectNamespace#>
 {
     public class FileSchemaProvider : ISchemaProvider
     {
@@ -195,7 +194,7 @@ namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("Names
     }
 }
 <#+
-	manager.StartNewFile("DatabaseSchemaProvider.cs");
+	context.SaveOutput("FileSchemaProvider.cs");
 #>
 using System.Collections.Generic;
 using System.Data;
@@ -205,7 +204,7 @@ using System.Data.Common;
 using Quantumart.QPublishing.Database;
 using System.Data.SqlClient;
 
-namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+namespace <#=manager.DefaultProjectNamespace#>
 {
     public class DatabaseSchemaProvider : ISchemaProvider
     {
@@ -386,6 +385,7 @@ namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("Names
     }
 }
 <#+
+	context.SaveOutput("DatabaseSchemaProvider.cs");
 }
 string GetDynamicFieldMapping(AttributeInfo attribute)
 {
@@ -407,7 +407,3 @@ string GetDynamicReversedLinkTablMapping(ContentInfo content, AttributeInfo fiel
     return string.Format("GetReversedLinkTableName(\"{0}\", \"{1}\")", content.MappedName, field.MappedName);
 }
 #>
-
-
-
-

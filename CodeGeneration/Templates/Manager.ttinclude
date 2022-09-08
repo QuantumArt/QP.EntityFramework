@@ -1,4 +1,4 @@
-<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ assembly name="System.Core" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
@@ -236,18 +236,25 @@ class FlatternTemplateProcessor : IContentProcessor
 	private static Regex CodeFileRegex = new Regex(@"(AddCodeFile\(@?"")(.*)(\\[^\\""]*)("")", RegexOptions.Compiled);
 
 	private readonly string _template;
+	private readonly string _assemblyTemplate;
 
 	public FlatternTemplateProcessor(string template)
 	{
 		_template = string.Format(ReplaceTemplate, template);
-    }
+		_assemblyTemplate = _template.Replace("include", "lib\\net47");
+
+	}
 
 	public string Process(string content)
 	{
-		foreach(var re in new[] {IncludeRegex, CodeFileRegex, AssemblyRegex})
+		foreach(var re in new[] {IncludeRegex, CodeFileRegex})
 		{
 			content = re.Replace(content, _template);
         }
+		foreach(var re in new[] {AssemblyRegex})
+		{
+			content = re.Replace(content, _assemblyTemplate);
+		}
 		return content;
     }
 }
@@ -258,6 +265,9 @@ class GenerationContext : IDisposable
 	public ModelReader Model { get; private set; }
 	public Manager Manager { get; private set; }
 	public bool UsePartialUpdate { get; private set; }
+    public ITextTemplatingEngineHost Host { get; private set; }
+    public StringBuilder Content { get; private set; }
+
 
 	public GenerationContext(TextTransformation transformation, ITextTemplatingEngineHost host, StringBuilder content, string settingsFile)
 	{
@@ -265,6 +275,8 @@ class GenerationContext : IDisposable
 		UsePartialUpdate = false;
 		Settings = EDMXSettings.Parse(host.ResolvePath(settingsFile));
 		Manager = Manager.Create(host, content);
+        Host = host;
+        Content = content;
 
 		var mappingFile = host.ResolvePath(Settings.QPContextMappingResultPath);
 		Model = new ModelReader(mappingFile, text => transformation.WriteLine(text), true);
@@ -275,14 +287,22 @@ class GenerationContext : IDisposable
 
 		transformation.WriteLine("ClassName:  " + Model.Schema.ClassName);
 		transformation.WriteLine("ConnectionStringName:  " + Model.Schema.ConnectionStringName);
+        SaveOutput("Model.log");
+    }
+
+    public void SaveOutput(string outputFileName) {
+        string templateDirectory = Path.GetDirectoryName(Host.TemplateFile);
+        string outputFilePath = Path.Combine(templateDirectory, outputFileName);
+        File.WriteAllText(outputFilePath, Content.ToString());
+        Content.Clear();
     }
 
 	public void AddTemplateFile(string fileName, Action<GenerationContext> addFile, bool condition = true)
 	{
 		if (condition)
         {
-			Manager.StartNewFile(fileName);
 			addFile(this);
+            SaveOutput(fileName);
         }
     }
 

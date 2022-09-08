@@ -156,7 +156,6 @@
     <None Include="QPDataContextInclude\ClassExtensions.ttinclude" />
     <None Include="QPDataContextInclude\ConnectionScope.ttinclude" />
     <None Include="QPDataContextInclude\Classes.ttinclude" />
-    <None Include="QPDataContextInclude\StaticSchemaProvider.ttinclude" />
     <None Include="QPDataContextInclude\ModelExtensions.ttinclude" />
     <None Include="QPDataContextInclude\Model.ttinclude" />
     <None Include="QPDataContextInclude\MappingConfiguratorOnModelCreating.ttinclude" />

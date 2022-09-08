@@ -2,14 +2,15 @@
 <#+ void AddModel(GenerationContext context){
 var model = context.Model;
 var settings = context.Settings;
+var manager = context.Manager;
 #>
 using System;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;	
+using System.Linq;
 <#= settings.Usings#>
 
-namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+namespace <#=manager.DefaultProjectNamespace#>
 {
     public partial class <#=model.Schema.ClassName#> : DbContext
     {

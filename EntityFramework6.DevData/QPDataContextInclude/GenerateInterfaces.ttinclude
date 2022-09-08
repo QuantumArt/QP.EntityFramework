@@ -4,12 +4,12 @@
         var model = context.Model;
         var settings = context.Settings;
         var manager = context.Manager;
-        manager.StartNewFile("IQPArticle.cs");
+
 #>
 using System;
 using System.Collections;
 
-namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+namespace <#=manager.DefaultProjectNamespace#>
 {
     public interface IQPArticle
     {
@@ -28,9 +28,9 @@ namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("Names
     }
 }
 <#+
-	    manager.StartNewFile("IQPFormService.cs");
+	    context.SaveOutput("IQPArticle.cs");
 #>
-namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+namespace <#=manager.DefaultProjectNamespace#>
 {
     public interface IQPFormService
     {
@@ -39,9 +39,9 @@ namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("Names
     }
 }
 <#+
-	    manager.StartNewFile("IQPLibraryService.cs");
+	    context.SaveOutput("IQPFormService.cs");
 #>
-namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+namespace <#=manager.DefaultProjectNamespace#>
 {
     public interface IQPLibraryService
     {
@@ -53,5 +53,6 @@ namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("Names
     }
 }
 <#+
+       context.SaveOutput("IQPLibraryService.cs");
     }
 #>

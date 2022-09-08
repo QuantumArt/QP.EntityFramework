@@ -1,4 +1,4 @@
-<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ template debug="false" hostspecific="true" language="xml" #>
 <#+ void AddNuspec(NugetContext context){#>
 <#= "<?xml version=\"1.0\"?>" #>
 <package >
@@ -32,6 +32,7 @@
     <file src="QPDataContextGenerator.tt.settings.xml" target="content" />
     <file src="ModelMappingResult.xml" target="content" />
     <file src="bin\release\Quantumart.QP8.CodeGeneration.dll" target="lib\net47"/>
-  </files>
+    <file src="QP8.EntityFramework6.targets" target="build\QP8.EntityFramework6.targets" />
+    </files>
 </package>
 <#+}#>

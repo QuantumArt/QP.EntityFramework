@@ -75,15 +75,19 @@
     <None Include="NugetPackageAspnetCore.nuspec">
       <DependentUpon>NugetAspNetCorePackageGenerator.tt</DependentUpon>
     </None>
+    <None Include="NugetAspNetCorePackageNuspec.ttinclude" />
     <None Include="NugetPackageGenerator.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NugetPackageGenerator.tt</DependentUpon>
     </None>
-    <None Include="NugetAspNetCorePackageNuspec.ttinclude" />
     <None Include="NugetPackageNuspec.ttinclude" />
     <None Include="NugetPackagePublication.ttinclude" />
     <None Include="packages.config" />
+    <None Include="NugetPackageTargets.ttinclude" />
+    <None Include="QP8.EntityFramework6.targets">
+      <DependentUpon>NugetPackageGenerator.tt</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -134,5 +138,3 @@
   </Target>
   -->
 </Project>
-
-
