@@ -9,7 +9,7 @@
 			<#= $"<DataFile Include=\"$(NugetPackageRoot)\\{context.PackageName.ToLower()}\\{context.Version}\\content\\ModelMappingResult.xml\"/>" #>
 	</ItemGroup>
 	<ItemGroup>
-		<#= $"<SettingsFile Include=\"$(NugetPackageRoot)\\{context.PackageName.ToLower()}\\{context.Version}\\content\\QPDataContextGenerator.settings.xml\"/>" #>
+		<#= $"<SettingsFile Include=\"$(NugetPackageRoot)\\{context.PackageName.ToLower()}\\{context.Version}\\content\\QPDataContextGenerator.tt.settings.xml\"/>" #>
 	</ItemGroup>
 
 	<Target Name="CopyTransformationTarget" BeforeTargets="BeforeBuild">
@@ -21,20 +21,20 @@
 	</Target>
 	<Target Name="CopySettingsTarget" BeforeTargets="BeforeBuild">
 		<Copy DestinationFolder="$(MSBuildProjectDirectory)\" SourceFiles="@(SettingsFile)"
-			  Condition="!Exists('$(MSBuildProjectDirectory)\QPDataContextGenerator.settings.xml')"></Copy>
+			  Condition="!Exists('$(MSBuildProjectDirectory)\QPDataContextGenerator.tt.settings.xml')"></Copy>
 	</Target>
-	
+
 	<ItemGroup>
 		<None Remove="ModelMappingResult.xml" />
-		<None Remove="QPDataContextGenerator.settings.xml" />
+		<None Remove="QPDataContextGenerator.tt.settings.xml" />
 		<None Remove="QPDataContextGenerator.tt" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<AdditionalFiles Include="ModelMappingResult.xml" />
-		<AdditionalFiles Include="QPDataContextGenerator.settings.xml" />
+		<AdditionalFiles Include="QPDataContextGenerator.tt.settings.xml" />
 		<Content Include="QPDataContextGenerator.tt">
-			<Generator>TextTemplatingFileGenerator</Generator>			
+			<Generator>TextTemplatingFileGenerator</Generator>
 		</Content>
 	</ItemGroup>
 </Project>
