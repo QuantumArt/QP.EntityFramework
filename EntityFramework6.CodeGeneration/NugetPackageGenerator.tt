@@ -37,7 +37,7 @@
 <#
 	using (var context = new NugetContext(Host, GenerationEnvironment))
     {
-		context.Version = "1.4.0-beta4";
+		context.Version = "1.4.0";
 		context.PackageName = "QP8.EntityFramework6";
 		context.PackageSource = "file://mscbuild02.artq.com/Packages/";
 		context.QaName = "Quantumart";
