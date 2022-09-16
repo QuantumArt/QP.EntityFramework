@@ -270,9 +270,8 @@ class GenerationContext : IDisposable
     public StringBuilder Content { get; private set; }
 
 
-	public GenerationContext(TextTransformation transformation, ITextTemplatingEngineHost host, StringBuilder content, string settingsFile)
+	public GenerationContext(StringBuilder sb, ITextTemplatingEngineHost host, StringBuilder content, string settingsFile)
 	{
-
 		UsePartialUpdate = false;
 		Settings = EDMXSettings.Parse(host.ResolvePath(settingsFile));
 		Manager = Manager.Create(host, content);
@@ -280,15 +279,14 @@ class GenerationContext : IDisposable
         Content = content;
 
 		var mappingFile = host.ResolvePath(Settings.QPContextMappingResultPath);
-		Model = new ModelReader(mappingFile, text => transformation.WriteLine(text), true);
+		Model = new ModelReader(mappingFile, text => sb.AppendLine(text), true);
 		List<ModelReader> models = new List<ModelReader>();
 		Model.Schema.LazyLoadingEnabled = Settings.LazyLoadingEnabled;
 		Model.Schema.IsStageMode = true;
 		Model.Schema.ConnectionStringName = Settings.UseContextNameAsConnectionString ? Model.Schema.ClassName : Model.Schema.ConnectionStringName;
 
-		transformation.WriteLine("ClassName:  " + Model.Schema.ClassName);
-		transformation.WriteLine("ConnectionStringName:  " + Model.Schema.ConnectionStringName);
-        SaveOutput("Model.log");
+		sb.AppendLine("ClassName:  " + Model.Schema.ClassName);
+		sb.AppendLine("ConnectionStringName:  " + Model.Schema.ConnectionStringName);
     }
 
     public void SaveOutput(string outputFileName) {

@@ -1,4 +1,4 @@
-<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ template debug="false" hostspecific="true" language="xml" #>
 <#+ void AddNuspec(NugetContext context){#>
 <#= "<?xml version=\"1.0\"?>" #>
 <package >
@@ -11,12 +11,11 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Entity Framework 6 class generator</description>
     <releaseNotes>Add creation data context for EntityFramework6</releaseNotes>
-    <copyright>Copyright © 2007-2016 Quantum Art</copyright>
+    <copyright>Copyright © 2007-2022 Quantum Art</copyright>
     <tags>QP8 EntityFramework</tags>
     <dependencies>
-      <dependency id="EntityFramework" version="6.2.0" />
+      <dependency id="EntityFramework" version="6.4.4" />
       <dependency id="<#=context.QaName#>" version="<#=context.QaVersion#>" />
-      <dependency id="Microsoft.Extensions.Caching.Memory" version="2.1.1" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Configuration" targetFramework="net47"  />
@@ -32,8 +31,8 @@
     <file src="<#=context.GeneratorName#>.tt" target="content" />
     <file src="QPDataContextGenerator.tt.settings.xml" target="content" />
     <file src="ModelMappingResult.xml" target="content" />
-    <file src="bin\release\Quantumart.QP8.EntityFramework.dll" target="lib\net47"/>
-    <file src="bin\release\netstandard2.0\Quantumart.QP8.CodeGeneration.dll" target="lib\netstandard2.0"/>
-  </files>
+    <file src="bin\release\Quantumart.QP8.CodeGeneration.dll" target="lib\netstandard2.0"/>
+    <file src="QP8.EntityFramework6.targets" target="build\QP8.EntityFramework6.targets" />
+    </files>
 </package>
 <#+}#>

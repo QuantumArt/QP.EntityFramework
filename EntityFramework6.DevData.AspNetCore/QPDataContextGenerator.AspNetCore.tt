@@ -35,13 +35,15 @@
 <#@ include file="..\EntityFramework6.DevData\QPDataContextInclude\GenerateMappings.ttinclude" #>
 <#@ include file="..\EntityFramework6.DevData\QPDataContextInclude\GenerateInterfaces.ttinclude" #>
 <#@ include file="..\EntityFramework6.DevData\QPDataContextInclude\GenerateMappingInterfaces.ttinclude" #>
-<#@ include file="..\EntityFramework6.DevData\QPDataContextInclude\GenerateServiceClasses.ttinclude" #><#@ include file="..\EntityFramework6.DevData.AspNetCore\QPDataContextInclude\ModelExtensions.ttinclude" #>
+<#@ include file="..\EntityFramework6.DevData\QPDataContextInclude\GenerateServiceClasses.ttinclude" #>
+<#@ include file="..\EntityFramework6.DevData.AspNetCore\QPDataContextInclude\ModelExtensions.ttinclude" #>
 <#@ include file="..\EntityFramework6.DevData\QPDataContextInclude\ConnectionScope.ttinclude" #>
 <#@ include file="..\EntityFramework6.DevData\QPDataContextInclude\Classes.ttinclude" #>
 <#@ include file="..\EntityFramework6.DevData\QPDataContextInclude\ClassExtensions.ttinclude" #>
 
 <#
-	using (var context = new GenerationContext(this, Host, GenerationEnvironment, "QPDataContextGenerator.tt.settings.xml"))
+	var sb = new StringBuilder();
+	using (var context = new GenerationContext(sb, Host, GenerationEnvironment, "QPDataContextGenerator.tt.settings.xml"))
 	{
 		var className = context.Model.Schema.ClassName;
 		var settings = context.Settings;
@@ -58,4 +60,4 @@
 		context.AddTemplate(AddClasses, settings.GenerateClasses);
 		context.AddTemplateFile(className + ".Contents.Extensions.cs", AddClassExtensions, settings.GenerateClasses && settings.GenerateExtensions);
 	}
-#>
+#><#=sb.ToString()#>

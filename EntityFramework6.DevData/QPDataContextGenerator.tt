@@ -42,7 +42,8 @@
 <#@ include file="..\EntityFramework6.DevData\QPDataContextInclude\ClassExtensions.ttinclude" #>
 
 <#
-	using (var context = new GenerationContext(this, Host, GenerationEnvironment, "QPDataContextGenerator.tt.settings.xml"))
+	var sb = new StringBuilder();
+	using (var context = new GenerationContext(sb, Host, GenerationEnvironment, "QPDataContextGenerator.tt.settings.xml"))
 	{
 		var className = context.Model.Schema.ClassName;
 		var settings = context.Settings;
@@ -59,4 +60,4 @@
 		context.AddTemplate(AddClasses, settings.GenerateClasses);
 		context.AddTemplateFile(className + ".Contents.Extensions.cs", AddClassExtensions, settings.GenerateClasses && settings.GenerateExtensions);
 	}
-#>
+#><#=sb.ToString()#>

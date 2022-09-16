@@ -32,11 +32,12 @@
 <#@ include file="$(SolutionDir)\CodeGeneration\Templates\Manager.ttinclude" #>
 <#@ include file="NugetAspNetCorePackageNuspec.ttinclude" #>
 <#@ include file="NugetPackagePublication.ttinclude" #>
+<#@ include file="NugetPackageTargets.ttinclude" #>
 
 <#
 	using (var context = new NugetContext(Host, GenerationEnvironment))
     {
-		context.Version = "1.4.0-beta1";
+		context.Version = "1.4.0-beta4";
 		context.PackageName = "QP8.EntityFramework6.AspNetCore";
 		context.PackageSource = "file://mscbuild02.artq.com/Packages/";
 		context.QaName = "Quantumart.AspNetCore";
@@ -47,5 +48,6 @@
 		context.NuspecName = "NugetPackageAspnetCore";
 		context.AddTemplateFile("NugetPackageAspnetCore.nuspec", AddNuspec);
 		context.AddTemplateFile("PublishNugetPackageAspnetCore.cmd", AddPublicationScript);
+		context.AddTemplateFile(context.PackageName + ".targets", AddTargets);
     }
 #>
