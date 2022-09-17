@@ -25,8 +25,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework6.DevData.AspNetCore", "EntityFramework6.DevData.AspNetCore\EntityFramework6.DevData.AspNetCore.csproj", "{8A45751D-22CB-4718-9F8F-B5C381BA9394}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework6.AspNetCore.Test", "EntityFramework6.AspNetCore.Test\EntityFramework6.AspNetCore.Test.csproj", "{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -96,16 +94,6 @@ Global
 		{8A45751D-22CB-4718-9F8F-B5C381BA9394}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8A45751D-22CB-4718-9F8F-B5C381BA9394}.Stage|Any CPU.ActiveCfg = Release|Any CPU
 		{8A45751D-22CB-4718-9F8F-B5C381BA9394}.Stage|Any CPU.Build.0 = Release|Any CPU
-		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}.Development|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}.Development|Any CPU.Build.0 = Debug|Any CPU
-		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}.Live|Any CPU.ActiveCfg = Release|Any CPU
-		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}.Live|Any CPU.Build.0 = Release|Any CPU
-		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}.Stage|Any CPU.ActiveCfg = Release|Any CPU
-		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E}.Stage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,7 +105,6 @@ Global
 		{C833C175-8E8D-4A8A-BAE2-98B860CD3B14} = {70588F54-56D0-4C3A-8D58-1A2DAACD1ABB}
 		{4F1247CE-A53D-4057-9110-D42176ED68DC} = {70588F54-56D0-4C3A-8D58-1A2DAACD1ABB}
 		{8A45751D-22CB-4718-9F8F-B5C381BA9394} = {CE71CF28-F97A-4008-BD7A-B27D11AA915F}
-		{AE39F54D-7A2C-44E7-8E64-E1F5D5E85A3E} = {70588F54-56D0-4C3A-8D58-1A2DAACD1ABB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A2D1C948-2B09-4D73-94C6-012A1449AD07}
