@@ -326,23 +326,6 @@ namespace EntityFramework6.DevData.AspNetCore
                 .WithMany()
                 .HasForeignKey(x => x.StatusTypeId); 
 
-
-            modelBuilder.Entity<SymmetricRelationArticle>().HasMany<ToSymmetricRelationAtricle>(p => p.SymmetricRelation).WithMany()
-                .Map(rp =>
-                {
-                    rp.MapLeftKey("id");
-                    rp.MapRightKey("linked_id");
-                    rp.ToTable(GetLinkTableName("SymmetricRelationArticle", "SymmetricRelation"));
-                });
-
-            modelBuilder.Entity<ToSymmetricRelationAtricle>().HasMany<SymmetricRelationArticle>(p => p.BackwardForSymmetricRelation).WithMany()
-                .Map(rp =>
-                { 
-                    rp.MapLeftKey("id"); // !+
-                    rp.MapRightKey("linked_id");
-                    rp.ToTable(GetReversedLinkTableName("SymmetricRelationArticle", "SymmetricRelation"));
-                });
-
  
             #endregion
 
@@ -375,7 +358,7 @@ namespace EntityFramework6.DevData.AspNetCore
                     rp.ToTable(GetLinkTableName("ToSymmetricRelationAtricle", "ToSymmetricRelation"));
                 });
 
-            modelBuilder.Entity<SymmetricRelationArticle>().HasMany<ToSymmetricRelationAtricle>(p => p.BackwardForToSymmetricRelation).WithMany()
+            modelBuilder.Entity<SymmetricRelationArticle>().HasMany<ToSymmetricRelationAtricle>(p => p.SymmetricRelation).WithMany()
                 .Map(rp =>
                 { 
                     rp.MapLeftKey("id"); // !+

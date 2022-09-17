@@ -10,7 +10,6 @@ namespace EntityFramework6.DevData.AspNetCore
         public SymmetricRelationArticle()
         {
 		    SymmetricRelation = new HashSet<ToSymmetricRelationAtricle>();
-		    BackwardForToSymmetricRelation = new HashSet<ToSymmetricRelationAtricle>();
         }
 
         public virtual Int32 Id { get; set; }
@@ -26,10 +25,6 @@ namespace EntityFramework6.DevData.AspNetCore
 		/// 
 		/// </summary>
 		public  ICollection<ToSymmetricRelationAtricle> SymmetricRelation { get; set; }
-		/// <summary>
-		/// Auto-generated backing property for 38260/ToSymmetricRelation
-		/// </summary>
-		public  ICollection<ToSymmetricRelationAtricle> BackwardForToSymmetricRelation { get; set; }
 
 	}
 }

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <schema connectionStringName="qp_database" class="EF6Model" namespace="QA.EF" useLongUrls="true" replaceUrls="true" dbIndependent="true" isPartial="false" sendNotifications="false" siteName="original_site" siteId="52" forStage="true" connectionString="Data Source=MSCSQL01;Initial Catalog=qp_ef6_test;Integrated Security=True;Connect Timeout=120;Application Name=QP8Backend;Workstation ID=MSCDEV02" connectionStringObject="System.Configuration.ConfigurationManager.ConnectionStrings">
   <content id="618" name="AfiellFieldsItem" mapped_name="AfiellFieldsItem" plural_mapped_name="AfiellFieldsItems" use_default_filtration="true" virtual="0" user_query="0" split_articles="true">
     <attribute name="StringField" mapped_name="String" id="38004" type="String" is_localization="false" size="255" />
@@ -44,7 +44,7 @@
     <attribute name="FileItem" mapped_name="FileItem" id="38182" type="File" is_localization="false" />
   </content>
   <content id="694" name="SymmetricRelationArticles" mapped_name="SymmetricRelationArticle" plural_mapped_name="SymmetricRelationArticles" use_default_filtration="true" virtual="0" user_query="0" split_articles="true">
-    <attribute name="SymmetricRelation" mapped_name="SymmetricRelation" id="38259" type="M2M" is_localization="false" related_content_id="695" link_id="100" use_separate_reverse_views="false" />
+    <attribute name="SymmetricRelation" mapped_name="SymmetricRelation" id="41538" type="M2M" is_localization="false" related_content_id="695" link_id="101" use_separate_reverse_views="false" />
   </content>
   <content id="695" name="ToSymmetricRelationAtricles" mapped_name="ToSymmetricRelationAtricle" plural_mapped_name="ToSymmetricRelationAtricles" use_default_filtration="true" virtual="0" user_query="0" split_articles="true">
     <attribute name="ToSymmetricRelation" mapped_name="ToSymmetricRelation" id="38260" type="M2M" is_localization="false" related_content_id="694" link_id="101" use_separate_reverse_views="false" />
@@ -85,7 +85,6 @@
   <content id="1301" name="OtMItemToContentWithoutMapping" mapped_name="OtMItemToContentWithoutMapping" plural_mapped_name="OtMItemsToContentWithoutMapping" use_default_filtration="true" virtual="0" user_query="0" split_articles="false">
     <attribute name="OtMReferenceMapping" mapped_back_name="BackOtMReferenceMapping" mapped_name="OtMReferenceMapping" id="40114" type="O2M" is_localization="false" related_content_id="1302" has_m2o="false" />
   </content>
-  <link id="100" self="0" content_id="694" linked_content_id="695" mapped_name="SymmetricRelationArticlesToSymmetricRelationAtriclesArticle" plural_mapped_name="SymmetricRelationArticlesToSymmetricRelationAtriclesArticles" />
   <link id="101" self="0" content_id="695" linked_content_id="694" mapped_name="ToSymmetricRelationAtriclesSymmetricRelationArticlesArticle" plural_mapped_name="ToSymmetricRelationAtriclesSymmetricRelationArticlesArticles" />
   <link id="149" self="0" content_id="993" linked_content_id="994" mapped_name="MtMItemForUpdateMtMDictionaryForUpdateArticle" plural_mapped_name="MtMItemForUpdateMtMDictionaryForUpdateArticles" />
   <status_type id="141" name="Created" site_id="52" />
