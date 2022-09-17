@@ -5,13 +5,23 @@
     <AssemblyName>CodeGeneration.Test</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NUnit" Version="3.10.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+    <PackageReference Include="NUnit" Version="3.13.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EntityFramework6.CodeGeneration\EntityFramework6.CodeGeneration.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Data\EDMXSettings.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\ModelMapping.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
 

@@ -1,6 +1,8 @@
-﻿using System.IO;
+﻿using NUnit.Framework;
+using System.IO;
 using EntityFramework6.DevData;
-using NUnit.Framework;
+using Microsoft.Extensions.Configuration;
+using Quantumart.QPublishing.FileSystem;
 
 namespace EntityFramework6.Test.Infrastructure
 {
@@ -14,21 +16,35 @@ namespace EntityFramework6.Test.Infrastructure
         protected EF6Model GetDataContext(ContentAccess access, Mapping mapping)
         {
 
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            EF6Model.DefaultConnectionString = configuration["ConnectionStrings:EF6Model"];
+            EF6Model context;
             switch (mapping)
             {
                 case Mapping.StaticMapping:
-                    return EF6Model.CreateWithStaticMapping(access);
+                    context = EF6Model.CreateWithStaticMapping(access);
+                    break;
                 case Mapping.DatabaseDefaultMapping:
-                    return EF6Model.CreateWithDatabaseMapping(access, DefaultSiteName);
+                    context = EF6Model.CreateWithDatabaseMapping(access, DefaultSiteName);
+                    break;
                 case Mapping.DatabaseDynamicMapping:
-                    return EF6Model.CreateWithDatabaseMapping(access, DynamicSiteName);
+                    context = EF6Model.CreateWithDatabaseMapping(access, DynamicSiteName);
+                    break;
                 case Mapping.FileDefaultMapping:
-                    return EF6Model.CreateWithFileMapping(access, GetPath(DefaultMappingResult));
+                    context = EF6Model.CreateWithFileMapping(access, GetPath(DefaultMappingResult));
+                    break;
                 case Mapping.FileDynamicMapping:
-                    return EF6Model.CreateWithFileMapping(access, GetPath(DynamicMappingResult));
+                    context = EF6Model.CreateWithFileMapping(access, GetPath(DynamicMappingResult));
+                    break;
                 default:
-                    return EF6Model.Create();
+                    context = EF6Model.Create();
+                    break;
             }
+            context.Cnn.FileSystem = new FakeFileSystem();
+            return context;
         }
 
         protected string GetPath(string file)

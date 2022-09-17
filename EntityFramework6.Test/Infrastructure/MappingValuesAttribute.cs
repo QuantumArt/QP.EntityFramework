@@ -7,9 +7,6 @@ namespace EntityFramework6.Test.Infrastructure
         public MappingValuesAttribute()
             : base(
                 Mapping.StaticMapping,
-                Mapping.FileDefaultMapping,
-                Mapping.FileDynamicMapping,
-                Mapping.DatabaseDefaultMapping,
                 Mapping.DatabaseDynamicMapping)
         {
         }
