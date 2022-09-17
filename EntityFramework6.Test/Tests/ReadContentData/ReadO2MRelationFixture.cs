@@ -1,8 +1,7 @@
-﻿using EntityFramework6.Test.DataContext;
+﻿using System.Linq;
 using EntityFramework6.Test.Infrastructure;
 using NUnit.Framework;
-using System;
-using System.Linq;
+using EntityFramework6.DevData;
 
 namespace EntityFramework6.Test.Tests.ReadContentData
 {
@@ -35,7 +34,7 @@ namespace EntityFramework6.Test.Tests.ReadContentData
                 Assert.That(item.OtMReferenceMapping_ID, Is.Not.Null);
             }
         }
-        
+
         [Test]
         [Category("ReadContentData")]
         public void Check_That_o2m_Relation_Field_toMapped_IsIncluded([ContentAccessValues] ContentAccess access, [MappingValues] Mapping mapping)

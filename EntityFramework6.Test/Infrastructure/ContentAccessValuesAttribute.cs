@@ -1,4 +1,4 @@
-﻿using EntityFramework6.Test.DataContext;
+﻿using EntityFramework6.DevData;
 using NUnit.Framework;
 
 namespace EntityFramework6.Test.Infrastructure

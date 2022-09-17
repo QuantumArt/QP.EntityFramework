@@ -1,7 +1,7 @@
-using EntityFramework6.Test.DataContext;
-using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
 using System.IO;
+using EntityFramework6.DevData.AspNetCore;
+using Microsoft.Extensions.Configuration;
 
 namespace EntityFramework6.Test.Infrastructure
 {

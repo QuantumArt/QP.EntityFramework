@@ -21,273 +21,684 @@ namespace EntityFramework6.DevData.AspNetCore
         {
         base.OnModelCreating(modelBuilder);
 
-            #region MarketingProduct mappings
-            modelBuilder.Entity<MarketingProduct>()
-                .ToTable(GetTableName("MarketingProduct"))
+            #region AfiellFieldsItem mappings
+            modelBuilder.Entity<AfiellFieldsItem>()
+                .ToTable(GetTableName("AfiellFieldsItem"))
                 .Property(x => x.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
                 .HasColumnName("CONTENT_ITEM_ID");
            
-		    modelBuilder.Entity<MarketingProduct>()
+		    modelBuilder.Entity<AfiellFieldsItem>()
                 .Property(x => x.LastModifiedBy)
                 .HasColumnName("LAST_MODIFIED_BY");
             
-            modelBuilder.Entity<MarketingProduct>()
+            modelBuilder.Entity<AfiellFieldsItem>()
                 .Property(x => x.StatusTypeId)
                 .HasColumnName("STATUS_TYPE_ID");
 
-			modelBuilder.Entity<MarketingProduct>()
+			modelBuilder.Entity<AfiellFieldsItem>()
                 .HasRequired<StatusType>(x => x.StatusType)
                 .WithMany()
                 .HasForeignKey(x => x.StatusTypeId); 
 
-            modelBuilder.Entity<MarketingProduct>()
-                .Property(x => x.Family_ID)
-                .HasColumnName(GetFieldName("MarketingProduct", "Family_ID"));
-            modelBuilder.Entity<MarketingProduct>()
-                .Property(x => x.MarketingSign_ID)
-                .HasColumnName(GetFieldName("MarketingProduct", "MarketingSign_ID"));
+            modelBuilder.Entity<AfiellFieldsItem>()
+                .Property(x => x.String)
+                .HasColumnName(GetFieldName("AfiellFieldsItem", "String"));
+            modelBuilder.Entity<AfiellFieldsItem>()
+                .Property(x => x.Integer)
+                .HasColumnName(GetFieldName("AfiellFieldsItem", "Integer"));
+            modelBuilder.Entity<AfiellFieldsItem>()
+                .Property(x => x.Decimal)
+                .HasColumnName(GetFieldName("AfiellFieldsItem", "Decimal"));
+            modelBuilder.Entity<AfiellFieldsItem>()
+                .Property(x => x.Boolean)
+                .HasColumnName(GetFieldName("AfiellFieldsItem", "Boolean"));
+            modelBuilder.Entity<AfiellFieldsItem>()
+                .Property(x => x.Date)
+                .HasColumnName(GetFieldName("AfiellFieldsItem", "Date"));
+            modelBuilder.Entity<AfiellFieldsItem>()
+                .Property(x => x.Time)
+                .HasColumnName(GetFieldName("AfiellFieldsItem", "Time"));
+            modelBuilder.Entity<AfiellFieldsItem>()
+                .Property(x => x.DateTime)
+                .HasColumnName(GetFieldName("AfiellFieldsItem", "DateTime"));
+            modelBuilder.Entity<AfiellFieldsItem>()
+                .Property(x => x.File)
+                .HasColumnName(GetFieldName("AfiellFieldsItem", "File"));
+            modelBuilder.Entity<AfiellFieldsItem>()
+                .Property(x => x.Image)
+                .HasColumnName(GetFieldName("AfiellFieldsItem", "Image"));
+            modelBuilder.Entity<AfiellFieldsItem>()
+                .Property(x => x.TextBox)
+                .HasColumnName(GetFieldName("AfiellFieldsItem", "TextBox"));
+            modelBuilder.Entity<AfiellFieldsItem>()
+                .Property(x => x.VisualEdit)
+                .HasColumnName(GetFieldName("AfiellFieldsItem", "VisualEdit"));
+            modelBuilder.Entity<AfiellFieldsItem>()
+                .Property(x => x.DynamicImage)
+                .HasColumnName(GetFieldName("AfiellFieldsItem", "DynamicImage"));
+            modelBuilder.Entity<AfiellFieldsItem>()
+                .Property(x => x.Enum)
+                .HasColumnName(GetFieldName("AfiellFieldsItem", "Enum"));
+            modelBuilder.Entity<AfiellFieldsItem>().Ignore(p => p.FileUrl);
+            modelBuilder.Entity<AfiellFieldsItem>().Ignore(p => p.ImageUrl);
+            modelBuilder.Entity<AfiellFieldsItem>().Ignore(p => p.DynamicImageUrl);
+            modelBuilder.Entity<AfiellFieldsItem>().Ignore(p => p.FileUploadPath);
+            modelBuilder.Entity<AfiellFieldsItem>().Ignore(p => p.ImageUploadPath);
  
             #endregion
 
-            #region Product mappings
-            modelBuilder.Entity<Product>()
-                .ToTable(GetTableName("Product"))
+            #region Schema mappings
+            modelBuilder.Entity<Schema>()
+                .ToTable(GetTableName("Schema"))
                 .Property(x => x.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
                 .HasColumnName("CONTENT_ITEM_ID");
            
-		    modelBuilder.Entity<Product>()
+		    modelBuilder.Entity<Schema>()
                 .Property(x => x.LastModifiedBy)
                 .HasColumnName("LAST_MODIFIED_BY");
             
-            modelBuilder.Entity<Product>()
+            modelBuilder.Entity<Schema>()
                 .Property(x => x.StatusTypeId)
                 .HasColumnName("STATUS_TYPE_ID");
 
-			modelBuilder.Entity<Product>()
+			modelBuilder.Entity<Schema>()
                 .HasRequired<StatusType>(x => x.StatusType)
                 .WithMany()
                 .HasForeignKey(x => x.StatusTypeId); 
 
-            modelBuilder.Entity<Product>()
-                .Property(x => x.MarketingSign_ID)
-                .HasColumnName(GetFieldName("Product", "MarketingSign_ID"));
-            modelBuilder.Entity<Product>()
-                .HasOptional<MarketingProduct>(mp => mp.MarketingProduct)
-                .WithMany(mp => mp.Products)
-                .HasForeignKey(fp => fp.MarketingProduct_ID);
+ 
+            #endregion
 
-            modelBuilder.Entity<Product>()
-                .Property(x => x.MarketingProduct_ID)
-                .HasColumnName(GetFieldName("Product", "MarketingProduct"));
+            #region StringItem mappings
+            modelBuilder.Entity<StringItem>()
+                .ToTable(GetTableName("StringItem"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<StringItem>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<StringItem>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
 
-            modelBuilder.Entity<Product>().HasMany<Region>(p => p.Regions).WithMany()
+			modelBuilder.Entity<StringItem>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+            modelBuilder.Entity<StringItem>()
+                .Property(x => x.StringValue)
+                .HasColumnName(GetFieldName("StringItem", "StringValue"));
+ 
+            #endregion
+
+            #region StringItemForUpdate mappings
+            modelBuilder.Entity<StringItemForUpdate>()
+                .ToTable(GetTableName("StringItemForUpdate"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<StringItemForUpdate>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<StringItemForUpdate>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<StringItemForUpdate>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+            modelBuilder.Entity<StringItemForUpdate>()
+                .Property(x => x.StringValue)
+                .HasColumnName(GetFieldName("StringItemForUpdate", "StringValue"));
+ 
+            #endregion
+
+            #region StringItemForUnsert mappings
+            modelBuilder.Entity<StringItemForUnsert>()
+                .ToTable(GetTableName("StringItemForUnsert"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<StringItemForUnsert>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<StringItemForUnsert>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<StringItemForUnsert>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+            modelBuilder.Entity<StringItemForUnsert>()
+                .Property(x => x.StringValue)
+                .HasColumnName(GetFieldName("StringItemForUnsert", "StringValue"));
+ 
+            #endregion
+
+            #region ItemForUpdate mappings
+            modelBuilder.Entity<ItemForUpdate>()
+                .ToTable(GetTableName("ItemForUpdate"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<ItemForUpdate>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<ItemForUpdate>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<ItemForUpdate>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+ 
+            #endregion
+
+            #region ItemForInsert mappings
+            modelBuilder.Entity<ItemForInsert>()
+                .ToTable(GetTableName("ItemForInsert"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<ItemForInsert>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<ItemForInsert>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<ItemForInsert>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+ 
+            #endregion
+
+            #region PublishedNotPublishedItem mappings
+            modelBuilder.Entity<PublishedNotPublishedItem>()
+                .ToTable(GetTableName("PublishedNotPublishedItem"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<PublishedNotPublishedItem>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<PublishedNotPublishedItem>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<PublishedNotPublishedItem>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+ 
+            #endregion
+
+            #region ReplacingPlaceholdersItem mappings
+            modelBuilder.Entity<ReplacingPlaceholdersItem>()
+                .ToTable(GetTableName("ReplacingPlaceholdersItem"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<ReplacingPlaceholdersItem>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<ReplacingPlaceholdersItem>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<ReplacingPlaceholdersItem>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+ 
+            #endregion
+
+            #region FileFieldsItem mappings
+            modelBuilder.Entity<FileFieldsItem>()
+                .ToTable(GetTableName("FileFieldsItem"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<FileFieldsItem>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<FileFieldsItem>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<FileFieldsItem>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+            modelBuilder.Entity<FileFieldsItem>().Ignore(p => p.FileItemUrl);
+            modelBuilder.Entity<FileFieldsItem>().Ignore(p => p.FileItemUploadPath);
+ 
+            #endregion
+
+            #region SymmetricRelationArticle mappings
+            modelBuilder.Entity<SymmetricRelationArticle>()
+                .ToTable(GetTableName("SymmetricRelationArticle"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<SymmetricRelationArticle>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<SymmetricRelationArticle>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<SymmetricRelationArticle>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+
+            modelBuilder.Entity<SymmetricRelationArticle>().HasMany<ToSymmetricRelationAtricle>(p => p.SymmetricRelation).WithMany()
                 .Map(rp =>
                 {
                     rp.MapLeftKey("id");
                     rp.MapRightKey("linked_id");
-                    rp.ToTable(GetLinkTableName("Product", "Regions"));
+                    rp.ToTable(GetLinkTableName("SymmetricRelationArticle", "SymmetricRelation"));
                 });
 
-            modelBuilder.Entity<Region>().HasMany<Product>(p => p.BackwardForRegions).WithMany()
+            modelBuilder.Entity<ToSymmetricRelationAtricle>().HasMany<SymmetricRelationArticle>(p => p.BackwardForSymmetricRelation).WithMany()
                 .Map(rp =>
                 { 
                     rp.MapLeftKey("id"); // !+
                     rp.MapRightKey("linked_id");
-                    rp.ToTable(GetReversedLinkTableName("Product", "Regions"));
+                    rp.ToTable(GetReversedLinkTableName("SymmetricRelationArticle", "SymmetricRelation"));
                 });
 
-            modelBuilder.Entity<Product>().Ignore(p => p.PDFUrl);
-            modelBuilder.Entity<Product>().Ignore(p => p.PDFUploadPath);
  
             #endregion
 
-            #region ProductParameter mappings
-            modelBuilder.Entity<ProductParameter>()
-                .ToTable(GetTableName("ProductParameter"))
+            #region ToSymmetricRelationAtricle mappings
+            modelBuilder.Entity<ToSymmetricRelationAtricle>()
+                .ToTable(GetTableName("ToSymmetricRelationAtricle"))
                 .Property(x => x.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
                 .HasColumnName("CONTENT_ITEM_ID");
            
-		    modelBuilder.Entity<ProductParameter>()
+		    modelBuilder.Entity<ToSymmetricRelationAtricle>()
                 .Property(x => x.LastModifiedBy)
                 .HasColumnName("LAST_MODIFIED_BY");
             
-            modelBuilder.Entity<ProductParameter>()
+            modelBuilder.Entity<ToSymmetricRelationAtricle>()
                 .Property(x => x.StatusTypeId)
                 .HasColumnName("STATUS_TYPE_ID");
 
-			modelBuilder.Entity<ProductParameter>()
+			modelBuilder.Entity<ToSymmetricRelationAtricle>()
                 .HasRequired<StatusType>(x => x.StatusType)
                 .WithMany()
                 .HasForeignKey(x => x.StatusTypeId); 
 
-            modelBuilder.Entity<ProductParameter>()
-                .Property(x => x.GroupMapped_ID)
-                .HasColumnName(GetFieldName("ProductParameter", "GroupMapped_ID"));
-            modelBuilder.Entity<ProductParameter>()
-                .Property(x => x.BaseParameter_ID)
-                .HasColumnName(GetFieldName("ProductParameter", "BaseParameter_ID"));
-            modelBuilder.Entity<ProductParameter>()
-                .Property(x => x.Zone_ID)
-                .HasColumnName(GetFieldName("ProductParameter", "Zone_ID"));
-            modelBuilder.Entity<ProductParameter>()
-                .Property(x => x.Direction_ID)
-                .HasColumnName(GetFieldName("ProductParameter", "Direction_ID"));
-            modelBuilder.Entity<ProductParameter>()
-                .Property(x => x.Unit_ID)
-                .HasColumnName(GetFieldName("ProductParameter", "Unit_ID"));
-            modelBuilder.Entity<ProductParameter>()
-                .Property(x => x.MatrixParameter_ID)
-                .HasColumnName(GetFieldName("ProductParameter", "MatrixParameter_ID"));
-            modelBuilder.Entity<ProductParameter>()
-                .HasOptional<Product>(mp => mp.Product)
-                .WithMany(mp => mp.Parameters)
-                .HasForeignKey(fp => fp.Product_ID);
 
-            modelBuilder.Entity<ProductParameter>()
-                .Property(x => x.Product_ID)
-                .HasColumnName(GetFieldName("ProductParameter", "Product"));
- 
-            #endregion
-
-            #region Region mappings
-            modelBuilder.Entity<Region>()
-                .ToTable(GetTableName("Region"))
-                .Property(x => x.Id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
-                .HasColumnName("CONTENT_ITEM_ID");
-           
-		    modelBuilder.Entity<Region>()
-                .Property(x => x.LastModifiedBy)
-                .HasColumnName("LAST_MODIFIED_BY");
-            
-            modelBuilder.Entity<Region>()
-                .Property(x => x.StatusTypeId)
-                .HasColumnName("STATUS_TYPE_ID");
-
-			modelBuilder.Entity<Region>()
-                .HasRequired<StatusType>(x => x.StatusType)
-                .WithMany()
-                .HasForeignKey(x => x.StatusTypeId); 
-
-            modelBuilder.Entity<Region>()
-                .HasOptional<Region>(mp => mp.Parent)
-                .WithMany(mp => mp.Children)
-                .HasForeignKey(fp => fp.Parent_ID);
-
-            modelBuilder.Entity<Region>()
-                .Property(x => x.Parent_ID)
-                .HasColumnName(GetFieldName("Region", "Parent"));
-
-            modelBuilder.Entity<Region>().HasMany<Region>(p => p.AllowedRegions).WithMany()
+            modelBuilder.Entity<ToSymmetricRelationAtricle>().HasMany<SymmetricRelationArticle>(p => p.ToSymmetricRelation).WithMany()
                 .Map(rp =>
                 {
                     rp.MapLeftKey("id");
                     rp.MapRightKey("linked_id");
-                    rp.ToTable(GetLinkTableName("Region", "AllowedRegions"));
+                    rp.ToTable(GetLinkTableName("ToSymmetricRelationAtricle", "ToSymmetricRelation"));
                 });
 
-            modelBuilder.Entity<Region>().HasMany<Region>(p => p.BackwardForAllowedRegions).WithMany()
+            modelBuilder.Entity<SymmetricRelationArticle>().HasMany<ToSymmetricRelationAtricle>(p => p.BackwardForToSymmetricRelation).WithMany()
                 .Map(rp =>
                 { 
-                    rp.MapLeftKey("linked_id"); // ===
-                    rp.MapRightKey("id");
-                    rp.ToTable(GetReversedLinkTableName("Region", "AllowedRegions"));
-                });
-
-
-            modelBuilder.Entity<Region>().HasMany<Region>(p => p.DeniedRegions).WithMany()
-                .Map(rp =>
-                {
-                    rp.MapLeftKey("id");
+                    rp.MapLeftKey("id"); // !+
                     rp.MapRightKey("linked_id");
-                    rp.ToTable(GetLinkTableName("Region", "DeniedRegions"));
-                });
-
-            modelBuilder.Entity<Region>().HasMany<Region>(p => p.BackwardForDeniedRegions).WithMany()
-                .Map(rp =>
-                { 
-                    rp.MapLeftKey("linked_id"); // ===
-                    rp.MapRightKey("id");
-                    rp.ToTable(GetReversedLinkTableName("Region", "DeniedRegions"));
+                    rp.ToTable(GetReversedLinkTableName("ToSymmetricRelationAtricle", "ToSymmetricRelation"));
                 });
 
  
             #endregion
 
-            #region MobileTariff mappings
-            modelBuilder.Entity<MobileTariff>()
-                .ToTable(GetTableName("MobileTariff"))
+            #region MtMItemForUpdate mappings
+            modelBuilder.Entity<MtMItemForUpdate>()
+                .ToTable(GetTableName("MtMItemForUpdate"))
                 .Property(x => x.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
                 .HasColumnName("CONTENT_ITEM_ID");
            
-		    modelBuilder.Entity<MobileTariff>()
+		    modelBuilder.Entity<MtMItemForUpdate>()
                 .Property(x => x.LastModifiedBy)
                 .HasColumnName("LAST_MODIFIED_BY");
             
-            modelBuilder.Entity<MobileTariff>()
+            modelBuilder.Entity<MtMItemForUpdate>()
                 .Property(x => x.StatusTypeId)
                 .HasColumnName("STATUS_TYPE_ID");
 
-			modelBuilder.Entity<MobileTariff>()
+			modelBuilder.Entity<MtMItemForUpdate>()
                 .HasRequired<StatusType>(x => x.StatusType)
                 .WithMany()
                 .HasForeignKey(x => x.StatusTypeId); 
 
-            modelBuilder.Entity<MobileTariff>()
-                .HasOptional<Product>(mp => mp.Product)
-                .WithMany(mp => mp.MobileTariffs)
-                .HasForeignKey(fp => fp.Product_ID);
 
-            modelBuilder.Entity<MobileTariff>()
-                .Property(x => x.Product_ID)
-                .HasColumnName(GetFieldName("MobileTariff", "Product"));
- 
-            #endregion
-
-            #region Setting mappings
-            modelBuilder.Entity<Setting>()
-                .ToTable(GetTableName("Setting"))
-                .Property(x => x.Id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
-                .HasColumnName("CONTENT_ITEM_ID");
-           
-		    modelBuilder.Entity<Setting>()
-                .Property(x => x.LastModifiedBy)
-                .HasColumnName("LAST_MODIFIED_BY");
-            
-            modelBuilder.Entity<Setting>()
-                .Property(x => x.StatusTypeId)
-                .HasColumnName("STATUS_TYPE_ID");
-
-			modelBuilder.Entity<Setting>()
-                .HasRequired<StatusType>(x => x.StatusType)
-                .WithMany()
-                .HasForeignKey(x => x.StatusTypeId); 
-
-            modelBuilder.Entity<Setting>()
-                .Property(x => x.ValueMapped)
-                .HasColumnName(GetFieldName("Setting", "ValueMapped"));
-
-            modelBuilder.Entity<Setting>().HasMany<Setting>(p => p.RelatedSettings).WithMany()
+            modelBuilder.Entity<MtMItemForUpdate>().HasMany<MtMDictionaryForUpdate>(p => p.Reference).WithMany()
                 .Map(rp =>
                 {
                     rp.MapLeftKey("id");
                     rp.MapRightKey("linked_id");
-                    rp.ToTable(GetLinkTableName("Setting", "RelatedSettings"));
+                    rp.ToTable(GetLinkTableName("MtMItemForUpdate", "Reference"));
                 });
 
-            modelBuilder.Entity<Setting>().HasMany<Setting>(p => p.BackwardForRelatedSettings).WithMany()
+            modelBuilder.Entity<MtMDictionaryForUpdate>().HasMany<MtMItemForUpdate>(p => p.BackwardForReference).WithMany()
                 .Map(rp =>
                 { 
-                    rp.MapLeftKey("linked_id"); // ===
-                    rp.MapRightKey("id");
-                    rp.ToTable(GetReversedLinkTableName("Setting", "RelatedSettings"));
+                    rp.MapLeftKey("id"); // !+
+                    rp.MapRightKey("linked_id");
+                    rp.ToTable(GetReversedLinkTableName("MtMItemForUpdate", "Reference"));
                 });
 
+ 
+            #endregion
+
+            #region MtMDictionaryForUpdate mappings
+            modelBuilder.Entity<MtMDictionaryForUpdate>()
+                .ToTable(GetTableName("MtMDictionaryForUpdate"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<MtMDictionaryForUpdate>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<MtMDictionaryForUpdate>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<MtMDictionaryForUpdate>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+ 
+            #endregion
+
+            #region OtMItemForUpdate mappings
+            modelBuilder.Entity<OtMItemForUpdate>()
+                .ToTable(GetTableName("OtMItemForUpdate"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<OtMItemForUpdate>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<OtMItemForUpdate>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<OtMItemForUpdate>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+            modelBuilder.Entity<OtMItemForUpdate>()
+                .HasOptional<OtMDictionaryForUpdate>(mp => mp.Reference)
+                .WithMany(mp => mp.BackReference)
+                .HasForeignKey(fp => fp.Reference_ID);
+
+            modelBuilder.Entity<OtMItemForUpdate>()
+                .Property(x => x.Reference_ID)
+                .HasColumnName(GetFieldName("OtMItemForUpdate", "Reference"));
+ 
+            #endregion
+
+            #region OtMDictionaryForUpdate mappings
+            modelBuilder.Entity<OtMDictionaryForUpdate>()
+                .ToTable(GetTableName("OtMDictionaryForUpdate"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<OtMDictionaryForUpdate>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<OtMDictionaryForUpdate>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<OtMDictionaryForUpdate>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+ 
+            #endregion
+
+            #region DateItemForUpdate mappings
+            modelBuilder.Entity<DateItemForUpdate>()
+                .ToTable(GetTableName("DateItemForUpdate"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<DateItemForUpdate>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<DateItemForUpdate>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<DateItemForUpdate>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+ 
+            #endregion
+
+            #region TimeItemForUpdate mappings
+            modelBuilder.Entity<TimeItemForUpdate>()
+                .ToTable(GetTableName("TimeItemForUpdate"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<TimeItemForUpdate>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<TimeItemForUpdate>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<TimeItemForUpdate>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+ 
+            #endregion
+
+            #region DateTimeItemForUpdate mappings
+            modelBuilder.Entity<DateTimeItemForUpdate>()
+                .ToTable(GetTableName("DateTimeItemForUpdate"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<DateTimeItemForUpdate>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<DateTimeItemForUpdate>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<DateTimeItemForUpdate>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+ 
+            #endregion
+
+            #region FileItemForUpdate mappings
+            modelBuilder.Entity<FileItemForUpdate>()
+                .ToTable(GetTableName("FileItemForUpdate"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<FileItemForUpdate>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<FileItemForUpdate>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<FileItemForUpdate>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+            modelBuilder.Entity<FileItemForUpdate>().Ignore(p => p.FileValueFieldUrl);
+            modelBuilder.Entity<FileItemForUpdate>().Ignore(p => p.FileValueFieldUploadPath);
+ 
+            #endregion
+
+            #region ImageItemForUpdate mappings
+            modelBuilder.Entity<ImageItemForUpdate>()
+                .ToTable(GetTableName("ImageItemForUpdate"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<ImageItemForUpdate>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<ImageItemForUpdate>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<ImageItemForUpdate>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+            modelBuilder.Entity<ImageItemForUpdate>().Ignore(p => p.ImageValueFieldUrl);
+            modelBuilder.Entity<ImageItemForUpdate>().Ignore(p => p.ImageValueFieldUploadPath);
+ 
+            #endregion
+
+            #region OtMItemForMapping mappings
+            modelBuilder.Entity<OtMItemForMapping>()
+                .ToTable(GetTableName("OtMItemForMapping"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<OtMItemForMapping>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<OtMItemForMapping>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<OtMItemForMapping>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+            modelBuilder.Entity<OtMItemForMapping>()
+                .HasOptional<OtMRelatedItemWithMapping>(mp => mp.OtMReferenceMapping)
+                .WithMany(mp => mp.BackOtMReferenceMapping)
+                .HasForeignKey(fp => fp.OtMReferenceMapping_ID);
+
+            modelBuilder.Entity<OtMItemForMapping>()
+                .Property(x => x.OtMReferenceMapping_ID)
+                .HasColumnName(GetFieldName("OtMItemForMapping", "OtMReferenceMapping"));
+ 
+            #endregion
+
+            #region OtMRelatedItemWithMapping mappings
+            modelBuilder.Entity<OtMRelatedItemWithMapping>()
+                .ToTable(GetTableName("OtMRelatedItemWithMapping"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<OtMRelatedItemWithMapping>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<OtMRelatedItemWithMapping>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<OtMRelatedItemWithMapping>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+ 
+            #endregion
+
+            #region OtMItemToContentWithoutMapping mappings
+            modelBuilder.Entity<OtMItemToContentWithoutMapping>()
+                .ToTable(GetTableName("OtMItemToContentWithoutMapping"))
+                .Property(x => x.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .HasColumnName("CONTENT_ITEM_ID");
+           
+		    modelBuilder.Entity<OtMItemToContentWithoutMapping>()
+                .Property(x => x.LastModifiedBy)
+                .HasColumnName("LAST_MODIFIED_BY");
+            
+            modelBuilder.Entity<OtMItemToContentWithoutMapping>()
+                .Property(x => x.StatusTypeId)
+                .HasColumnName("STATUS_TYPE_ID");
+
+			modelBuilder.Entity<OtMItemToContentWithoutMapping>()
+                .HasRequired<StatusType>(x => x.StatusType)
+                .WithMany()
+                .HasForeignKey(x => x.StatusTypeId); 
+
+            modelBuilder.Entity<OtMItemToContentWithoutMapping>()
+                .Property(x => x.OtMReferenceMapping_ID)
+                .HasColumnName(GetFieldName("OtMItemToContentWithoutMapping", "OtMReferenceMapping_ID"));
  
             #endregion
         }

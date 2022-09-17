@@ -1,6 +1,5 @@
 ﻿using System.Linq;
-using System.Data.Entity;
-using EntityFramework6.Test.DataContext;
+using EntityFramework6.DevData;
 using EntityFramework6.Test.Infrastructure;
 using NUnit.Framework;
 
@@ -15,7 +14,7 @@ namespace EntityFramework6.Test.Tests.ReadContentData
         {
             using (var context = GetDataContext(access, mapping))
             {
-                var items = context.SymmetricRelationArticles.Include(x => x.SymmetricRelation).FirstOrDefault();
+                var items = context.SymmetricRelationArticles.Include("SymmetricRelation").FirstOrDefault();
                 Assert.That(items.SymmetricRelation.Count, Is.Not.EqualTo(0));
             }
         }
@@ -26,7 +25,7 @@ namespace EntityFramework6.Test.Tests.ReadContentData
         {
             using (var context = GetDataContext(access, mapping))
             {
-                var items = context.SymmetricRelationArticles.Include(x => x.SymmetricRelation.Select(y => y.ToSymmetricRelation)).FirstOrDefault();
+                var items = context.SymmetricRelationArticles.Include("SymmetricRelation").Include("SymmetricRelation.ToSymmetricRelation").FirstOrDefault();
                 if (items.SymmetricRelation.Count == 0)
                 {
                     Assert.Fail("SymmerticRelation field not filled");

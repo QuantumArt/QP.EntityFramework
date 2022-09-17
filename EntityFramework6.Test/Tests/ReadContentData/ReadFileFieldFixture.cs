@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using NUnit.Framework;
-using EntityFramework6.Test.DataContext;
+﻿using NUnit.Framework;
 using EntityFramework6.Test.Infrastructure;
 using System;
+using System.Linq;
+using EntityFramework6.DevData;
 
 namespace EntityFramework6.Test.Tests.ReadContentData
 {

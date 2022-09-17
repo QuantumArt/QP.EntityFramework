@@ -77,7 +77,7 @@ namespace EntityFramework6.DevData
         #region Private members
         private const string uploadPlaceholder = "<%=upload_url%>";
         private const string sitePlaceholder = "<%=site_url%>";
-        private static string _defaultSiteName = "Product Catalog";
+        private static string _defaultSiteName = "original_site";
         private static string _defaultConnectionString;
         private static string _defaultConnectionStringName = "qp_database";
         private bool _shouldRemoveSchema = false;

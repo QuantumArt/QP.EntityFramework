@@ -1,6 +1,6 @@
 ﻿using System.IO;
+using EntityFramework6.DevData;
 using NUnit.Framework;
-using EntityFramework6.Test.DataContext;
 
 namespace EntityFramework6.Test.Infrastructure
 {

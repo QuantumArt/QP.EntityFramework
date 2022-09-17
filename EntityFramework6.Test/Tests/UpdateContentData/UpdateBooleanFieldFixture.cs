@@ -1,4 +1,4 @@
-using EntityFramework6.Test.DataContext;
+using EntityFramework6.DevData;
 using EntityFramework6.Test.Infrastructure;
 using NUnit.Framework;
 
@@ -13,7 +13,7 @@ namespace EntityFramework6.Test.Tests.UpdateContentData
         {
             UpdateProperty<AfiellFieldsItem>(access, mapping, a => a.Boolean = null, a => a.Boolean);
             UpdateProperty<AfiellFieldsItem>(access, mapping, a => a.Boolean = true, a => a.Boolean);
-            UpdateProperty<AfiellFieldsItem>(access, mapping, a => a.Boolean = false, a => a.Boolean);            
+            UpdateProperty<AfiellFieldsItem>(access, mapping, a => a.Boolean = false, a => a.Boolean);
         }
     }
 }
