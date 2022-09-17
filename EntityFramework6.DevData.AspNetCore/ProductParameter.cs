@@ -36,7 +36,7 @@ namespace EntityFramework6.DevData.AspNetCore
         public virtual Int32? OldSiteId { get; set; }
 		/// <summary>
 		/// 
-		/// </summary>			
+		/// </summary>
 		public virtual Product Product { get; set; }
 		/// <summary>
 		/// 
@@ -45,4 +45,4 @@ namespace EntityFramework6.DevData.AspNetCore
 
 	}
 }
-	
+

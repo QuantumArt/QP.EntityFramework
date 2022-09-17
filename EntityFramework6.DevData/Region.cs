@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-namespace Quantumart.QP8.EntityFramework6.DevData
+namespace EntityFramework6.DevData
 {
     public partial class Region: IQPArticle
     {
@@ -31,7 +31,7 @@ namespace Quantumart.QP8.EntityFramework6.DevData
         public virtual Int32? OldSiteId { get; set; }
 		/// <summary>
 		/// 
-		/// </summary>			
+		/// </summary>
 		public virtual Region Parent { get; set; }
 		/// <summary>
 		/// 
@@ -64,4 +64,4 @@ namespace Quantumart.QP8.EntityFramework6.DevData
 
 	}
 }
-	
+

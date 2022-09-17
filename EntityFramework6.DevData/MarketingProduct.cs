@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-namespace Quantumart.QP8.EntityFramework6.DevData
+namespace EntityFramework6.DevData
 {
     public partial class MarketingProduct: IQPArticle
     {
@@ -42,4 +42,4 @@ namespace Quantumart.QP8.EntityFramework6.DevData
 
 	}
 }
-	
+

@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <Project>
 	<ItemGroup>
-			<TransformationFile Include="$(NugetPackageRoot)\qp8.entityframework6\1.4.0\content\QPDataContextGenerator.tt"/>
+			<TransformationFile Include="$(NugetPackageRoot)\qp8.entityframework6\1.4.1\content\QPDataContextGenerator.tt"/>
 	</ItemGroup>
 	<ItemGroup>
-			<DataFile Include="$(NugetPackageRoot)\qp8.entityframework6\1.4.0\content\ModelMappingResult.xml"/>
+			<DataFile Include="$(NugetPackageRoot)\qp8.entityframework6\1.4.1\content\ModelMappingResult.xml"/>
 	</ItemGroup>
 	<ItemGroup>
-		<SettingsFile Include="$(NugetPackageRoot)\qp8.entityframework6\1.4.0\content\QPDataContextGenerator.tt.settings.xml"/>
+		<SettingsFile Include="$(NugetPackageRoot)\qp8.entityframework6\1.4.1\content\QPDataContextGenerator.tt.settings.xml"/>
 	</ItemGroup>
 
 	<Target Name="CopyTransformationTarget" BeforeTargets="BeforeBuild">

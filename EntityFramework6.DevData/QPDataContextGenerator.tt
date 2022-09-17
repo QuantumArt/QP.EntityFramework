@@ -48,6 +48,7 @@
 		var className = context.Model.Schema.ClassName;
 		var settings = context.Settings;
 
+		context.Content.Clear();
 		context.AddTemplateFile(className + ".cs", AddModel, settings.GenerateModel);
 		context.AddTemplateFile(className + "Extensions.cs", AddModelExtensions, settings.GenerateModel);
 		context.AddTemplateFile(className + "ConnectionScope.cs", AddConnectionScope, settings.GenerateModel);

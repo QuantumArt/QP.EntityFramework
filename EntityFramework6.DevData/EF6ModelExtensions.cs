@@ -17,7 +17,7 @@ using System.Collections;
 using System.Globalization;
 /* place your custom usings here */
 
-namespace Quantumart.QP8.EntityFramework6.DevData
+namespace EntityFramework6.DevData
 {
     public partial class EF6Model: IQPLibraryService, IQPFormService, IQPSchema
     {
@@ -501,9 +501,8 @@ namespace Quantumart.QP8.EntityFramework6.DevData
                 return o.ToString();
             }
         }
-
-
         #endregion
+
         string IQPFormService.GetFormNameByNetNames(string netContentName, string netFieldName)
         {
             return Cnn.GetFormNameByNetNames(this.SiteId, netContentName, netFieldName);

@@ -3,7 +3,7 @@ using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
-namespace Quantumart.QP8.EntityFramework6.DevData
+namespace EntityFramework6.DevData
 {
     public interface IMappingConfigurator
     {

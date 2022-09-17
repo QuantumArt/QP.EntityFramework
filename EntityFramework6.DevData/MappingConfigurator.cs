@@ -8,7 +8,7 @@ using System.Threading;
 using Quantumart.QP8.CodeGeneration.Services;
 /* place your custom usings here */
 
-namespace Quantumart.QP8.EntityFramework6.DevData
+namespace EntityFramework6.DevData
 {
     public class MappingConfigurator : MappingConfiguratorBase
     {

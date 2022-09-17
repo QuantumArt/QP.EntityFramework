@@ -9,7 +9,7 @@
 <#@ assembly name="EnvDTE"#>
 <#@ assembly name="System.Xml"#>
 <#@ assembly name="System.Xml.Linq"#>
-<#@ assembly name="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.0\lib\netstandard2.0\Quantumart.QP8.CodeGeneration.dll" #>
+<#@ assembly name="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.1\lib\netstandard2.0\Quantumart.QP8.CodeGeneration.dll" #>
 
 <#@ import namespace="System"#>
 <#@ import namespace="System.CodeDom"#>
@@ -29,17 +29,17 @@
 <#@ import namespace="System.IO" #>
 <#@ import namespace="Quantumart.QP8.CodeGeneration.Services" #>
 
-<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.0\include\Manager.ttinclude" #>
-<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.0\include\Model.ttinclude" #>
-<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.0\include\MappingConfiguratorOnModelCreating.ttinclude" #>
-<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.0\include\GenerateMappings.ttinclude" #>
-<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.0\include\GenerateInterfaces.ttinclude" #>
-<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.0\include\GenerateMappingInterfaces.ttinclude" #>
-<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.0\include\GenerateServiceClasses.ttinclude" #>
-<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.0\include\ModelExtensions.ttinclude" #>
-<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.0\include\ConnectionScope.ttinclude" #>
-<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.0\include\Classes.ttinclude" #>
-<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.0\include\ClassExtensions.ttinclude" #>
+<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.1\include\Manager.ttinclude" #>
+<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.1\include\Model.ttinclude" #>
+<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.1\include\MappingConfiguratorOnModelCreating.ttinclude" #>
+<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.1\include\GenerateMappings.ttinclude" #>
+<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.1\include\GenerateInterfaces.ttinclude" #>
+<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.1\include\GenerateMappingInterfaces.ttinclude" #>
+<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.1\include\GenerateServiceClasses.ttinclude" #>
+<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.1\include\ModelExtensions.ttinclude" #>
+<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.1\include\ConnectionScope.ttinclude" #>
+<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.1\include\Classes.ttinclude" #>
+<#@ include file="$(NugetPackageRoot)\qp8.entityframework6.aspnetcore\1.4.1\include\ClassExtensions.ttinclude" #>
 
 <#
 	var sb = new StringBuilder();
@@ -48,6 +48,7 @@
 		var className = context.Model.Schema.ClassName;
 		var settings = context.Settings;
 
+		context.Content.Clear();
 		context.AddTemplateFile(className + ".cs", AddModel, settings.GenerateModel);
 		context.AddTemplateFile(className + "Extensions.cs", AddModelExtensions, settings.GenerateModel);
 		context.AddTemplateFile(className + "ConnectionScope.cs", AddConnectionScope, settings.GenerateModel);

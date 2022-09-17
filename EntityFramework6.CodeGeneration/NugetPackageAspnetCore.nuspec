@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>QP8.EntityFramework6.AspNetCore</id>
-    <version>1.4.0</version>
+    <version>1.4.1</version>
     <title>QP8.EntityFramework6</title>
     <authors>Quantum Art</authors>
     <owners>Quantum Art</owners>

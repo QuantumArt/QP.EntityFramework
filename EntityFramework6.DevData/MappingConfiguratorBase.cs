@@ -5,7 +5,7 @@ using System.Data.Common;
 using System.Data.Entity;
 using System.Threading;
 
-namespace Quantumart.QP8.EntityFramework6.DevData
+namespace EntityFramework6.DevData
 {
     public abstract class MappingConfiguratorBase : IMappingConfigurator
     {

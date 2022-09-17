@@ -1,10 +1,10 @@
 using System;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;	
+using System.Linq;
 /* place your custom usings here */
 
-namespace Quantumart.QP8.EntityFramework6.DevData
+namespace EntityFramework6.DevData
 {
     public partial class EF6Model : DbContext
     {

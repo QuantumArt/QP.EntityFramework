@@ -4,7 +4,7 @@ using System.Data.Entity.Core.EntityClient;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.SqlClient;
 
-namespace Quantumart.QP8.EntityFramework6.DevData
+namespace EntityFramework6.DevData
 {
     public class EF6ModelConnectionScope
     {

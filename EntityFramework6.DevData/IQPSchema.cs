@@ -2,7 +2,7 @@ using Quantumart.QP8.CodeGeneration.Services;
 using System;
 using System.Linq.Expressions;
 
-namespace Quantumart.QP8.EntityFramework6.DevData
+namespace EntityFramework6.DevData
 {
     public interface IQPSchema
     {

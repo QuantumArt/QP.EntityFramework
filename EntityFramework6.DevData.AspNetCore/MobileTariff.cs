@@ -23,7 +23,7 @@ namespace EntityFramework6.DevData.AspNetCore
         public virtual Int32? SplitInternetDeviceCount { get; set; }
 		/// <summary>
 		/// 
-		/// </summary>			
+		/// </summary>
 		public virtual Product Product { get; set; }
 		/// <summary>
 		/// 
@@ -32,4 +32,4 @@ namespace EntityFramework6.DevData.AspNetCore
 
 	}
 }
-	
+

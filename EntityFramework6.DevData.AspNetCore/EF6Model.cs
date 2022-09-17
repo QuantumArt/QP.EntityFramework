@@ -1,7 +1,7 @@
 using System;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;	
+using System.Linq;
 /* place your custom usings here */
 
 namespace EntityFramework6.DevData.AspNetCore

@@ -359,10 +359,6 @@
       <Project>{fd5155ad-c9f4-4eb4-a5e7-7f282a439548}</Project>
       <Name>CodeGeneration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EntityFramework\QP8.EntityFramework.csproj">
-      <Project>{c1241be4-896b-4345-aa38-076ba3e5ace4}</Project>
-      <Name>QP8.EntityFramework</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataContext\DynamicMappingResult.xml">

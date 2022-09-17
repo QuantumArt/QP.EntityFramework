@@ -42,4 +42,4 @@ namespace EntityFramework6.DevData.AspNetCore
 
 	}
 }
-	
+
