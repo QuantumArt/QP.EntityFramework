@@ -1,4 +1,3 @@
-using Quantumart.QP8.EntityFramework.Models;
 using System;
 using System.Collections.Concurrent;
 using System.ComponentModel.DataAnnotations.Schema;

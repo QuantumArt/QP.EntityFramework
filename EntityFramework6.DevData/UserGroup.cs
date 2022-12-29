@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Quantumart.QP8.EntityFramework6.DevData
+namespace EntityFramework6.DevData
 {
     public partial class UserGroup
     {
@@ -14,4 +14,3 @@ namespace Quantumart.QP8.EntityFramework6.DevData
         public virtual ICollection<User> Users { get; set; }
     }
 }
-	

@@ -1,8 +1,8 @@
-﻿using EntityFramework6.Test.DataContext;
-using EntityFramework6.Test.Infrastructure;
+﻿using EntityFramework6.Test.Infrastructure;
 using NUnit.Framework;
 using System;
 using System.Linq;
+using EntityFramework6.DevData;
 
 namespace EntityFramework6.Test.Tests.UpdateContentData
 {

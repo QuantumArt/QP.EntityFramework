@@ -14,4 +14,3 @@ namespace EntityFramework6.DevData.AspNetCore
         public virtual ICollection<User> Users { get; set; }
     }
 }
-	

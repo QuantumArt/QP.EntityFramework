@@ -10,7 +10,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("NamespaceHint")#>
+namespace <#=manager.DefaultProjectNamespace#>
 {
 <#+ foreach(var content in model.Contents) { #>
     public partial class <#=content.MappedName #>: IQPArticle
@@ -21,8 +21,8 @@ namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("Names
 <#+		foreach(var attribute in content.Attributes.Where(x => !x.IsM2O && !x.IsM2M)) { #>
 			{ "<#=attribute.OriginalMappedName #>", new Func<<#=content.MappedName #>, IQPFormService, string>((self, ctx) => self.<#=attribute.OriginalMappedName #> != null ? <#+
 			 if(attribute.Type == "DateTime" || attribute.Type == "O2M" || attribute.Type == "Numeric" || attribute.Type == "Date" || attribute.Type == "Time") { #>self.<#=attribute.OriginalMappedName #>.ToString()<#+ }
-			 else if(attribute.Type == "Boolean") {#>self.<#=attribute.OriginalMappedName #>.Value ? "1" : "0"<#+} 
-			 else if(model.Schema.ReplaceUrls && (attribute.CanContainPlaceholders)) {#>ctx.ReplacePlaceholders(self.<#=attribute.OriginalMappedName #>)<#+ } 
+			 else if(attribute.Type == "Boolean") {#>self.<#=attribute.OriginalMappedName #>.Value ? "1" : "0"<#+}
+			 else if(model.Schema.ReplaceUrls && (attribute.CanContainPlaceholders)) {#>ctx.ReplacePlaceholders(self.<#=attribute.OriginalMappedName #>)<#+ }
 			 else { #>self.<#=attribute.OriginalMappedName #><#+ }#> : null) },
 <#+		} #>
         };
@@ -32,10 +32,10 @@ namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("Names
         #region Generated properties
 <#+	   	foreach(var attribute in content.Attributes.Where(x => x.GenerateLibraryUrl)) { #>
         public string <#=attribute.MappedName#>Url { get; set; }
-<#+		} 
+<#+		}
   		foreach(var attribute in content.Attributes.Where(x => x.GenerateUploadPath)) { #>
         public string <#=attribute.MappedName#>UploadPath { get; set; }
-<#+		} 
+<#+		}
   		foreach(var attribute in content.Attributes.Where(x => x.IsNullable)) { #>
         public <#= attribute.ExactType#> <#=attribute.MappedName#>Exact { get { return this.<#=attribute.MappedName#> == null ? default(<#= attribute.ExactType#>) : this.<#=attribute.MappedName#>.Value; } }
 <#+		} #>
@@ -44,10 +44,10 @@ namespace <#=System.Runtime.Remoting.Messaging.CallContext.LogicalGetData("Names
         #region Methods
         void IQPArticle.OnMaterialized(IQPLibraryService context)
         {
-<#+	if(model.Schema.ReplaceUrls) {	
+<#+	if(model.Schema.ReplaceUrls) {
 		foreach(var attribute in content.Attributes.Where(x => x.CanContainPlaceholders)) { #>
 			this.<#=attribute.MappedName#> = context.ReplacePlaceholders(this.<#=attribute.MappedName#>);
-<#+		}	
+<#+		}
     } #>
 <#+	foreach(var attribute in content.Attributes.Where(x => x.GenerateLibraryUrl)) { #>
 			this.<#=attribute.MappedName#>Url = context.GetUrl(this.<#=attribute.MappedName#>, "<#=content.MappedName#>", "<#= attribute.MappedName#>");

@@ -6,7 +6,7 @@ using System.Data.Common;
 using Quantumart.QPublishing.Database;
 using System.Data.SqlClient;
 
-namespace Quantumart.QP8.EntityFramework6.DevData
+namespace EntityFramework6.DevData
 {
     public class DatabaseSchemaProvider : ISchemaProvider
     {

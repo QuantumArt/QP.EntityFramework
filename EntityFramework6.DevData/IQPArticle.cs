@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 
-namespace Quantumart.QP8.EntityFramework6.DevData
+namespace EntityFramework6.DevData
 {
     public interface IQPArticle
     {
@@ -17,5 +17,5 @@ namespace Quantumart.QP8.EntityFramework6.DevData
         void OnMaterialized(IQPLibraryService context);
 
         Hashtable Pack(IQPFormService context, params string[] propertyNames);
-    }  
+    }
 }

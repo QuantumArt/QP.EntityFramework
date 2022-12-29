@@ -1,0 +1,409 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#+ void AddGenerateMappings(GenerationContext context) {
+    var model = context.Model;
+    var settings = context.Settings;
+    var manager = context.Manager;
+
+#>
+using System;
+using System.Collections.Concurrent;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Common;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Threading;
+using Quantumart.QP8.CodeGeneration.Services;
+<#= settings.Usings#>
+
+namespace <#=manager.DefaultProjectNamespace#>
+{
+    public class MappingConfigurator : MappingConfiguratorBase
+    {
+        public MappingConfigurator(ContentAccess contentAccess, ISchemaProvider schemaProvider)
+            : base(contentAccess, schemaProvider)
+        {
+        }
+
+        public override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+        <#+ MappingConfiguratorOnModelCreating(context, GetDynamicFieldMapping, GetDynamicTableMapping, GetDynamicLinkTableMapping, GetDynamicReversedLinkTablMapping); #>
+        }
+    }
+}
+<#+
+	context.SaveOutput("MappingConfigurator.cs");
+#>
+using System.Collections.Generic;
+using System.Linq;
+using Quantumart.QP8.CodeGeneration.Services;
+<#= settings.Usings#>
+
+namespace <#=manager.DefaultProjectNamespace#>
+{
+    public class StaticSchemaProvider : ISchemaProvider
+    {
+       public StaticSchemaProvider()
+       {
+       }
+
+        #region ISchemaProvider implementation
+        public ModelReader GetSchema()
+        {
+            var schema = new ModelReader();
+
+            schema.Schema.SiteName = "<#=model.Schema.SiteName ?? ""#>";
+            schema.Schema.ReplaceUrls = <#=model.Schema.ReplaceUrls.ToString().ToLower()#>;
+
+            schema.Attributes = new List<AttributeInfo>
+            {
+<#+
+            foreach (var attribute in model.Attributes)
+            {
+#>
+                new AttributeInfo
+                {
+                    Id = <#=attribute.Id#>,
+                    ContentId = <#=attribute.ContentId#>,
+                    Name = "<#=attribute.Name#>",
+                    MappedName = "<#=attribute.MappedName#>",
+                    LinkId = <#=attribute.LinkId#>,
+                    Type = "<#=attribute.Type#>"
+                },
+<#+
+            }
+#>
+            };
+
+            var attributesLookup = schema.Attributes.ToLookup(a => a.ContentId, a => a);
+
+            schema.Contents = new List<ContentInfo>
+            {
+<#+
+                foreach (var content in model.Contents)
+                {
+#>
+                new ContentInfo
+                {
+                   Id = <#=content.Id#>,
+                   MappedName = "<#=content.MappedName#>",
+                   UseDefaultFiltration = <#=content.UseDefaultFiltration.ToString().ToLower()#>,
+                   Attributes = new List<AttributeInfo>(attributesLookup[<#=content.Id#>]),
+                   IsVirtual = <#=content.IsVirtual.ToString().ToLower()#>
+                },
+<#+
+            }
+#>
+            };
+
+            schema.Contents.ForEach(c => c.Attributes.ForEach(a => a.Content = c));
+
+            return schema;
+        }
+
+        public object GetCacheKey()
+        {
+            return null;
+        }
+        #endregion
+    }
+}
+<#+
+	context.SaveOutput("StaticSchemaProvider.cs");
+#>
+using Quantumart.QP8.CodeGeneration.Services;
+using System.Linq;
+
+namespace <#=manager.DefaultProjectNamespace#>
+{
+    public interface IMappingResolver
+    {
+        SchemaInfo GetSchema();
+        ContentInfo GetContent(string mappedName);
+        AttributeInfo GetAttribute(string contentMappedName, string fieldMappedName);
+        AttributeInfo GetAttribute(string key);
+    }
+
+    public class MappingResolver : IMappingResolver
+    {
+        private ModelReader _schema;
+
+        public MappingResolver(ModelReader schema)
+        {
+            _schema = schema;
+        }
+
+        public SchemaInfo GetSchema()
+        {
+            return _schema.Schema;
+        }
+
+        public ContentInfo GetContent(string mappedName)
+        {
+            return _schema.Contents.Single(c => c.MappedName == mappedName);
+        }
+
+        public AttributeInfo GetAttribute(string key)
+        {
+            var attributes = from c in _schema.Contents
+                             from a in c.Attributes
+                             where key == c.MappedName + "_" + a.MappedName
+                             select a;
+
+            return attributes.Single();
+        }
+        public AttributeInfo GetAttribute(string contentMappedName, string fieldMappedName)
+        {
+            var attributes = from c in _schema.Contents
+                             from a in c.Attributes
+                             where
+                                 c.MappedName == contentMappedName &&
+                                 a.MappedName == fieldMappedName
+                             select a;
+
+            return attributes.Single();
+        }
+    }
+}
+<#+
+	context.SaveOutput("MappingResolver.cs");
+#>
+using Quantumart.QP8.CodeGeneration.Services;
+
+namespace <#=manager.DefaultProjectNamespace#>
+{
+    public class FileSchemaProvider : ISchemaProvider
+    {
+        private readonly string _path;
+
+        public FileSchemaProvider(string path)
+        {
+            _path = path;
+        }
+
+        #region ISchemaProvider implementation
+        public ModelReader GetSchema()
+        {
+            return new ModelReader(_path, _ => { });
+        }
+
+        public object GetCacheKey()
+        {
+            return _path;
+        }
+        #endregion
+    }
+}
+<#+
+	context.SaveOutput("FileSchemaProvider.cs");
+#>
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using Quantumart.QP8.CodeGeneration.Services;
+using System.Data.Common;
+using Quantumart.QPublishing.Database;
+using System.Data.SqlClient;
+
+namespace <#=manager.DefaultProjectNamespace#>
+{
+    public class DatabaseSchemaProvider : ISchemaProvider
+    {
+        #region Queries
+        private const string ContentQuery = @"
+            select
+	            c.CONTENT_ID,
+	            c.NET_CONTENT_NAME,
+	            c.USE_DEFAULT_FILTRATION,
+                c.virtual_type
+            from
+	            CONTENT c
+            where
+	            c.SITE_ID = @siteId";
+
+        private const string AttributeQuery = @"
+            select
+	            a.ATTRIBUTE_ID,
+	            a.CONTENT_ID,
+	            c.NET_CONTENT_NAME,
+                a.ATTRIBUTE_NAME,
+	            a.NET_ATTRIBUTE_NAME,
+	            a.link_id,
+                t.[TYPE_NAME]
+            from
+	            CONTENT_ATTRIBUTE a
+	            join CONTENT c on a.CONTENT_ID = c.CONTENT_ID
+                join ATTRIBUTE_TYPE t on a.ATTRIBUTE_TYPE_ID = t.ATTRIBUTE_TYPE_ID
+            where
+	            c.SITE_ID = @siteId";
+        #endregion
+
+        private readonly string _siteName;
+        private readonly DbConnection _connection;
+
+        public DatabaseSchemaProvider(string siteName, DbConnection connection)
+        {
+            _siteName = siteName;
+            _connection = connection;
+        }
+
+        #region ISchemaProvider implementation
+        public ModelReader GetSchema()
+        {
+            var connector = new DBConnector(_connection);
+            int siteId = connector.GetSiteId(_siteName);
+            bool replaceUrls;
+
+            using (var cmd = new SqlCommand("SELECT TOP 1 REPLACE_URLS FROM SITE WHERE SITE_ID = @siteId"))
+            {
+                cmd.Parameters.AddWithValue("@siteId", siteId);
+                replaceUrls = (bool)connector.GetRealScalarData(cmd);
+            }
+
+            var attributes = GetAttributes(connector, siteId);
+            var contents = GetContents(connector, siteId, attributes);
+
+            var model = new ModelReader();
+
+            model.Schema.ReplaceUrls = replaceUrls;
+            model.Schema.SiteName = _siteName;
+            model.Attributes.AddRange(attributes);
+            model.Contents.AddRange(contents);
+
+            return model;
+        }
+
+        public object GetCacheKey()
+        {
+            return new { _siteName, _connection.ConnectionString };
+        }
+        #endregion
+
+        #region Private methods
+        private ContentInfo[] GetContents(DBConnector connector, int siteId, AttributeInfo[] attributes)
+        {
+            var command = new SqlCommand(ContentQuery);
+            command.Parameters.AddWithValue("@siteId", siteId);
+
+            var attributesLookup = attributes.ToLookup(a => a.ContentId, a => a);
+
+            var contents = connector
+                .GetRealData(command)
+                .AsEnumerable()
+                .Select(row => {
+                    var contentId = (int)row.Field<decimal>("CONTENT_ID");
+                    var mappedName = row.Field<string>("NET_CONTENT_NAME");
+                    var useDefaultFiltration = row.Field<bool>("USE_DEFAULT_FILTRATION");
+                    var IsVirtual = row.Field<decimal>("virtual_type") != 0;
+
+                    var content = new ContentInfo
+                    {
+                        Id = contentId,
+                        MappedName = mappedName,
+                        UseDefaultFiltration = useDefaultFiltration,
+                        Attributes = new List<AttributeInfo>(attributesLookup[contentId]),
+                        IsVirtual = IsVirtual
+                    };
+
+                    content.Attributes.ForEach(a => a.Content = content);
+
+                    return content;
+                })
+                .ToArray();
+
+            return contents;
+        }
+
+        private AttributeInfo[] GetAttributes(DBConnector connector, int siteId)
+        {
+            var command = new SqlCommand(AttributeQuery);
+            command.Parameters.AddWithValue("@siteId", siteId);
+
+            var attributes = connector
+                .GetRealData(command)
+                .AsEnumerable()
+                .Select(row => new AttributeInfo
+                {
+                    Id = (int)row.Field<decimal>("ATTRIBUTE_ID"),
+                    ContentId = (int)row.Field<decimal>("CONTENT_ID"),
+                    Name = row.Field<string>("ATTRIBUTE_NAME"),
+                    MappedName = row.Field<string>("NET_ATTRIBUTE_NAME"),
+                    LinkId = (int)(row.Field<decimal?>("LINK_ID") ?? 0),
+                    Type = row.Field<string>("TYPE_NAME")
+                })
+                .ToArray();
+
+            foreach (var a in attributes)
+            {
+                a.Type = GetType(a);
+            }
+
+            return AddO2mMappings(attributes);
+        }
+
+
+        private AttributeInfo[] AddO2mMappings(AttributeInfo[] attributes)
+        {
+            var attributesList = new List<AttributeInfo>(attributes);
+            foreach (var item in attributes.Where(w => w.IsO2M))
+            {
+                attributesList.Add(
+                    new AttributeInfo()
+                    {
+                        Id = item.Id,
+                        ContentId = item.ContentId,
+                        Name = item.MappedName,
+                        MappedName = item.MappedName + "_ID",
+                        LinkId = item.LinkId,
+                        Type = "Numeric"
+                    });
+            }
+            return attributesList.ToArray();
+        }
+
+        private string GetType(AttributeInfo attribute)
+        {
+            if (attribute.Type == "Relation")
+            {
+                if (attribute.LinkId == 0)
+                {
+                    return "O2M";
+                }
+                else
+                {
+                    return "M2M";
+                }
+            }
+            else if (attribute.Type == "Relation Many-to-One")
+            {
+                return "M2O";
+            }
+
+            return attribute.Type;
+        }
+
+        #endregion
+    }
+}
+<#+
+	context.SaveOutput("DatabaseSchemaProvider.cs");
+}
+string GetDynamicFieldMapping(AttributeInfo attribute)
+{
+    return string.Format("GetFieldName(\"{0}\", \"{1}\")", attribute.Content.MappedName, attribute.MappedName);
+}
+
+string GetDynamicTableMapping(ContentInfo content)
+{
+    return string.Format("GetTableName(\"{0}\")", content.MappedName);
+}
+
+string GetDynamicLinkTableMapping(ContentInfo content, AttributeInfo field)
+{
+    return string.Format("GetLinkTableName(\"{0}\", \"{1}\")", content.MappedName, field.MappedName);
+}
+
+string GetDynamicReversedLinkTablMapping(ContentInfo content, AttributeInfo field)
+{
+    return string.Format("GetReversedLinkTableName(\"{0}\", \"{1}\")", content.MappedName, field.MappedName);
+}
+#>

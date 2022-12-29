@@ -1,6 +1,6 @@
 using System;
 
-namespace Quantumart.QP8.EntityFramework6.DevData
+namespace EntityFramework6.DevData
 {
     public partial class StatusType
     {

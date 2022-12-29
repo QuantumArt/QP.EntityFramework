@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<Project>
+	<ItemGroup>
+			<TransformationFile Include="$(NugetPackageRoot)\qp8.entityframework6\1.4.1\content\QPDataContextGenerator.tt"/>
+	</ItemGroup>
+	<ItemGroup>
+			<DataFile Include="$(NugetPackageRoot)\qp8.entityframework6\1.4.1\content\ModelMappingResult.xml"/>
+	</ItemGroup>
+	<ItemGroup>
+		<SettingsFile Include="$(NugetPackageRoot)\qp8.entityframework6\1.4.1\content\QPDataContextGenerator.tt.settings.xml"/>
+	</ItemGroup>
+
+	<Target Name="CopyTransformationTarget" BeforeTargets="BeforeBuild">
+		<Copy DestinationFolder="$(MSBuildProjectDirectory)\" SourceFiles="@(TransformationFile)"></Copy>
+	</Target>
+	<Target Name="CopyDataTarget" BeforeTargets="BeforeBuild">
+		<Copy DestinationFolder="$(MSBuildProjectDirectory)\" SourceFiles="@(DataFile)"
+			  Condition="!Exists('$(MSBuildProjectDirectory)\ModelMappingResult.xml')"></Copy>
+	</Target>
+	<Target Name="CopySettingsTarget" BeforeTargets="BeforeBuild">
+		<Copy DestinationFolder="$(MSBuildProjectDirectory)\" SourceFiles="@(SettingsFile)"
+			  Condition="!Exists('$(MSBuildProjectDirectory)\QPDataContextGenerator.tt.settings.xml')"></Copy>
+	</Target>
+
+	<ItemGroup>
+		<None Remove="ModelMappingResult.xml" />
+		<None Remove="QPDataContextGenerator.tt.settings.xml" />
+		<None Remove="QPDataContextGenerator.tt" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<AdditionalFiles Include="ModelMappingResult.xml" />
+		<AdditionalFiles Include="QPDataContextGenerator.tt.settings.xml" />
+		<Content Include="QPDataContextGenerator.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+		</Content>
+	</ItemGroup>
+</Project>

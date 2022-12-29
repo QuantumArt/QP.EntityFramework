@@ -1,6 +1,6 @@
 ﻿using System.Linq;
+using EntityFramework6.DevData;
 using NUnit.Framework;
-using EntityFramework6.Test.DataContext;
 using EntityFramework6.Test.Infrastructure;
 
 namespace EntityFramework6.Test.Tests

@@ -1,5 +1,6 @@
-<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ assembly name="System.Core" #>
+<#@ assembly name="netstandard" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
@@ -60,10 +61,10 @@ class Manager {
 
 	   var path = host.ResolvePath(name);
 	   StartNewFile(Path.GetFileName(path), contentProcessor);
-	   var content = File.ReadAllText(path);	   
+	   var content = File.ReadAllText(path);
 	   template.Append(content);
        return content;
-    }	
+    }
 
     public void StartFooter() {
         CurrentBlock = footer;
@@ -232,14 +233,18 @@ class FlatternTemplateProcessor : IContentProcessor
 {
 	private const string ReplaceTemplate = @"$1{0}$3$4";
 	private static Regex IncludeRegex = new Regex(@"(#@\s*include\s+file="")(.*)(\\[^\\]*)(""\s*#)", RegexOptions.Compiled);
+	private static Regex AssemblyRegex = new Regex(@"(#@\s*assembly\s+name="")(.*)(\\[^\\]*)(""\s*#)", RegexOptions.Compiled);
 	private static Regex CodeFileRegex = new Regex(@"(AddCodeFile\(@?"")(.*)(\\[^\\""]*)("")", RegexOptions.Compiled);
 
 	private readonly string _template;
+	private readonly string _assemblyTemplate;
 
 	public FlatternTemplateProcessor(string template)
 	{
 		_template = string.Format(ReplaceTemplate, template);
-    }
+		_assemblyTemplate = _template.Replace("include", "lib\\netstandard2.0");
+
+	}
 
 	public string Process(string content)
 	{
@@ -247,6 +252,10 @@ class FlatternTemplateProcessor : IContentProcessor
 		{
 			content = re.Replace(content, _template);
         }
+		foreach(var re in new[] {AssemblyRegex})
+		{
+			content = re.Replace(content, _assemblyTemplate);
+		}
 		return content;
     }
 }
@@ -257,31 +266,42 @@ class GenerationContext : IDisposable
 	public ModelReader Model { get; private set; }
 	public Manager Manager { get; private set; }
 	public bool UsePartialUpdate { get; private set; }
+    public ITextTemplatingEngineHost Host { get; private set; }
+    public StringBuilder Content { get; private set; }
 
-	public GenerationContext(TextTransformation transformation, ITextTemplatingEngineHost host, StringBuilder content, string settingsFile)
+
+	public GenerationContext(StringBuilder sb, ITextTemplatingEngineHost host, StringBuilder content, string settingsFile)
 	{
-	
 		UsePartialUpdate = false;
 		Settings = EDMXSettings.Parse(host.ResolvePath(settingsFile));
 		Manager = Manager.Create(host, content);
+        Host = host;
+        Content = content;
 
 		var mappingFile = host.ResolvePath(Settings.QPContextMappingResultPath);
-		Model = new ModelReader(mappingFile, text => transformation.WriteLine(text), true);
+		Model = new ModelReader(mappingFile, text => sb.AppendLine(text), true);
 		List<ModelReader> models = new List<ModelReader>();
 		Model.Schema.LazyLoadingEnabled = Settings.LazyLoadingEnabled;
 		Model.Schema.IsStageMode = true;
 		Model.Schema.ConnectionStringName = Settings.UseContextNameAsConnectionString ? Model.Schema.ClassName : Model.Schema.ConnectionStringName;
-		
-		transformation.WriteLine("ClassName:  " + Model.Schema.ClassName);
-		transformation.WriteLine("ConnectionStringName:  " + Model.Schema.ConnectionStringName);
+
+		sb.AppendLine("ClassName:  " + Model.Schema.ClassName);
+		sb.AppendLine("ConnectionStringName:  " + Model.Schema.ConnectionStringName);
+    }
+
+    public void SaveOutput(string outputFileName) {
+        string templateDirectory = Path.GetDirectoryName(Host.TemplateFile);
+        string outputFilePath = Path.Combine(templateDirectory, outputFileName);
+        File.WriteAllText(outputFilePath, Content.ToString());
+        Content.Clear();
     }
 
 	public void AddTemplateFile(string fileName, Action<GenerationContext> addFile, bool condition = true)
 	{
 		if (condition)
         {
-			Manager.StartNewFile(fileName);
 			addFile(this);
+            SaveOutput(fileName);
         }
     }
 
@@ -337,7 +357,7 @@ class NugetContext : IDisposable
 
 	public void FlatternTemplate(string path)
 	{
-		var processor = new FlatternTemplateProcessor(string.Format(@"..\packages\{0}.{1}\include", PackageName, Version));
+		var processor = new FlatternTemplateProcessor($@"$(NugetPackageRoot)\{PackageName.ToLower()}\{Version}\include");
 		var content = Manager.LoadFile(path, processor);
 
 		foreach (Regex re in new[] { IncludeRegex, CodeFileRegex })

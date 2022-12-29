@@ -1,8 +1,9 @@
-﻿using EntityFramework6.Test.DataContext;
-using EntityFramework6.Test.Infrastructure;
+﻿using EntityFramework6.Test.Infrastructure;
 using NUnit.Framework;
 using System;
 using System.Linq;
+using EntityFramework6.DevData;
+using Quantumart.QPublishing.FileSystem;
 
 namespace EntityFramework6.Test.Tests.UpdateContentData
 {
@@ -13,6 +14,7 @@ namespace EntityFramework6.Test.Tests.UpdateContentData
         {
             using (var context = GetDataContext(access, mapping))
             {
+
                 var oldItem = context.Set<TArticle>().FirstOrDefault();
                 Assert.That(oldItem, Is.Not.Null);
 

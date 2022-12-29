@@ -17,7 +17,7 @@ using System.Collections;
 using System.Globalization;
 /* place your custom usings here */
 
-namespace Quantumart.QP8.EntityFramework6.DevData
+namespace EntityFramework6.DevData
 {
     public partial class EF6Model: IQPLibraryService, IQPFormService, IQPSchema
     {
@@ -66,7 +66,7 @@ namespace Quantumart.QP8.EntityFramework6.DevData
 
         protected ObjectContext CurrentObjectContext
         {
-			get 
+			get
 			{
 				return ((IObjectContextAdapter)this).ObjectContext;
 			}
@@ -77,7 +77,7 @@ namespace Quantumart.QP8.EntityFramework6.DevData
         #region Private members
         private const string uploadPlaceholder = "<%=upload_url%>";
         private const string sitePlaceholder = "<%=site_url%>";
-        private static string _defaultSiteName = "Product Catalog";
+        private static string _defaultSiteName = "original_site";
         private static string _defaultConnectionString;
         private static string _defaultConnectionStringName = "qp_database";
         private bool _shouldRemoveSchema = false;
@@ -102,16 +102,16 @@ namespace Quantumart.QP8.EntityFramework6.DevData
 		public string ShortUploadUrl { get; private set; }
 		public Int32 PublishedId { get; private set; }
 		public string ConnectionString { get; private set; }
-		public static string DefaultSiteName 
-		{ 
+		public static string DefaultSiteName
+		{
 			get { return _defaultSiteName; }
 			set { _defaultSiteName = value; }
 		}
 		public DBConnector Cnn
 		{
-			get 
+			get
 			{
-				if (_cnn == null) 
+				if (_cnn == null)
 				{
 					_cnn = new DBConnector(Database.Connection);
 					_cnn.UpdateManyToMany = false;
@@ -119,9 +119,9 @@ namespace Quantumart.QP8.EntityFramework6.DevData
 				return _cnn;
 			}
 		}
-		public string SiteName 
-		{ 
-			get { return _siteName; } 
+		public string SiteName
+		{
+			get { return _siteName; }
 			set
 			{
 				if (!String.Equals(_siteName, value, StringComparison.InvariantCultureIgnoreCase))
@@ -132,8 +132,8 @@ namespace Quantumart.QP8.EntityFramework6.DevData
 				}
 			}
 		}
-		public static string DefaultConnectionString 
-		{ 
+		public static string DefaultConnectionString
+		{
 			get
 			{
 				if (_defaultConnectionString == null)
@@ -177,7 +177,7 @@ namespace Quantumart.QP8.EntityFramework6.DevData
             return Create(configurator, new SqlConnection(DefaultConnectionString), true);
         }
 
-		public static EF6Model Create(string connection, string siteName) 
+		public static EF6Model Create(string connection, string siteName)
 		{
             EF6Model ctx;
 			if(connection.IndexOf("metadata", StringComparison.InvariantCultureIgnoreCase) == -1)
@@ -194,7 +194,7 @@ namespace Quantumart.QP8.EntityFramework6.DevData
 			return ctx;
 		}
 
-		public static EF6Model Create(SqlConnection connection, string siteName) 
+		public static EF6Model Create(SqlConnection connection, string siteName)
 		{
 			EF6Model ctx = new EF6Model(connection, false);
 			ctx.SiteName = siteName;
@@ -202,12 +202,12 @@ namespace Quantumart.QP8.EntityFramework6.DevData
 			return ctx;
 		}
 
-		public static EF6Model Create(string connection) 
+		public static EF6Model Create(string connection)
 		{
 			return Create(connection, DefaultSiteName);
 		}
 
-		public static EF6Model Create() 
+		public static EF6Model Create()
 		{
 			return Create(DefaultConnectionString);
 		}
@@ -237,7 +237,7 @@ namespace Quantumart.QP8.EntityFramework6.DevData
         public static EF6Model CreateWithDatabaseMapping(ContentAccess contentAccess, string siteName, SqlConnection connection, bool contextOwnsConnection)
         {
             var schemaProvider = new DatabaseSchemaProvider(siteName, connection);
-            var configurator = new MappingConfigurator(contentAccess, schemaProvider);         
+            var configurator = new MappingConfigurator(contentAccess, schemaProvider);
             var context = Create(configurator, connection, contextOwnsConnection);
 			context.SiteName = siteName;
 			return context;
@@ -282,7 +282,7 @@ namespace Quantumart.QP8.EntityFramework6.DevData
 		{
 			return Cnn.GetDirectoryForFileAttribute(Cnn.GetAttributeIdByNetNames(SiteId, className, propertyName));
 		}
-		
+
 		public void LoadSiteSpecificInfo()
         {
             if (RemoveUploadUrlSchema && !_shouldRemoveSchema)
@@ -425,7 +425,7 @@ namespace Quantumart.QP8.EntityFramework6.DevData
                         return d;
                     })
                     .ToArray();
-                
+
                 Cnn.MassUpdate(relation.ContentId, values, 1);
             }
         }
@@ -460,7 +460,7 @@ namespace Quantumart.QP8.EntityFramework6.DevData
                     f => f.field,
                     f => f.value
                 );
-           
+
             fieldValues[SystemColumnNames.Id] = article.Id.ToString(CultureInfo.InvariantCulture);
             fieldValues[SystemColumnNames.Created] = article.Created.ToString(CultureInfo.InvariantCulture);
             fieldValues[SystemColumnNames.Modified] = article.Modified.ToString(CultureInfo.InvariantCulture);
@@ -501,86 +501,8 @@ namespace Quantumart.QP8.EntityFramework6.DevData
                 return o.ToString();
             }
         }
-
-
-        int OnSaveChanges()
-        {
-            base.ChangeTracker.DetectChanges();
-
-            var objectCount = 0;
-            var ctx = CurrentObjectContext;
-            var manager = ctx.ObjectStateManager;
-
-            var added = manager.GetObjectStateEntries(EntityState.Added);
-            var modified = manager.GetObjectStateEntries(EntityState.Modified);
-            var deleted = manager.GetObjectStateEntries(EntityState.Deleted);
-
-            foreach (var addedItem in added)
-            {
-                objectCount++;
-                if (!addedItem.IsRelationship)
-                {
-                    var entity = addedItem.Entity as IQPArticle;
-                    if(entity != null)
-                    {
-                        ProcessCreating(addedItem.EntitySet.ElementType.Name, entity, addedItem);
-                    }
-                }
-                else
-                {
-                }
-            }
-
-            foreach (var modifiedItem in modified)
-            {
-                if (!modifiedItem.IsRelationship)
-                {
-                    objectCount++;
-                    var entity = modifiedItem.Entity as IQPArticle;
-                    if (entity != null)
-                    {
-                        ProcessUpdating(modifiedItem.EntitySet.ElementType.Name, entity, modifiedItem);
-                    }
-                }
-                else
-                {
-                }
-            }
-
-            return 0;
-        }
-
-
-        private void ProcessCreating(string contentName, IQPArticle instance, ObjectStateEntry entry)
-        {
-            throw new NotImplementedException();
-            var properties = entry.GetModifiedProperties().ToList();
-            var values = instance.Pack(this);
-            DateTime created = DateTime.Now;
-            // instance.LoadStatusType();
-            // todo: load first status
-            const string lowestStatus = "None";
-            if (!properties.Contains("Visible"))
-                instance.Visible = true;
-            if (!properties.Contains("Archive"))
-                instance.Archive = false;
-
-            // instance.Id = Cnn.AddFormToContent(SiteId, Cnn.GetContentIdByNetName(SiteId, contentName), lowestStatus, ref values, 0, true, 0, instance.Visible, instance.Archive, true, ref created);
-            instance.Created = created;
-            instance.Modified = created;
-        }
-
-        private void ProcessUpdating(string contentName, IQPArticle instance, ObjectStateEntry entry)
-        {
-		    throw new NotImplementedException();
-		    var properties = entry.GetModifiedProperties().ToList();
-			var values = instance.Pack(this);
-			DateTime modified = DateTime.Now;
-			throw new NotImplementedException("CUD operations are not implemented yet.");
-			// Cnn.AddFormToContent(SiteId, Cnn.GetContentIdByNetName(SiteId, contentName), instance.StatusType.StatusTypeName, ref values, (int)instance.Id, true, 0, instance.Visible, instance.Archive, true, ref modified);
-			// instance.Modified = modified;
-        }
         #endregion
+
         string IQPFormService.GetFormNameByNetNames(string netContentName, string netFieldName)
         {
             return Cnn.GetFormNameByNetNames(this.SiteId, netContentName, netFieldName);

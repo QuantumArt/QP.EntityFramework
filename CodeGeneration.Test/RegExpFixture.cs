@@ -8,8 +8,9 @@ using System.Collections.Generic;
 using System.Reflection;
 
 namespace CodeGeneration.Test
-{    
+{
     [TestFixture]
+    [Ignore("manual")]
     public class RegExpFixture
     {
         private static Regex IncludeRegex = new Regex(@"#@\s*include\s+file=""(.*\\([^\\]*))""\s*#", RegexOptions.Compiled);
@@ -52,6 +53,6 @@ namespace CodeGeneration.Test
             string path = @"C:\Source\Repos\QP.EntityFramework\EntityFramework6.Test\DataContext\QPDataContextGenerator.tt";
             string text = File.ReadAllText(path);
             return text;
-        }   
-    }     
+        }
+    }
 }

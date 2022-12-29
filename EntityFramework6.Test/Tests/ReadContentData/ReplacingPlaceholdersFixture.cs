@@ -1,11 +1,11 @@
 ﻿using System.Linq;
 using NUnit.Framework;
-using EntityFramework6.Test.DataContext;
 using EntityFramework6.Test.Infrastructure;
 using Quantumart.QP8.CodeGeneration.Services;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Data.SqlClient;
+using EntityFramework6.DevData;
 
 namespace EntityFramework6.Test.Tests.ReadContentData
 {

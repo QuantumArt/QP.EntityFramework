@@ -1,7 +1,7 @@
 ﻿using System;
+using EntityFramework6.DevData;
 using EntityFramework6.Test.Infrastructure;
 using NUnit.Framework;
-using EntityFramework6.Test.DataContext;
 
 namespace EntityFramework6.Test.Tests.UpdateContentData
 {
