@@ -6,7 +6,6 @@
     <AssemblyName>EntityFramework6.CodeGeneration</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="install.ps1" />
     <None Include="ModelMappingResult.xml" />
     <None Include="NugetAspNetCorePackageGenerator.log">
@@ -28,7 +27,6 @@
     </None>
     <None Include="NugetPackageNuspec.ttinclude" />
     <None Include="NugetPackagePublication.ttinclude" />
-    <None Include="packages.config" />
     <None Include="NugetPackageTargets.ttinclude" />
     <None Include="QP8.EntityFramework6.AspNetCore.targets">
       <DependentUpon>NugetAspNetCorePackageGenerator.tt</DependentUpon>
